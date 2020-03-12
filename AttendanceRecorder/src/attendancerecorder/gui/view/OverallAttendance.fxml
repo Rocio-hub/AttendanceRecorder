@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import java.net.URL?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #a6000f;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendancerecorder.gui.controller.OverallAttendanceController">
+    <stylesheets>
+        <URL value="@overallattendanceCSS.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane layoutX="17.0" layoutY="19.0" prefHeight="628.0" prefWidth="867.0" style="-fx-background-color: #F3F2ED;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <TabPane layoutX="4.0" layoutY="51.0" prefHeight="569.0" prefWidth="848.0" style="-fx-border-color: #a6000f #a6000f; -fx-border-width: 2;" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab style="-fx-border: #a6000f;" text="OverAll">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="365.0" layoutY="43.0" text="Overall" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="43.0" />
+                              <PieChart fx:id="overAllChart" layoutX="256.0" layoutY="146.0" prefHeight="279.0" prefWidth="306.0" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab style="-fx-border: #a6000f;" text="Subjects">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="379.0" layoutY="25.0" text="Subjects" AnchorPane.topAnchor="25.0" />
+                              <Label layoutX="537.0" layoutY="299.0" prefHeight="137.0" prefWidth="275.0" text="SDE2" AnchorPane.bottomAnchor="39.0" AnchorPane.rightAnchor="29.0">
+                                 <graphic>
+                                    <PieChart fx:id="sdeChart1" prefHeight="150.0" prefWidth="27.0" />
+                                 </graphic>
+                              </Label>
+                              <Label layoutX="86.0" layoutY="138.0" prefHeight="150.0" prefWidth="268.0" text="SCO2" AnchorPane.bottomAnchor="268.0" AnchorPane.leftAnchor="86.0">
+                                 <graphic>
+                                    <PieChart fx:id="dbosChart1" prefHeight="43.0" prefWidth="45.0" />
+                                 </graphic>
+                              </Label>
+                              <Label layoutX="537.0" layoutY="122.0" prefHeight="150.0" prefWidth="259.0" text="ITO2" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="122.0">
+                                 <graphic>
+                                    <PieChart fx:id="itoChart1" prefHeight="135.0" prefWidth="191.0" />
+                                 </graphic>
+                              </Label>
+                              <Label layoutX="95.0" layoutY="334.0" text="DB/OS" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="334.0">
+                                 <graphic>
+                                    <PieChart fx:id="scoChart1" prefHeight="54.0" prefWidth="84.0" />
+                                 </graphic>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab style="-fx-border: #a6000f;" text="Sort by Date">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F3F2ED #F3F2ED;">
+                           <children>
+                              <JFXDatePicker defaultColor="#a6000f" layoutX="192.0" layoutY="29.0" prefHeight="9.0" prefWidth="481.0" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="168.0" AnchorPane.topAnchor="29.0" />
+                              <Label layoutX="515.0" layoutY="151.0" text="SDE2" AnchorPane.bottomAnchor="255.0" AnchorPane.rightAnchor="69.0">
+                                 <graphic>
+                                    <PieChart fx:id="scoChart2" prefHeight="150.0" prefWidth="27.0" />
+                                 </graphic>
+                              </Label>
+                              <Label layoutX="88.0" layoutY="141.0" text="SCO2" AnchorPane.bottomAnchor="265.0" AnchorPane.leftAnchor="88.0">
+                                 <graphic>
+                                    <PieChart fx:id="sdeChart2" prefHeight="150.0" prefWidth="27.0" />
+                                 </graphic>
+                              </Label>
+                              <Label layoutX="523.0" layoutY="344.0" text="ITO2" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="344.0">
+                                 <graphic>
+                                    <PieChart fx:id="dbosChart2" prefHeight="150.0" prefWidth="27.0" />
+                                 </graphic>
+                              </Label>
+                              <Label layoutX="79.0" layoutY="358.0" text="DB/OS" AnchorPane.leftAnchor="79.0" AnchorPane.topAnchor="358.0">
+                                 <graphic>
+                                    <PieChart fx:id="itoChart2" prefHeight="150.0" prefWidth="27.0" />
+                                 </graphic>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+            <ImageView fitHeight="42.0" fitWidth="212.0" layoutX="674.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../icons/logo.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btn_close" buttonType="RAISED" layoutX="765.0" layoutY="625.0" onAction="#clickClose" prefHeight="31.0" prefWidth="90.0" ripplerFill="#fff379" text="Close" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="5.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

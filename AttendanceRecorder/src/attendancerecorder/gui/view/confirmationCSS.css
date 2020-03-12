@@ -1,0 +1,53 @@
+
+.root{
+    -fx-background-color: #C10D0E;
+}
+
+.button{   
+    -fx-background-color: linear-gradient(#f2f2f2, #d6d6d6),
+        linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+        linear-gradient(#dddddd 0%, #f6f6f6 50%);
+    -fx-cursor: hand;
+    -fx-text-fill: #000;
+    -fx-padding: 5px;
+    -fx-font-size: 25px;
+    -fx-font-family: "Arial";
+    -fx-border-width: 2;  
+    -fx-border-color: #000;
+}
+
+.button:hover{
+    -fx-background-color: #FFF379;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+#btn_close{
+    -fx-padding: 5px 10px;
+    -fx-font-size: 15px;
+}
+
+#btn_close:hover{
+    -fx-background-color: #009FE3;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+.label{
+    -fx-font-family: "Arial";
+    -fx-font-size: 20px;
+    -fx-font-weight: bolder;
+    -fx-alignment: center;
+}
+
+#btn_view_overall_attendance{
+    -fx-alignment: center;
+}
+
+#lbl3{
+    -fx-font-size: 30px;
+}
+
+
