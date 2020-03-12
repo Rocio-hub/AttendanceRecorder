@@ -12,5 +12,5 @@ public interface IDAOStudent {
 
     public List<Student> getAllStudents();
 
-    public void deleteStudentById();     
+    public List<Student> getStudentLoginData();    
 }
