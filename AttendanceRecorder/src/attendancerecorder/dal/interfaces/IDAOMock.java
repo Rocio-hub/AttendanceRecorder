@@ -3,16 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendancerecorder.dal;
+package attendancerecorder.dal.interfaces;
 
 import attendancerecorder.be.Student;
 import java.util.List;
 
-/**
- *
- * @author mac
- */
+
 public interface IDAOMock {
     
-    public List <Student> getAllStudents();    
+    public List <Student> getAllStudents();  
+    
 }
