@@ -77,7 +77,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
     }
 
     @FXML
-    private void selectedStudent(MouseEvent event) {
+    private void selectedStudent(MouseEvent event) {/*
         String studentName = students.getSelectionModel().getSelectedItem().getName();
         String value = calendar.getValue().toString();
         if (studentName != null && value != null) {
@@ -101,6 +101,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
         } else {
             lbl_popup.setVisible(true);
         }
+*/
     }
 
     @FXML
