@@ -23,13 +23,13 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="user" alignment="TOP_LEFT" focusColor="#09b6bc" labelFloat="true" layoutX="196.0" layoutY="193.0" promptText="E-mail">
+            <JFXTextField fx:id="txt_email" alignment="TOP_LEFT" focusColor="#09b6bc" labelFloat="true" layoutX="196.0" layoutY="193.0" promptText="E-mail">
                <font>
                   <Font size="14.0" />
                </font></JFXTextField>
-            <JFXButton fx:id="loginT" buttonType="RAISED" layoutX="472.0" layoutY="315.0" onAction="#makeLoginTeacher" onMouseClicked="#clickLogin" prefHeight="31.0" prefWidth="71.0" ripplerFill="#009fe3" stylesheets="@loginteacherCSS.css" text="Log In" />
+            <JFXButton fx:id="btn_login" buttonType="RAISED" layoutX="472.0" layoutY="315.0" onAction="#click_login" onMouseClicked="#mouse_login" prefHeight="31.0" prefWidth="71.0" ripplerFill="#009fe3" stylesheets="@loginteacherCSS.css" text="Log In" />
 
-            <JFXPasswordField fx:id="pass" alignment="TOP_LEFT" focusColor="#09b6bc" labelFloat="true" layoutX="196.0" layoutY="250.0" promptText="Password">
+            <JFXPasswordField fx:id="txt_password" alignment="TOP_LEFT" focusColor="#09b6bc" labelFloat="true" layoutX="196.0" layoutY="250.0" promptText="Password">
                <font>
                   <Font size="14.0" />
                </font></JFXPasswordField>
@@ -38,7 +38,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="wrongpass" layoutX="112.0" layoutY="142.0" prefHeight="25.0" prefWidth="325.0" textFill="RED">
+            <Label fx:id="lbl_wrongpassword" layoutX="112.0" layoutY="142.0" prefHeight="25.0" prefWidth="325.0" textFill="RED">
                <font>
                   <Font size="9.0" />
                </font></Label>

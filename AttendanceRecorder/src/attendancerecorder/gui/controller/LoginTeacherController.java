@@ -31,29 +31,31 @@ import javafx.stage.Stage;
 public class LoginTeacherController implements Initializable {
 
     ITeacherManager teacherMan = new TeacherManager();
+
     @FXML
-    private JFXTextField user;
+    private JFXTextField txt_email;
     @FXML
-    private JFXButton loginT;
+    private JFXButton btn_login;
     @FXML
-    private JFXPasswordField pass;
+    private JFXPasswordField txt_password;
     @FXML
-    private Label wrongpass;
+    private Label lbl_wrongpassword;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        wrongpass.setId("wrongpass");
+        lbl_wrongpassword.setId("lbl_wrongpassword");
     }
 
     @FXML
-    private void makeLoginTeacher(ActionEvent event) throws IOException {
+    private void mouse_login(MouseEvent event) throws IOException {
+        
         boolean found = false;
         List<Teacher> teacherList = teacherMan.getTeacherLoginData();
         for (Teacher teacher : teacherList) {
-            if (user.getText().equals(teacher.getEmail()) && pass.getText().equals(teacher.getPassword())) {
+            if (txt_email.getText().equals(teacher.getEmail()) && txt_password.getText().equals(teacher.getPassword())) {
                 found = true;
             }
         }
@@ -68,17 +70,18 @@ public class LoginTeacherController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } else {
-            wrongpass.setText("Wrong password or username");
+            lbl_wrongpassword.setText("Wrong password or username");
         }
-        loginT.pressedProperty();
+        btn_login.pressedProperty();
     }
 
     @FXML
-    private void clickLogin(MouseEvent event) {
+    private void click_login(ActionEvent event) {
+        
         boolean found = false;
         List<Teacher> teacherList = teacherMan.getTeacherLoginData();
         for (Teacher teacher : teacherList) {
-            if (user.getText().equals(teacher.getEmail()) && pass.getText().equals(teacher.getPassword())) {
+            if (txt_email.getText().equals(teacher.getEmail()) && txt_password.getText().equals(teacher.getPassword())) {
                 found = true;
             }
         }
