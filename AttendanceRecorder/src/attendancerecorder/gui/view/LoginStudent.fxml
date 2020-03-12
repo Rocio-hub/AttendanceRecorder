@@ -40,7 +40,7 @@
                </font>
             </Label>
 
-            <Label fx:id="lbl_wrong" layoutX="124.0" layoutY="155.0" prefHeight="25.0" prefWidth="296.0" textFill="RED" />
+            <Label fx:id="lbl_wrongpassword" layoutX="124.0" layoutY="155.0" prefHeight="25.0" prefWidth="296.0" textFill="RED" />
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="345.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../icons/logo.png" />

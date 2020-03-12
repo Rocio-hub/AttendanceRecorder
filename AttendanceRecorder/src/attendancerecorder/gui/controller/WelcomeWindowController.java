@@ -5,6 +5,7 @@
  */
 package attendancerecorder.gui.controller;
 
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.EventObject;
@@ -25,18 +26,16 @@ import javafx.stage.Stage;
 
 public class WelcomeWindowController implements Initializable {
 
-    @FXML
-    private Button btn_student;
-    @FXML
-    private Button btn_teacher;
-    @FXML
-    private Label lbl1;
-    @FXML
-    private Label lbl2;
+//    private Label lbl1;
+//    private Label lbl2;
     @FXML
     private Button btn_close;
     @FXML
     private AnchorPane pane_1;
+    @FXML
+    private JFXButton btn_student;
+    @FXML
+    private JFXButton btn_teacher;
 
     /**
      * Initializes the controller class.
@@ -46,24 +45,12 @@ public class WelcomeWindowController implements Initializable {
         btn_student.setId("btn_student");
         btn_teacher.setId("btn_teacher");
         btn_close.setId("btn_close");
-        lbl1.setId("lbl1");
-        lbl2.setId("lbl2");
+//        lbl1.setId("lbl1");
+//        lbl2.setId("lbl2");
     }
 
     @FXML
-    private void clickTeacher(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/LoginTeacher.fxml"));
-        Parent root = loader.load();
-        LoginTeacherController ctrl = loader.getController();
-
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    private void clickStudent(ActionEvent event) throws IOException {
+    private void click_student(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/LoginStudent.fxml"));
         Parent root = loader.load();
         LoginStudentController ctrls = loader.getController();
@@ -75,7 +62,19 @@ public class WelcomeWindowController implements Initializable {
     }
 
     @FXML
-    private void clickClose(ActionEvent event) {
+    private void click_teacher(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/LoginTeacher.fxml"));
+        Parent root = loader.load();
+        LoginTeacherController ctrl = loader.getController();
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void click_close(ActionEvent event) {
         Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
         stage.close();
     }

@@ -30,7 +30,7 @@ import javafx.stage.Stage;
 
 public class LoginTeacherController implements Initializable {
 
-    ITeacherManager teacherMan = new TeacherManager();
+    ITeacherManager teacherMng = new TeacherManager();
 
     @FXML
     private JFXTextField txt_email;
@@ -53,8 +53,8 @@ public class LoginTeacherController implements Initializable {
     private void mouse_login(MouseEvent event) throws IOException {
         
         boolean found = false;
-        List<Teacher> teacherList = teacherMan.getTeacherLoginData();
-        for (Teacher teacher : teacherList) {
+        List<Teacher> teacherLst = teacherMng.getTeacherLoginData();
+        for (Teacher teacher : teacherLst) {
             if (txt_email.getText().equals(teacher.getEmail()) && txt_password.getText().equals(teacher.getPassword())) {
                 found = true;
             }
@@ -79,8 +79,8 @@ public class LoginTeacherController implements Initializable {
     private void click_login(ActionEvent event) {
         
         boolean found = false;
-        List<Teacher> teacherList = teacherMan.getTeacherLoginData();
-        for (Teacher teacher : teacherList) {
+        List<Teacher> teacherLst = teacherMng.getTeacherLoginData();
+        for (Teacher teacher : teacherLst) {
             if (txt_email.getText().equals(teacher.getEmail()) && txt_password.getText().equals(teacher.getPassword())) {
                 found = true;
             }

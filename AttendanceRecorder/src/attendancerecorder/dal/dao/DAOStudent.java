@@ -62,17 +62,16 @@ public class DAOStudent implements IDAOStudent {
     @Override
     public List<Student> getStudentLoginData() {
         try (Connection con = ds.getConnection()) {
-            String sql = "SELECT id, email, password FROM Student";
+            String sql = "SELECT  email, password FROM Student";
             List<Student> studentLst = new ArrayList();
 
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                int id = rs.getInt("id");
                 String email = rs.getString("email");
                 String password = rs.getString("password");                
 
-                Student student = new Student(id, email, password);
+                Student student = new Student(email, password);
                 studentLst.add(student);
             }
             return studentLst;

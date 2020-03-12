@@ -68,8 +68,7 @@ public class Student {
         this.password = password;
     }
     
-      public Student(int id, String email, String password) {
-        this.id = id;
+      public Student(String email, String password) {
         this.email = email;
         this.password = password;
     }

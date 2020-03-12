@@ -5,12 +5,19 @@
  */
 package attendancerecorder.gui.controller;
 
+import attendancerecorder.be.Student;
+import attendancerecorder.be.Teacher;
+import attendancerecorder.bll.interfaces.IStudentManager;
+import attendancerecorder.bll.interfaces.ITeacherManager;
+import attendancerecorder.bll.managers.StudentManager;
+import attendancerecorder.bll.managers.TeacherManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.EventObject;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,56 +32,63 @@ import javafx.stage.Stage;
 
 public class LoginStudentController implements Initializable {
 
-    @FXML
-    private Label lbl_wrong;
+    IStudentManager studentMng = new StudentManager();
+
     @FXML
     private JFXTextField txt_email;
     @FXML
     private JFXButton btn_login;
     @FXML
     private JFXPasswordField txt_password;
+    @FXML
+    private Label lbl_wrongpassword;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lbl_wrong.setId("lbl_wrong");
+        lbl_wrongpassword.setId("lbl_wrongpassword");
     }
 
-    private void makeLogin(ActionEvent event) throws IOException {
-        String user = txt_email.getText();
-        String pass = txt_password.getText();
-        if (user.equals("Student") && pass.equals("password")) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/StudentRecordAttendance.fxml"));
-            Parent root = loader.load();
-            StudentRecordAttendanceController srctrl = loader.getController();
+    @FXML
+    private void mouse_login(MouseEvent event) {
 
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-
-        } else {
-            lbl_wrong.setText("Wrong password or username");
+         boolean found = false;
+        List<Student> studentLst = studentMng.getStudentLoginData();
+        for (Student student : studentLst) {
+            if (txt_email.getText().equals(student.getEmail()) && txt_password.getText().equals(student.getPassword())) {
+                found = true;
+            }
         }
-        btn_login.pressedProperty();
-    }
-
-    private void clickLogin(MouseEvent event) {
-        String user = txt_email.getText();
-        String pass = txt_password.getText();
-        if (user.equals("Student") && pass.equals("password")) {
+        if (found) {
             Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
             stage.close();
         }
     }
 
     @FXML
-    private void mouse_login(MouseEvent event) {
-    }
+    private void click_login(ActionEvent event) throws IOException {
+        boolean found = false;
+        List<Student> studentLst = studentMng.getStudentLoginData();
+        for (Student student : studentLst) {
+            if (txt_email.getText().equals(student.getEmail()) && txt_password.getText().equals(student.getPassword())) {
+                found = true;
+            }
+        }
+        if (found) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/StudentRecordAttendance.fxml"));
 
-    @FXML
-    private void click_login(ActionEvent event) {
+            Parent root = loader.load();
+            StudentRecordAttendanceController srac = loader.getController();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } else {
+            lbl_wrongpassword.setText("Wrong password or username");
+        }
+        btn_login.pressedProperty();
     }
 }
