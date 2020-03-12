@@ -6,15 +6,16 @@
 package attendancerecorder.dal;
 
 import attendancerecorder.be.Student;
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author mac
- */
 public class DAOMock implements IDAOMock {
+
+    @Override
+    public List<Student> getAllStudents() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
+    /*
     Student std1 = new Student("Rocio");
     Student std2 = new Student("Nadia");
     Student std3 = new Student("Francesco");
@@ -35,9 +36,6 @@ public class DAOMock implements IDAOMock {
     allStudents.add(std7);
         return allStudents;
     }
-    
-   
-
-    
+   */    
 }
 
