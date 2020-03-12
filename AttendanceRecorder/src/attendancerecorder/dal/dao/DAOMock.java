@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendancerecorder.dal;
+package attendancerecorder.dal.dao;
 
+import attendancerecorder.dal.interfaces.IDAOMock;
 import attendancerecorder.be.Student;
 import java.util.ArrayList;
 import java.util.List;

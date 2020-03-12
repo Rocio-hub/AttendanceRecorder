@@ -5,7 +5,7 @@
  */
 package attendancerecorder.bll;
 
-import attendancerecorder.dal.DAOMock;
+import attendancerecorder.dal.dao.DAOMock;
 import attendancerecorder.be.Student;
 import java.util.List;
 
