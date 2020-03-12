@@ -11,5 +11,6 @@ import java.util.List;
 
 public interface IDAOTeacher {
     
-    public List <Teacher>getAllTeachers();
+    public List<Teacher>getAllTeachers();
+    public List<Teacher>getTeacherLoginData();
 }
