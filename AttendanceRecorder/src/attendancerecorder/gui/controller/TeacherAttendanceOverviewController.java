@@ -5,8 +5,8 @@
  */
 package attendancerecorder.gui.controller;
 
-import attendancerecorder.bll.SimpleManager;
 import attendancerecorder.be.Student;
+import attendancerecorder.bll.managers.SimpleManager;
 import com.jfoenix.controls.JFXDatePicker;
 import java.net.URL;
 import java.util.EventObject;
