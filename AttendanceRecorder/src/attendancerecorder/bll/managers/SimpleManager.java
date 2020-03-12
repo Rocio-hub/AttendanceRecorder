@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendancerecorder.bll;
+package attendancerecorder.bll.managers;
 
 import attendancerecorder.dal.dao.DAOMock;
 import attendancerecorder.be.Student;

@@ -3,12 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendancerecorder.bll;
+package attendancerecorder.bll.interfaces;
 
-/**
- *
- * @author Francesco
- */
-public class TeacherManager {
+
+public interface ITeacherManager {
     
 }
