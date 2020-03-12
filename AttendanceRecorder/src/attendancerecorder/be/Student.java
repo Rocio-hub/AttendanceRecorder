@@ -14,6 +14,7 @@ public class Student {
     private String password;
 
     //Getters and Setters for all variables
+    
     public int getId() {
         return id;
     }
