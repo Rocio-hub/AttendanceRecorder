@@ -23,11 +23,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author mac
- */
 public class LoginStudentController implements Initializable {
 
     @FXML
