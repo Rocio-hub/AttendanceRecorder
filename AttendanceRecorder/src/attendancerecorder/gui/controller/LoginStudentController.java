@@ -26,13 +26,13 @@ import javafx.stage.Stage;
 public class LoginStudentController implements Initializable {
 
     @FXML
-    private JFXTextField username;
-    @FXML
-    private JFXButton login;
-    @FXML
-    private JFXPasswordField password;
-    @FXML
     private Label lbl_wrong;
+    @FXML
+    private JFXTextField txt_email;
+    @FXML
+    private JFXButton btn_login;
+    @FXML
+    private JFXPasswordField txt_password;
 
     /**
      * Initializes the controller class.
@@ -42,10 +42,9 @@ public class LoginStudentController implements Initializable {
         lbl_wrong.setId("lbl_wrong");
     }
 
-    @FXML
     private void makeLogin(ActionEvent event) throws IOException {
-        String user = username.getText();
-        String pass = password.getText();
+        String user = txt_email.getText();
+        String pass = txt_password.getText();
         if (user.equals("Student") && pass.equals("password")) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/StudentRecordAttendance.fxml"));
             Parent root = loader.load();
@@ -59,16 +58,23 @@ public class LoginStudentController implements Initializable {
         } else {
             lbl_wrong.setText("Wrong password or username");
         }
-        login.pressedProperty();
+        btn_login.pressedProperty();
     }
 
-    @FXML
     private void clickLogin(MouseEvent event) {
-        String user = username.getText();
-        String pass = password.getText();
+        String user = txt_email.getText();
+        String pass = txt_password.getText();
         if (user.equals("Student") && pass.equals("password")) {
             Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
             stage.close();
         }
+    }
+
+    @FXML
+    private void mouse_login(MouseEvent event) {
+    }
+
+    @FXML
+    private void click_login(ActionEvent event) {
     }
 }
