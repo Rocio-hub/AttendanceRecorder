@@ -5,7 +5,12 @@
  */
 package attendancerecorder.bll.interfaces;
 
+import attendancerecorder.be.Teacher;
+import java.util.List;
+
 
 public interface ITeacherManager {
-    
+    public List<Teacher>getAllTeachers();
+    public List<Teacher>getTeacherLoginData();
+
 }

@@ -5,10 +5,23 @@
  */
 package attendancerecorder.bll.managers;
 
-/**
- *
- * @author Francesco
- */
-public class TeacherManager {
+import attendancerecorder.be.Teacher;
+import attendancerecorder.bll.interfaces.ITeacherManager;
+import attendancerecorder.dal.dao.DAOTeacher;
+import attendancerecorder.dal.interfaces.IDAOTeacher;
+import java.util.List;
+
+
+public class TeacherManager implements ITeacherManager {
+    IDAOTeacher daoTeacher = new DAOTeacher();
+    @Override
+    public List<Teacher> getAllTeachers() {
+        return daoTeacher.getAllTeachers();
+    }
+
+    @Override
+    public List<Teacher> getTeacherLoginData() {
+      return daoTeacher.getTeacherLoginData();
+    }
     
 }
