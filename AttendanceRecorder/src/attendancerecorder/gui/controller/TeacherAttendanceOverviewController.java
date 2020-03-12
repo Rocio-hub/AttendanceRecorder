@@ -5,7 +5,7 @@
  */
 package attendancerecorder.gui.controller;
 
-import attendancerecorder.bll.SimpleManager;
+import attendancerecorder.bll.managers.SimpleManager;
 import attendancerecorder.be.Student;
 import com.jfoenix.controls.JFXDatePicker;
 import java.net.URL;
@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 
 public class TeacherAttendanceOverviewController implements Initializable {
 
-    SimpleManager manager = new SimpleManager();
+    //SimpleManager manager = new SimpleManager();
 
     @FXML
     private JFXDatePicker calendar;
@@ -71,9 +71,9 @@ public class TeacherAttendanceOverviewController implements Initializable {
         reasonForAbsence.setId("reasonForAbsence");
         className.setId("className");
         teacherName.setId("teacherName");
-        ObservableList<Student> tableItems = FXCollections.observableArrayList(manager.getAllStudents());
-        studentsColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        students.setItems(tableItems);
+//        ObservableList<Student> tableItems = FXCollections.observableArrayList(manager.getAllStudents());
+//        studentsColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+//        students.setItems(tableItems);
     }
 
     @FXML

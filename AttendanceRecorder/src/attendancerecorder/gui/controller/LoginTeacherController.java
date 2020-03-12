@@ -5,12 +5,17 @@
  */
 package attendancerecorder.gui.controller;
 
+import attendancerecorder.be.Teacher;
+import attendancerecorder.bll.interfaces.ITeacherManager;
+import attendancerecorder.bll.managers.TeacherManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +30,7 @@ import javafx.stage.Stage;
 
 public class LoginTeacherController implements Initializable {
 
+    ITeacherManager teacherMan = new TeacherManager();
     @FXML
     private JFXTextField user;
     @FXML
@@ -44,10 +50,16 @@ public class LoginTeacherController implements Initializable {
 
     @FXML
     private void makeLoginTeacher(ActionEvent event) throws IOException {
-        String username = user.getText();
-        String password = pass.getText();
-        if (username.equals("Teacher") && password.equals("password")) {
+        boolean found = false;
+        List<Teacher> teacherList = teacherMan.getTeacherLoginData();
+        for (Teacher teacher : teacherList) {
+            if (user.getText().equals(teacher.getEmail()) && pass.getText().equals(teacher.getPassword())) {
+                found = true;
+            }
+        }
+        if (found) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/TeacherAttendanceOverview.fxml"));
+
             Parent root = loader.load();
             TeacherAttendanceOverviewController tactrl = loader.getController();
 
@@ -63,9 +75,14 @@ public class LoginTeacherController implements Initializable {
 
     @FXML
     private void clickLogin(MouseEvent event) {
-        String username = user.getText();
-        String password = pass.getText();
-        if (username.equals("Teacher") && password.equals("password")) {
+        boolean found = false;
+        List<Teacher> teacherList = teacherMan.getTeacherLoginData();
+        for (Teacher teacher : teacherList) {
+            if (user.getText().equals(teacher.getEmail()) && pass.getText().equals(teacher.getPassword())) {
+                found = true;
+            }
+        }
+        if (found) {
             Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
             stage.close();
         }
