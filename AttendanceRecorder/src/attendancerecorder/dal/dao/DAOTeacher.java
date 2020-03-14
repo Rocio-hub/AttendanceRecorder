@@ -5,11 +5,13 @@
  */
 package attendancerecorder.dal.dao;
 
+import attendancerecorder.be.Student;
 import attendancerecorder.dal.interfaces.IDAOTeacher;
 import attendancerecorder.be.Teacher;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -78,6 +80,25 @@ public class DAOTeacher implements IDAOTeacher{
         }
         return null;
     }
+
+    @Override
+    public List<Student> getStudentsOnCondition(String date, int present) {
+         try (Connection con = ds.getConnection()) {
+             List<Student> studentLst = new ArrayList();
+            // String sql = "SELECT firstName From Students join Attendance on id=studentId where date=? and present=? ";
+           
+             Student student = new Student("caracol");
+             studentLst.add(student);
+            return studentLst;
+        } catch (SQLServerException sqlse) {
+            Logger.getLogger(DAOTeacher.class.getName()).log(Level.SEVERE, null, sqlse);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOTeacher.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+   
     }
     
 

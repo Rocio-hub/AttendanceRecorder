@@ -72,6 +72,9 @@ public class Student {
         this.email = email;
         this.password = password;
     }
+      public Student(String firstName){
+          this.firstName = firstName;
+      }
 
     //ToString
 

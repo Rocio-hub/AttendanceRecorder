@@ -5,6 +5,7 @@
  */
 package attendancerecorder.bll.managers;
 
+import attendancerecorder.be.Student;
 import attendancerecorder.be.Teacher;
 import attendancerecorder.bll.interfaces.ITeacherManager;
 import attendancerecorder.dal.dao.DAOTeacher;
@@ -22,6 +23,11 @@ public class TeacherManager implements ITeacherManager {
     @Override
     public List<Teacher> getTeacherLoginData() {
       return daoTeacher.getTeacherLoginData();
+    }
+
+    @Override
+    public List<Student> getStudentsOnCondition(String date, int present) {
+        return daoTeacher.getStudentsOnCondition(date, present);
     }
     
 }
