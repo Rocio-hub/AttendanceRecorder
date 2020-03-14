@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 
 public class ConfirmationController implements Initializable {
 
-    private Label lbl3;
+    
     @FXML
     private Button btn_close;
     @FXML
@@ -35,7 +35,7 @@ public class ConfirmationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btn_view_overall_attendance.setId("btn_view_overall_attendance");
-        lbl3.setId("lbl3");
+        
     }
 
     @FXML

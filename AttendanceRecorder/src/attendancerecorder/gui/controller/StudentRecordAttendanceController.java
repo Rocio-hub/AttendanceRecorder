@@ -79,8 +79,18 @@ public class StudentRecordAttendanceController implements Initializable {
     }
     
     private boolean enableConfirmation(){
-        if(datePicker.getValue() == null) lbl_popup.setVisible(true);
-//        else if(!cb_present.isPressed() && !cb_absent.isPressed()) lbl_popup1.setVisible(true);
+        if(datePicker.getValue() == null){
+            lbl_popup.setVisible(true);
+            return false;
+        }
+        if(!cb_present.isSelected()&& !cb_absent.isSelected()){
+            lbl_popup1.setVisible(true)  ;
+            return false;
+        }
+        if(tv_courses.getSelectionModel().getSelectedItem()==null){
+            lbl_popup2.setVisible(true);
+            return false;
+        }
     return true;
     }
     
@@ -89,21 +99,17 @@ public class StudentRecordAttendanceController implements Initializable {
     @FXML
     private void click_present(ActionEvent event) {
         cb_absent.setSelected(false);
-        if (datePicker.getValue() == null) {
-            lbl_popup.setVisible(true);
-        } else {
-            lbl_popup.setVisible(false);
-        }
     }
 
     @FXML
     private void click_absent(ActionEvent event) {
         cb_present.setSelected(false);
-        txt_absentMessage.visibleProperty().bind(cb_absent.selectedProperty()); //The best line ever!!!
+        txt_absentMessage.visibleProperty().bind(cb_absent.selectedProperty()); 
     }
 
     @FXML
     private void click_confirm(ActionEvent event) throws IOException {        
+        if(enableConfirmation()){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/Confirmation.fxml"));
         Parent root = loader.load();
         ConfirmationController cctrl = loader.getController();
@@ -113,10 +119,12 @@ public class StudentRecordAttendanceController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+    }
     @FXML
     private void mouse_confirm(MouseEvent event) {
+         if(enableConfirmation()){
         Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
         stage.close();
+    }
     }
 }
