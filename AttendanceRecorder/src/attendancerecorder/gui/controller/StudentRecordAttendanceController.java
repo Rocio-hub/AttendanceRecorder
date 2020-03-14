@@ -5,6 +5,9 @@
  */
 package attendancerecorder.gui.controller;
 
+import attendancerecorder.be.Course;
+import attendancerecorder.bll.interfaces.IStudentManager;
+import attendancerecorder.bll.managers.StudentManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -14,6 +17,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.EventObject;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,31 +28,33 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class StudentRecordAttendanceController implements Initializable {
 
-    @FXML
-    private JFXCheckBox presentbtn;
-    @FXML
-    private JFXCheckBox absentbtn;
-    private JFXListView<String> listview;
+   IStudentManager iStudentManager = new StudentManager();
+    private ObservableList<Course> courseLst;
+    
     @FXML
     private JFXTextArea absenttext;
-    private JFXDatePicker dp;
-    @FXML
-    private Label lbl_popup;
     @FXML
     private JFXDatePicker datePicker;
     @FXML
-    private JFXListView<?> listview_coursesTable;
-    @FXML
     private JFXButton btn_confirm;
+    @FXML
+    private Label lbl_popup;
     @FXML
     private Label lbl_popup1;
     @FXML
     private Label lbl_popup2;
+    @FXML
+    private JFXCheckBox cb_present;
+    @FXML
+    private JFXCheckBox cb_absent;
+    @FXML
+    private JFXListView<Course> lv_coursesTable;
 
     /**
      * Initializes the controller class.
@@ -56,37 +63,14 @@ public class StudentRecordAttendanceController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         absenttext.visibleProperty().set(false);
         lbl_popup.setVisible(false);
-        listview.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        listview.getItems().add("DB/OS");
-        listview.getItems().add("ITO2");
-        listview.getItems().add("SCO2");
-        listview.getItems().add("SDE2");
+        lv_coursesTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        courseLst = FXCollections.observableArrayList(iStudentManager.getAllCourses());
+      
 
-    }
-
-    private void clickPresent(ActionEvent event) {
-        absentbtn.setSelected(false);
-        if (dp.getValue() == null) {
-            lbl_popup.setVisible(true);
-        } else {
-            lbl_popup.setVisible(false);
-        }
-    }
-
-    private void clickAbsent(ActionEvent event) {
-        presentbtn.setSelected(false);
-        absenttext.visibleProperty().bind(absentbtn.selectedProperty()); //The best line ever!!!
-    }
-
-    private void clickConfirm(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/Confirmation.fxml"));
-        Parent root = loader.load();
-        ConfirmationController cctrl = loader.getController();
-
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
+//        lv_coursesTable.getItems().add("DB/OS");
+//        lv_coursesTable.getItems().add("ITO2");
+//        lv_coursesTable.getItems().add("SCO2");
+//        lv_coursesTable.getItems().add("SDE2");
     }
 
     @FXML
@@ -97,13 +81,29 @@ public class StudentRecordAttendanceController implements Initializable {
 
     @FXML
     private void click_present(ActionEvent event) {
+        cb_absent.setSelected(false);
+        if (datePicker.getValue() == null) {
+            lbl_popup.setVisible(true);
+        } else {
+            lbl_popup.setVisible(false);
+        }
     }
 
     @FXML
     private void click_absent(ActionEvent event) {
+        cb_present.setSelected(false);
+        absenttext.visibleProperty().bind(cb_absent.selectedProperty()); //The best line ever!!!
     }
 
     @FXML
-    private void click_confirm(ActionEvent event) {
+    private void click_confirm(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/Confirmation.fxml"));
+        Parent root = loader.load();
+        ConfirmationController cctrl = loader.getController();
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 }

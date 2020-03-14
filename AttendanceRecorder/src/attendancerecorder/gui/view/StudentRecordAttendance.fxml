@@ -20,7 +20,7 @@
                   <Font name="Didot" size="25.0" />
                </font>
             </Label>
-            <JFXCheckBox fx:id="presentbtn" layoutX="200.0" layoutY="189.0" onAction="#click_present" prefHeight="18.0" prefWidth="81.0" text="Present" unCheckedColor="#2e98fb">
+            <JFXCheckBox fx:id="cb_present" layoutX="200.0" layoutY="189.0" onAction="#click_present" prefHeight="18.0" prefWidth="81.0" text="Present" unCheckedColor="#2e98fb">
                <effect>
                   <Bloom />
                </effect>
@@ -28,13 +28,13 @@
 
            
             
-            <JFXCheckBox fx:id="absentbtn" checkedColor="#9c1026" layoutX="580.0" layoutY="189.0" onAction="#click_absent" prefHeight="18.0" prefWidth="75.0" text="Absent" unCheckedColor="#2e98fb">
+            <JFXCheckBox fx:id="cb_absent" checkedColor="#9c1026" layoutX="580.0" layoutY="189.0" onAction="#click_absent" prefHeight="18.0" prefWidth="75.0" text="Absent" unCheckedColor="#2e98fb">
 
                <effect>
                   <Bloom />
                </effect>
             </JFXCheckBox>
-            <JFXListView fx:id="listview_coursesTable" layoutX="36.0" layoutY="261.0" prefHeight="138.0" prefWidth="148.0" style="-fx-border-color: #2e98fb#2e98fb; -fx-effect: Bloom;" stylesheets="@StudentRecord.css" />
+            <JFXListView fx:id="lv_coursesTable" layoutX="36.0" layoutY="261.0" prefHeight="138.0" prefWidth="148.0" style="-fx-border-color: #2e98fb#2e98fb; -fx-effect: Bloom;" stylesheets="@StudentRecord.css" />
             <Label layoutX="39.0" layoutY="232.0" prefHeight="29.0" prefWidth="110.0" text="Courses:">
                <font>
                   <Font name="Didot" size="19.0" />

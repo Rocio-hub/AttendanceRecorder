@@ -5,6 +5,7 @@
  */
 package attendancerecorder.bll.interfaces;
 
+import attendancerecorder.be.Course;
 import attendancerecorder.be.Student;
 import java.util.List;
 
@@ -13,5 +14,7 @@ public interface IStudentManager {
     public List<Student> getAllStudents();
 
     public List<Student> getStudentLoginData();
+    
+    public List<Course> getAllCourses();
 
 }

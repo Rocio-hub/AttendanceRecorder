@@ -5,6 +5,7 @@
  */
 package attendancerecorder.bll.managers;
 
+import attendancerecorder.be.Course;
 import attendancerecorder.be.Student;
 import attendancerecorder.bll.interfaces.IStudentManager;
 import attendancerecorder.dal.dao.DAOStudent;
@@ -20,6 +21,7 @@ public class StudentManager implements IStudentManager {
     //Lists that we will use to refer to the ones recieved from the methods of the Data Access Layer
     private List<Student> studentLst = new ArrayList();
     private List<Student> studentLoginLst = new ArrayList();
+    private List<Course> courseLst = new ArrayList();
 
     @Override
     public List<Student> getAllStudents() {
@@ -31,6 +33,12 @@ public class StudentManager implements IStudentManager {
     public List<Student> getStudentLoginData() {
         studentLoginLst = daoStudent.getStudentLoginData();
         return studentLoginLst;
+    }
+
+    @Override
+    public List<Course> getAllCourses() {
+        courseLst = daoStudent.getAllCourses();
+        return courseLst;
     }
 
 }

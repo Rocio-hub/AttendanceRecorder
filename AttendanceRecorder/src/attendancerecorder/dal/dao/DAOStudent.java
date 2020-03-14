@@ -5,6 +5,7 @@
  */
 package attendancerecorder.dal.dao;
 
+import attendancerecorder.be.Course;
 import attendancerecorder.be.Student;
 import attendancerecorder.dal.interfaces.IDAOStudent;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
@@ -81,6 +82,30 @@ public class DAOStudent implements IDAOStudent {
             Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    @Override
+    public List<Course> getAllCourses() {
+        try (Connection con = ds.getConnection()) {
+            String sql = "SELECT id, name FROM Courses";
+            List<Course> courseLst = new ArrayList();
+
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                
+                Course course = new Course(id, name);
+                courseLst.add(course);
+            }
+            return courseLst;
+        } catch (SQLServerException sqlse) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, sqlse);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;        
     }
     
 }

@@ -6,6 +6,7 @@
 package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Student;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import java.net.URL;
 import java.util.EventObject;
@@ -24,14 +25,9 @@ import javafx.stage.Stage;
 
 public class TeacherAttendanceOverviewController implements Initializable {
 
-    @FXML
-    private Label reasonForAbsence;
-    @FXML
     private Button exit;
     @FXML
     private Label percentageOfAbsence;
-    @FXML
-    private Label teacherName;
     @FXML
     private AnchorPane pane;
     @FXML
@@ -39,32 +35,39 @@ public class TeacherAttendanceOverviewController implements Initializable {
     @FXML
     private TableView<Student> students;
     @FXML
-    private TableColumn<String, String> studentsColumn;
-    @FXML
     private Label text2;
-    @FXML
-    private Label text1;
-    @FXML
-    private Label text3;
+
     @FXML
     private Label lblStatus;
     @FXML
     private Label lbl_popup;
     @FXML
     private JFXDatePicker datePicker;
+    @FXML
+    private JFXButton btn_close;
+    @FXML
+    private TableColumn<?, ?> tableview_present;
+    @FXML
+    private Label lbl_reasonForAbsence;
+    @FXML
+    private Label lbl_teacherName;
+    @FXML
+    private TableView<?> students1;
+    @FXML
+    private TableColumn<?, ?> tableview_absent;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         lbl_popup.setVisible(false);
-        text1.setVisible(false);
-        reasonForAbsence.setVisible(false);
-        text2.setVisible(false);
+//        text1.setVisible(false);
+        lbl_reasonForAbsence.setVisible(false);
+//        text2.setVisible(false);
         percentageOfAbsence.setVisible(false);
-        text3.setId("text3");
+//        text3.setId("text3");
         exit.setId("exit");
-        reasonForAbsence.setId("reasonForAbsence");
+        lbl_reasonForAbsence.setId("reasonForAbsence");
         className.setId("className");
-        teacherName.setId("teacherName");
+        lbl_teacherName.setId("teacherName");
 //        ObservableList<Student> tableItems = FXCollections.observableArrayList(manager.getAllStudents());
 //        studentsColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 //        students.setItems(tableItems);
@@ -98,9 +101,12 @@ public class TeacherAttendanceOverviewController implements Initializable {
 */
     }
 
-    @FXML
     private void clickClose(ActionEvent event) {
         Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void click_close(ActionEvent event) {
     }
 }
