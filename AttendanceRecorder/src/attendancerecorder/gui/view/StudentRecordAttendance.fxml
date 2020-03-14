@@ -20,7 +20,7 @@
                   <Font name="Didot" size="25.0" />
                </font>
             </Label>
-            <JFXCheckBox fx:id="presentbtn" layoutX="200.0" layoutY="189.0" onAction="#clickPresent" prefHeight="18.0" prefWidth="81.0" text="Present" unCheckedColor="#2e98fb">
+            <JFXCheckBox fx:id="presentbtn" layoutX="200.0" layoutY="189.0" onAction="#click_present" prefHeight="18.0" prefWidth="81.0" text="Present" unCheckedColor="#2e98fb">
                <effect>
                   <Bloom />
                </effect>
@@ -28,20 +28,20 @@
 
            
             
-            <JFXCheckBox fx:id="absentbtn" checkedColor="#9c1026" layoutX="580.0" layoutY="189.0" onAction="#clickAbsent" prefHeight="18.0" prefWidth="75.0" text="Absent" unCheckedColor="#2e98fb">
+            <JFXCheckBox fx:id="absentbtn" checkedColor="#9c1026" layoutX="580.0" layoutY="189.0" onAction="#click_absent" prefHeight="18.0" prefWidth="75.0" text="Absent" unCheckedColor="#2e98fb">
 
                <effect>
                   <Bloom />
                </effect>
             </JFXCheckBox>
-            <JFXListView fx:id="listview" layoutX="36.0" layoutY="261.0" prefHeight="138.0" prefWidth="148.0" style="-fx-border-color: #2e98fb#2e98fb; -fx-effect: Bloom;" stylesheets="@StudentRecord.css" />
-            <Label fx:id="Label" layoutX="39.0" layoutY="232.0" prefHeight="29.0" prefWidth="110.0" text="Courses:">
+            <JFXListView fx:id="listview_coursesTable" layoutX="36.0" layoutY="261.0" prefHeight="138.0" prefWidth="148.0" style="-fx-border-color: #2e98fb#2e98fb; -fx-effect: Bloom;" stylesheets="@StudentRecord.css" />
+            <Label layoutX="39.0" layoutY="232.0" prefHeight="29.0" prefWidth="110.0" text="Courses:">
                <font>
                   <Font name="Didot" size="19.0" />
                </font>
             </Label>
             <JFXDatePicker fx:id="datePicker" defaultColor="#b00202" layoutX="532.0" layoutY="101.0" prefHeight="22.0" prefWidth="246.0" />
-            <JFXButton fx:id="confirmbtn" buttonType="RAISED" layoutX="746.0" layoutY="474.0" onAction="#clickConfirm" onMouseClicked="#makeConfirm" ripplerFill="#679fffdb" style="-fx-border-color: #000000;" text="Confirm" textFill="#a6000f">
+            <JFXButton fx:id="btn_confirm" buttonType="RAISED" layoutX="746.0" layoutY="474.0" onAction="#click_confirm" onMouseClicked="#makeConfirm" ripplerFill="#679fffdb" style="-fx-border-color: #000000;" text="Confirm" textFill="#a6000f">
                <font>
                   <Font name="Courier Bold" size="16.0" />
                </font>
@@ -54,10 +54,20 @@
                <font>
                   <Font size="14.0" />
                </font></JFXTextArea>
-            <Label fx:id="lbl_popup" layoutX="523.0" layoutY="138.0" prefHeight="23.0" prefWidth="264.0" text="Please, select the date first" textAlignment="CENTER">
+            <Label fx:id="lbl_popup" layoutX="523.0" layoutY="138.0" prefHeight="23.0" prefWidth="216.0" text="Please, select the date" textAlignment="CENTER">
                <font>
-                  <Font size="8.0" />
+                  <Font size="5.0" />
                </font></Label>
+            <Label fx:id="lbl_popup1" layoutX="288.0" layoutY="207.0" prefHeight="23.0" prefWidth="233.0" text="Please, select the status" textAlignment="CENTER">
+               <font>
+                  <Font size="5.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_popup2" layoutX="14.0" layoutY="433.0" prefHeight="23.0" prefWidth="264.0" text="Please, select the course(s)" textAlignment="CENTER">
+               <font>
+                  <Font size="5.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

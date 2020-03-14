@@ -29,15 +29,10 @@ import javafx.stage.Stage;
 public class StudentRecordAttendanceController implements Initializable {
 
     @FXML
-    private Label Label;
-    @FXML
     private JFXCheckBox presentbtn;
     @FXML
     private JFXCheckBox absentbtn;
-    @FXML
     private JFXListView<String> listview;
-    @FXML
-    private JFXButton confirmbtn;
     @FXML
     private JFXTextArea absenttext;
     private JFXDatePicker dp;
@@ -45,6 +40,14 @@ public class StudentRecordAttendanceController implements Initializable {
     private Label lbl_popup;
     @FXML
     private JFXDatePicker datePicker;
+    @FXML
+    private JFXListView<?> listview_coursesTable;
+    @FXML
+    private JFXButton btn_confirm;
+    @FXML
+    private Label lbl_popup1;
+    @FXML
+    private Label lbl_popup2;
 
     /**
      * Initializes the controller class.
@@ -61,7 +64,6 @@ public class StudentRecordAttendanceController implements Initializable {
 
     }
 
-    @FXML
     private void clickPresent(ActionEvent event) {
         absentbtn.setSelected(false);
         if (dp.getValue() == null) {
@@ -71,13 +73,11 @@ public class StudentRecordAttendanceController implements Initializable {
         }
     }
 
-    @FXML
     private void clickAbsent(ActionEvent event) {
         presentbtn.setSelected(false);
         absenttext.visibleProperty().bind(absentbtn.selectedProperty()); //The best line ever!!!
     }
 
-    @FXML
     private void clickConfirm(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/Confirmation.fxml"));
         Parent root = loader.load();
@@ -93,5 +93,17 @@ public class StudentRecordAttendanceController implements Initializable {
     private void makeConfirm(MouseEvent event) {
         Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void click_present(ActionEvent event) {
+    }
+
+    @FXML
+    private void click_absent(ActionEvent event) {
+    }
+
+    @FXML
+    private void click_confirm(ActionEvent event) {
     }
 }

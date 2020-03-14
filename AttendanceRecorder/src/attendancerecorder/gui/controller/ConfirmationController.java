@@ -23,12 +23,7 @@ import javafx.stage.Stage;
 
 public class ConfirmationController implements Initializable {
 
-    @FXML
     private Label lbl3;
-    @FXML
-    private Label lbl4;
-    @FXML
-    private Label lbl5;
     @FXML
     private Button btn_close;
     @FXML

@@ -11,9 +11,9 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F3F2ED;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
       
-            <Label fx:id="lbl4" contentDisplay="CENTER" layoutX="110.0" layoutY="128.0" text="Your attendance has been recorded" textAlignment="CENTER" />
-            <Label fx:id="lbl5" contentDisplay="CENTER" layoutX="203.0" layoutY="180.0" prefHeight="30.0" prefWidth="157.0" text="Have a nice day" textAlignment="CENTER" />
-            <Label fx:id="lbl3" contentDisplay="CENTER" layoutX="177.0" layoutY="65.0" prefHeight="36.0" prefWidth="209.0" text="THANK YOU!" />
+            <Label contentDisplay="CENTER" layoutX="110.0" layoutY="128.0" text="Your attendance has been recorded" textAlignment="CENTER" />
+            <Label contentDisplay="CENTER" layoutX="203.0" layoutY="180.0" prefHeight="30.0" prefWidth="157.0" text="Have a nice day" textAlignment="CENTER" />
+            <Label contentDisplay="CENTER" layoutX="177.0" layoutY="65.0" prefHeight="36.0" prefWidth="209.0" text="THANK YOU!" />
             <JFXButton fx:id="btn_view_overall_attendance" layoutX="142.0" layoutY="248.0" onAction="#clickOverallAttendance" onMouseClicked="#makeOverallAttendance" text="View overall attendance" />
             <JFXButton fx:id="btn_close" buttonType="RAISED" layoutX="470.0" layoutY="297.0" onAction="#clickClose" stylesheets="@confirmationCSS.css" text="Close" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0">
