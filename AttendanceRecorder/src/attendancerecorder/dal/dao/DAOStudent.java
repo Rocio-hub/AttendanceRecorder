@@ -35,7 +35,7 @@ public class DAOStudent implements IDAOStudent {
     @Override
     public List<Student> getAllStudents() {
         try (Connection con = ds.getConnection()) {
-            String sql = "SELECT id, firstName, lastName, email, password FROM Student";
+            String sql = "SELECT id, firstName, lastName, email, password FROM Students";
             List<Student> studentLst = new ArrayList();
 
             Statement stmt = con.createStatement();
@@ -62,7 +62,7 @@ public class DAOStudent implements IDAOStudent {
     @Override
     public List<Student> getStudentLoginData() {
         try (Connection con = ds.getConnection()) {
-            String sql = "SELECT  email, password FROM Student";
+            String sql = "SELECT  email, password FROM Students";
             List<Student> studentLst = new ArrayList();
 
             Statement stmt = con.createStatement();

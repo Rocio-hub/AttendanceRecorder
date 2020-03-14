@@ -40,10 +40,11 @@ public class StudentRecordAttendanceController implements Initializable {
     private JFXButton confirmbtn;
     @FXML
     private JFXTextArea absenttext;
-    @FXML
     private JFXDatePicker dp;
     @FXML
     private Label lbl_popup;
+    @FXML
+    private JFXDatePicker datePicker;
 
     /**
      * Initializes the controller class.

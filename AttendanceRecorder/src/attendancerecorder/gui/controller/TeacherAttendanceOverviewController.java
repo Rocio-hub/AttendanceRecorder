@@ -5,14 +5,11 @@
  */
 package attendancerecorder.gui.controller;
 
-import attendancerecorder.bll.managers.SimpleManager;
 import attendancerecorder.be.Student;
 import com.jfoenix.controls.JFXDatePicker;
 import java.net.URL;
 import java.util.EventObject;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,17 +18,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class TeacherAttendanceOverviewController implements Initializable {
 
-    //SimpleManager manager = new SimpleManager();
-
-    @FXML
-    private JFXDatePicker calendar;
     @FXML
     private Label reasonForAbsence;
     @FXML
@@ -58,6 +50,8 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private Label lblStatus;
     @FXML
     private Label lbl_popup;
+    @FXML
+    private JFXDatePicker datePicker;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

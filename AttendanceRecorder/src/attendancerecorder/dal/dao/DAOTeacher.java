@@ -34,7 +34,7 @@ public class DAOTeacher implements IDAOTeacher{
     @Override
     public List<Teacher> getAllTeachers() {
        try (Connection con = ds.getConnection()) {
-            String sql = "SELECT id, name, email, password FROM TeacherLogin";
+            String sql = "SELECT id, name, email, password FROM Teachers";
             List<Teacher> teacherLst = new ArrayList();
 
             Statement stmt = con.createStatement();
@@ -59,7 +59,7 @@ public class DAOTeacher implements IDAOTeacher{
     @Override
     public List<Teacher> getTeacherLoginData() {
         try (Connection con = ds.getConnection()) {
-            String sql = "SELECT email, password FROM TeacherLogin";
+            String sql = "SELECT email, password FROM Teachers";
             List<Teacher> teacherLst = new ArrayList();
 
             Statement stmt = con.createStatement();

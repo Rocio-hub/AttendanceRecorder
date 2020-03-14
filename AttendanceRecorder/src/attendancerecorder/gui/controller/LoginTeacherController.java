@@ -50,8 +50,24 @@ public class LoginTeacherController implements Initializable {
     }
 
     @FXML
-    private void mouse_login(MouseEvent event) throws IOException {
-        
+    private void mouse_login(MouseEvent event) {
+
+        boolean found = false;
+        List<Teacher> teacherLst = teacherMng.getTeacherLoginData();
+        for (Teacher teacher : teacherLst) {
+            if (txt_email.getText().equals(teacher.getEmail()) && txt_password.getText().equals(teacher.getPassword())) {
+                found = true;
+            }
+        }
+        if (found) {
+            Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
+            stage.close();
+        }
+    }
+
+    @FXML
+    private void click_login(ActionEvent event) throws IOException {
+
         boolean found = false;
         List<Teacher> teacherLst = teacherMng.getTeacherLoginData();
         for (Teacher teacher : teacherLst) {
@@ -73,21 +89,6 @@ public class LoginTeacherController implements Initializable {
             lbl_wrongpassword.setText("Wrong password or username");
         }
         btn_login.pressedProperty();
-    }
 
-    @FXML
-    private void click_login(ActionEvent event) {
-        
-        boolean found = false;
-        List<Teacher> teacherLst = teacherMng.getTeacherLoginData();
-        for (Teacher teacher : teacherLst) {
-            if (txt_email.getText().equals(teacher.getEmail()) && txt_password.getText().equals(teacher.getPassword())) {
-                found = true;
-            }
-        }
-        if (found) {
-            Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
-            stage.close();
-        }
     }
 }

@@ -41,7 +41,7 @@
             <Label fx:id="teacherName" layoutX="395.0" layoutY="47.0" prefHeight="30.0" prefWidth="128.0" text="Peter" />
             <Label layoutX="264.0" layoutY="156.0" prefHeight="17.0" prefWidth="187.0" text="Status on selected date:" />
             <Label fx:id="lblStatus" layoutX="445.0" layoutY="148.0" prefHeight="33.0" prefWidth="35.0" />
-            <JFXDatePicker fx:id="calendar" defaultColor="#c10d0e" layoutX="568.0" layoutY="142.0" />
+            <JFXDatePicker fx:id="datePicker" defaultColor="#c10d0e" layoutX="568.0" layoutY="142.0" />
             <Label fx:id="lbl_popup" layoutX="560.0" layoutY="189.0" text="Please, select the date first" />
          </children>
       </AnchorPane>
