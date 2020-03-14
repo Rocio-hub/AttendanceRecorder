@@ -11,7 +11,6 @@ import attendancerecorder.bll.managers.StudentManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 import java.io.IOException;
 import java.net.URL;
@@ -27,18 +26,19 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class StudentRecordAttendanceController implements Initializable {
 
-   IStudentManager iStudentManager = new StudentManager();
+    IStudentManager iStudentManager = new StudentManager();
     private ObservableList<Course> courseLst;
-    
-    @FXML
-    private JFXTextArea absenttext;
+    boolean statusChosen=false;
+    boolean courseChosen=false;
+
     @FXML
     private JFXDatePicker datePicker;
     @FXML
@@ -54,30 +54,37 @@ public class StudentRecordAttendanceController implements Initializable {
     @FXML
     private JFXCheckBox cb_absent;
     @FXML
-    private JFXListView<Course> lv_coursesTable;
+    private TableView<Course> tv_courses;
+    @FXML
+    private TableColumn<Course, String> tc_courses;
+    @FXML
+    private JFXTextArea txt_absentMessage;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        absenttext.visibleProperty().set(false);
+        txt_absentMessage.visibleProperty().set(false);
         lbl_popup.setVisible(false);
-        lv_coursesTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        lbl_popup1.setVisible(false);
+        lbl_popup2.setVisible(false);
+        initCoursesTable();
+    }
+
+    private void initCoursesTable() {
         courseLst = FXCollections.observableArrayList(iStudentManager.getAllCourses());
-      
-
-//        lv_coursesTable.getItems().add("DB/OS");
-//        lv_coursesTable.getItems().add("ITO2");
-//        lv_coursesTable.getItems().add("SCO2");
-//        lv_coursesTable.getItems().add("SDE2");
+        tc_courses.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tv_courses.setItems(courseLst);
     }
-
-    @FXML
-    private void makeConfirm(MouseEvent event) {
-        Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
-        stage.close();
+    
+    private boolean enableConfirmation(){
+        if(datePicker.getValue() == null) lbl_popup.setVisible(true);
+//        else if(!cb_present.isPressed() && !cb_absent.isPressed()) lbl_popup1.setVisible(true);
+    return true;
     }
+    
+
 
     @FXML
     private void click_present(ActionEvent event) {
@@ -92,11 +99,11 @@ public class StudentRecordAttendanceController implements Initializable {
     @FXML
     private void click_absent(ActionEvent event) {
         cb_present.setSelected(false);
-        absenttext.visibleProperty().bind(cb_absent.selectedProperty()); //The best line ever!!!
+        txt_absentMessage.visibleProperty().bind(cb_absent.selectedProperty()); //The best line ever!!!
     }
 
     @FXML
-    private void click_confirm(ActionEvent event) throws IOException {
+    private void click_confirm(ActionEvent event) throws IOException {        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/Confirmation.fxml"));
         Parent root = loader.load();
         ConfirmationController cctrl = loader.getController();
@@ -105,5 +112,11 @@ public class StudentRecordAttendanceController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    private void mouse_confirm(MouseEvent event) {
+        Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
+        stage.close();
     }
 }

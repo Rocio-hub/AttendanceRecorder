@@ -3,9 +3,10 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
-<?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -34,20 +35,14 @@
                   <Bloom />
                </effect>
             </JFXCheckBox>
-            <JFXListView fx:id="lv_coursesTable" layoutX="36.0" layoutY="261.0" prefHeight="138.0" prefWidth="148.0" style="-fx-border-color: #2e98fb#2e98fb; -fx-effect: Bloom;" stylesheets="@StudentRecord.css" />
-            <Label layoutX="39.0" layoutY="232.0" prefHeight="29.0" prefWidth="110.0" text="Courses:">
-               <font>
-                  <Font name="Didot" size="19.0" />
-               </font>
-            </Label>
             <JFXDatePicker fx:id="datePicker" defaultColor="#b00202" layoutX="532.0" layoutY="101.0" prefHeight="22.0" prefWidth="246.0" />
-            <JFXButton fx:id="btn_confirm" buttonType="RAISED" layoutX="746.0" layoutY="474.0" onAction="#click_confirm" onMouseClicked="#makeConfirm" ripplerFill="#679fffdb" style="-fx-border-color: #000000;" text="Confirm" textFill="#a6000f">
+            <JFXButton fx:id="btn_confirm" buttonType="RAISED" layoutX="746.0" layoutY="474.0" onAction="#click_confirm" onMouseClicked="#mouse_confirm" ripplerFill="#679fffdb" style="-fx-border-color: #000000;" text="Confirm" textFill="#a6000f">
                <font>
                   <Font name="Courier Bold" size="16.0" />
                </font>
             </JFXButton>
 
-            <JFXTextArea fx:id="absenttext" layoutX="383.0" layoutY="261.0" prefHeight="172.0" prefWidth="421.0" promptText="Please, specify the reason for your absense" style="-fx-border-color: #000000; -fx-background-color: #ffffffff;" visible="false">
+            <JFXTextArea fx:id="txt_absentMessage" layoutX="383.0" layoutY="261.0" prefHeight="172.0" prefWidth="421.0" promptText="Please, specify the reason for your absense" style="-fx-border-color: #000000; -fx-background-color: #ffffffff;" visible="false">
 
           
 
@@ -68,6 +63,11 @@
                   <Font size="5.0" />
                </font>
             </Label>
+            <TableView fx:id="tv_courses" layoutX="24.0" layoutY="180.0" prefHeight="151.0" prefWidth="156.0">
+              <columns>
+                <TableColumn fx:id="tc_courses" prefWidth="155.0" text="Courses" />
+              </columns>
+            </TableView>
          </children>
       </Pane>
    </children>
