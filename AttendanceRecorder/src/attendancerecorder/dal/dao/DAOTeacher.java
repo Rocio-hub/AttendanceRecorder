@@ -20,22 +20,22 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-public class DAOTeacher implements IDAOTeacher{
+public class DAOTeacher implements IDAOTeacher {
 
     private SQLServerDataSource ds;
-    
-    public DAOTeacher(){
-     ds = new SQLServerDataSource();
+
+    public DAOTeacher() {
+        ds = new SQLServerDataSource();
         ds.setDatabaseName("AttendanceRecorder");
         ds.setUser("CSe19B_2");
         ds.setPassword("CSe19B_2");
         ds.setServerName("10.176.111.31");
         ds.setPortNumber(1433);
     }
+
     @Override
     public List<Teacher> getAllTeachers() {
-       try (Connection con = ds.getConnection()) {
+        try ( Connection con = ds.getConnection()) {
             String sql = "SELECT id, name, email, password FROM Teachers";
             List<Teacher> teacherLst = new ArrayList();
 
@@ -60,7 +60,7 @@ public class DAOTeacher implements IDAOTeacher{
 
     @Override
     public List<Teacher> getTeacherLoginData() {
-        try (Connection con = ds.getConnection()) {
+        try ( Connection con = ds.getConnection()) {
             String sql = "SELECT email, password FROM Teachers";
             List<Teacher> teacherLst = new ArrayList();
 
@@ -83,12 +83,24 @@ public class DAOTeacher implements IDAOTeacher{
 
     @Override
     public List<Student> getStudentsOnCondition(String date, int present) {
-         try (Connection con = ds.getConnection()) {
-             List<Student> studentLst = new ArrayList();
-            // String sql = "SELECT firstName From Students join Attendance on id=studentId where date=? and present=? ";
-           
-             Student student = new Student("caracol");
-             studentLst.add(student);
+        try ( Connection con = ds.getConnection()) {
+            
+            List<Student> studentLst = new ArrayList();
+            String sql = "SELECT Students.firstName, Attendance.present FROM Students join Attendance on id=studentId WHERE date=? and present=? ";
+            
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, date);
+            pstmt.setInt(2, present);
+            
+            ResultSet rs = pstmt.executeQuery();     
+            
+            while (rs.next()) {
+               String firstName = rs.getString("firstName");
+               Student student = new Student (firstName);
+               studentLst.add(student);
+            //Student student = new Student("caracol");
+            //studentLst.add(student);
+            }
             return studentLst;
         } catch (SQLServerException sqlse) {
             Logger.getLogger(DAOTeacher.class.getName()).log(Level.SEVERE, null, sqlse);
@@ -98,7 +110,4 @@ public class DAOTeacher implements IDAOTeacher{
         return null;
     }
 
-   
-    }
-    
-
+}
