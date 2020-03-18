@@ -22,20 +22,18 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Label fx:id="lbl_reasonForAbsence" layoutX="353.0" layoutY="378.0" prefHeight="91.0" prefWidth="339.0" stylesheets="@TeacherAttendanceOverview.css" />
-            <Label fx:id="text2" layoutX="327.0" layoutY="516.0" prefHeight="17.0" prefWidth="281.0" text="Total absence percentage:       %" />
-            <Label fx:id="percentageOfAbsence" layoutX="520.0" layoutY="512.0" prefHeight="25.0" prefWidth="24.0" text="24" />
-            <Label layoutX="353.0" layoutY="332.0" stylesheets="@TeacherAttendanceOverview.css" text="Reason For Absence:" />
+            <Label fx:id="lbl_reasonForAbsence" layoutX="359.0" layoutY="345.0" prefHeight="91.0" prefWidth="339.0" stylesheets="@TeacherAttendanceOverview.css" />
+            <Label fx:id="text2" layoutX="333.0" layoutY="483.0" prefHeight="17.0" prefWidth="281.0" text="Total absence percentage:       %" />
+            <Label fx:id="percentageOfAbsence" layoutX="526.0" layoutY="479.0" prefHeight="25.0" prefWidth="24.0" text="24" />
+            <Label layoutX="359.0" layoutY="299.0" stylesheets="@TeacherAttendanceOverview.css" text="Reason For Absence:" />
             <Label layoutX="327.0" layoutY="38.0" prefHeight="30.0" prefWidth="69.0" text="Hello,">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <Label fx:id="lbl_teacherName" layoutX="401.0" layoutY="38.0" prefHeight="30.0" prefWidth="384.0" text="Peter" />
-            <Label layoutX="312.0" layoutY="160.0" prefHeight="17.0" prefWidth="187.0" text="Status on selected date:" />
-            <Label fx:id="lblStatus" layoutX="493.0" layoutY="152.0" prefHeight="33.0" prefWidth="35.0" />
-            <JFXDatePicker fx:id="datePicker" defaultColor="#c10d0e" layoutX="616.0" layoutY="146.0" />
-            <Label fx:id="lbl_popup" layoutX="608.0" layoutY="193.0" prefHeight="17.0" prefWidth="163.0" text="Please, select the date" />
+            <JFXDatePicker fx:id="datePicker" defaultColor="#c10d0e" layoutX="558.0" layoutY="157.0" />
+            <Label fx:id="lbl_popup" layoutX="550.0" layoutY="204.0" prefHeight="17.0" prefWidth="163.0" text="Please, select the date" />
             <TableView fx:id="students1" layoutX="154.0" layoutY="124.0" onMouseClicked="#selectedStudent" prefHeight="396.0" prefWidth="132.0">
                <columns>
                   <TableColumn fx:id="tableview_absent" prefWidth="75.0" text="Absent" />
@@ -44,7 +42,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <JFXButton fx:id="btn_search" layoutX="792.0" layoutY="143.0" onAction="#click_search" prefHeight="5.0" prefWidth="5.0" text=" ">
+            <JFXButton fx:id="btn_search" layoutX="734.0" layoutY="154.0" onAction="#click_search" prefHeight="5.0" prefWidth="5.0" text=" ">
                <font>
                   <Font size="8.0" />
                </font>

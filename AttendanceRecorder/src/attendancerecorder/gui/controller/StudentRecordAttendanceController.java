@@ -86,10 +86,10 @@ public class StudentRecordAttendanceController implements Initializable {
             lbl_popup1.setVisible(true);
             return false;
         }
-        if (tv_courses.getSelectionModel().getSelectedItem() == null) {
+        /* if (tv_courses.getSelectionModel().getSelectedItem() == null) {
             lbl_popup2.setVisible(true);
             return false;
-        }
+        }*/
         return true;
     }
 
@@ -133,14 +133,19 @@ public class StudentRecordAttendanceController implements Initializable {
 
     private void addNewAttendance() {
         int status;
+        String date;
+        String message;
         if (cb_present.isSelected()) {
             status = 1;
+             date = datePicker.getValue().toString();
+             message=null;
+
         } else {
             status = 0;
-            String date = datePicker.getValue().toString();
-            String message = txt_absentMessage.getText();
-
+             date = datePicker.getValue().toString();
+             message = txt_absentMessage.getText();
+        }    
             iStudentManager.addNewAttendance(idFromLogin, status, date, message);
-        }
+        
     }
 }

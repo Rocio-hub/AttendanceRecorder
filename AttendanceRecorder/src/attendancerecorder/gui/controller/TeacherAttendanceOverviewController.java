@@ -45,8 +45,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private Label text2;
 
     @FXML
-    private Label lblStatus;
-    @FXML
     private Label lbl_popup;
     @FXML
     private JFXDatePicker datePicker;
@@ -128,12 +126,11 @@ public class TeacherAttendanceOverviewController implements Initializable {
     }
 
     @FXML
-    pr    }
+    private void click_close(ActionEvent event) {
+    }
 
     @FXML
     private void click_search(ActionEvent event) {
-ivate void click_close(ActionEvent event) {
     }
-
 
 }
