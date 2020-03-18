@@ -36,8 +36,7 @@ public class StudentRecordAttendanceController implements Initializable {
 
     IStudentManager iStudentManager = new StudentManager();
     private ObservableList<Course> courseLst;
-    boolean statusChosen=false;
-    boolean courseChosen=false;
+    int idFromLogin;
 
     @FXML
     private JFXDatePicker datePicker;
@@ -77,24 +76,22 @@ public class StudentRecordAttendanceController implements Initializable {
         tc_courses.setCellValueFactory(new PropertyValueFactory<>("name"));
         tv_courses.setItems(courseLst);
     }
-    
-    private boolean enableConfirmation(){
-        if(datePicker.getValue() == null){
+
+    private boolean enableConfirmation() {
+        if (datePicker.getValue() == null) {
             lbl_popup.setVisible(true);
             return false;
         }
-        if(!cb_present.isSelected()&& !cb_absent.isSelected()){
-            lbl_popup1.setVisible(true)  ;
+        if (!cb_present.isSelected() && !cb_absent.isSelected()) {
+            lbl_popup1.setVisible(true);
             return false;
         }
-        if(tv_courses.getSelectionModel().getSelectedItem()==null){
+        if (tv_courses.getSelectionModel().getSelectedItem() == null) {
             lbl_popup2.setVisible(true);
             return false;
         }
-    return true;
+        return true;
     }
-    
-
 
     @FXML
     private void click_present(ActionEvent event) {
@@ -104,27 +101,32 @@ public class StudentRecordAttendanceController implements Initializable {
     @FXML
     private void click_absent(ActionEvent event) {
         cb_present.setSelected(false);
-        txt_absentMessage.visibleProperty().bind(cb_absent.selectedProperty()); 
+        txt_absentMessage.visibleProperty().bind(cb_absent.selectedProperty());
     }
 
     @FXML
-    private void click_confirm(ActionEvent event) throws IOException {        
-        if(enableConfirmation()){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/Confirmation.fxml"));
-        Parent root = loader.load();
-        ConfirmationController cctrl = loader.getController();
+    private void click_confirm(ActionEvent event) throws IOException {
+        if (enableConfirmation()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/Confirmation.fxml"));
+            Parent root = loader.load();
+            ConfirmationController cctrl = loader.getController();
 
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        }
     }
-    }
+
     @FXML
     private void mouse_confirm(MouseEvent event) {
-         if(enableConfirmation()){
-        Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
-        stage.close();
+        if (enableConfirmation()) {
+            Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
+            stage.close();
+        }
     }
+    
+    public void getEmailFromLogin(int id){
+        this.idFromLogin = id;
     }
 }

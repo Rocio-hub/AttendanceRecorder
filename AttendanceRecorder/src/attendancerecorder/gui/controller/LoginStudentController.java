@@ -42,6 +42,7 @@ public class LoginStudentController implements Initializable {
     private JFXPasswordField txt_password;
     @FXML
     private Label lbl_wrongpassword;
+    int idFromLogin;
 
     /**
      * Initializes the controller class.
@@ -54,7 +55,7 @@ public class LoginStudentController implements Initializable {
     @FXML
     private void mouse_login(MouseEvent event) {
 
-         boolean found = false;
+        boolean found = false;
         List<Student> studentLst = studentMng.getStudentLoginData();
         for (Student student : studentLst) {
             if (txt_email.getText().equals(student.getEmail()) && txt_password.getText().equals(student.getPassword())) {
@@ -74,6 +75,7 @@ public class LoginStudentController implements Initializable {
         for (Student student : studentLst) {
             if (txt_email.getText().equals(student.getEmail()) && txt_password.getText().equals(student.getPassword())) {
                 found = true;
+                idFromLogin = student.getId();
             }
         }
         if (found) {
@@ -81,13 +83,14 @@ public class LoginStudentController implements Initializable {
 
             Parent root = loader.load();
             StudentRecordAttendanceController srac = loader.getController();
+            srac.getEmailFromLogin(idFromLogin);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
         } else {
-            lbl_wrongpassword.setText("Wrong password or username");
+            lbl_wrongpassword.setText("Wrong e-mail or password");
         }
         btn_login.pressedProperty();
     }

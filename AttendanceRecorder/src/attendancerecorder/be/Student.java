@@ -14,7 +14,6 @@ public class Student {
     private String password;
 
     //Getters and Setters for all variables
-    
     public int getId() {
         return id;
     }
@@ -56,10 +55,9 @@ public class Student {
     }
 
     //Constructors
-    
     public Student() {
     }
-    
+
     public Student(int id, String firstName, String lastName, String email, String password) {
         this.id = id;
         this.firstName = firstName;
@@ -67,20 +65,21 @@ public class Student {
         this.email = email;
         this.password = password;
     }
-    
-      public Student(String email, String password) {
+
+    public Student(int id, String email, String password) {
+        this.id = id;
         this.email = email;
         this.password = password;
     }
-      public Student(String firstName){
-          this.firstName = firstName;
-      }
+
+    public Student(String firstName) {
+        this.firstName = firstName;
+    }
 
     //ToString
-
     @Override
     public String toString() {
         return "Student{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password + '}';
     }
-    
+
 }
