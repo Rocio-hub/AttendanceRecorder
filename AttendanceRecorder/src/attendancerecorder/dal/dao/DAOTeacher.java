@@ -82,15 +82,15 @@ public class DAOTeacher implements IDAOTeacher {
     }
 
     @Override
-    public List<Student> getStudentsOnCondition(String date, int present) {
+    public List<Student> getStudentsOnCondition(String date, int status) {
         try ( Connection con = ds.getConnection()) {
 
             List<Student> studentLst = new ArrayList();
-            String sql = "SELECT Students.firstName, Attendance.present FROM Students JOIN Attendance ON id=studentId WHERE date = ? AND present = ?";
+            String sql = "SELECT Students.firstName, Attendance.status FROM Students JOIN Attendance ON id=studentId WHERE date = ? AND status = ?";
 
             PreparedStatement pstmt = con.prepareStatement(sql);
             pstmt.setString(1, date);
-            pstmt.setInt(2, present);
+            pstmt.setInt(2, status);
 
             ResultSet rs = pstmt.executeQuery();
 
