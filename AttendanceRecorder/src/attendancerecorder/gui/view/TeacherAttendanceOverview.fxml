@@ -31,7 +31,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lbl_teacherName" layoutX="401.0" layoutY="38.0" prefHeight="30.0" prefWidth="384.0" text="Peter" />
+            <Label fx:id="lbl_teacherName" layoutX="401.0" layoutY="38.0" prefHeight="30.0" prefWidth="384.0" text=" " />
             <JFXDatePicker fx:id="datePicker" defaultColor="#c10d0e" layoutX="558.0" layoutY="157.0" />
             <Label fx:id="lbl_popup" layoutX="550.0" layoutY="204.0" prefHeight="17.0" prefWidth="163.0" text="Please, select the date" />
             <TableView fx:id="students1" layoutX="154.0" layoutY="124.0" onMouseClicked="#selectedStudent" prefHeight="396.0" prefWidth="132.0">

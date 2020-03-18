@@ -137,15 +137,15 @@ public class StudentRecordAttendanceController implements Initializable {
         String message;
         if (cb_present.isSelected()) {
             status = 1;
-             date = datePicker.getValue().toString();
-             message=null;
+            date = datePicker.getValue().toString();
+            message = null;
 
         } else {
             status = 0;
-             date = datePicker.getValue().toString();
-             message = txt_absentMessage.getText();
-        }    
-            iStudentManager.addNewAttendance(idFromLogin, status, date, message);
-        
+            date = datePicker.getValue().toString();
+            message = txt_absentMessage.getText();
+        }
+        iStudentManager.addNewAttendance(idFromLogin, status, date, message);
+
     }
 }
