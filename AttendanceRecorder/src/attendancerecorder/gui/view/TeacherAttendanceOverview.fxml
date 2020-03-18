@@ -44,6 +44,11 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
+            <JFXButton fx:id="btn_search" layoutX="792.0" layoutY="143.0" onAction="#click_search" prefHeight="5.0" prefWidth="5.0" text=" ">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>

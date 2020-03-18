@@ -62,6 +62,8 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private TableView<Student> students1;
     @FXML
     private TableColumn<Student, String> tableview_absent;
+    @FXML
+    private JFXButton btn_search;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -124,7 +126,11 @@ public class TeacherAttendanceOverviewController implements Initializable {
     }
 
     @FXML
-    private void click_close(ActionEvent event) {
+    pr    }
+
+    @FXML
+    private void click_search(ActionEvent event) {
+ivate void click_close(ActionEvent event) {
     }
 
 
