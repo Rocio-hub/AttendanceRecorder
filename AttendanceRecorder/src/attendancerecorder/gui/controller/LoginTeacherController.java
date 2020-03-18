@@ -31,6 +31,7 @@ import javafx.stage.Stage;
 public class LoginTeacherController implements Initializable {
 
     ITeacherManager teacherMng = new TeacherManager();
+     String teacherName;
 
     @FXML
     private JFXTextField txt_email;
@@ -73,6 +74,7 @@ public class LoginTeacherController implements Initializable {
         for (Teacher teacher : teacherLst) {
             if (txt_email.getText().equals(teacher.getEmail()) && txt_password.getText().equals(teacher.getPassword())) {
                 found = true;
+                teacherName =teacher.getName();
             }
         }
         if (found) {
@@ -80,6 +82,7 @@ public class LoginTeacherController implements Initializable {
 
             Parent root = loader.load();
             TeacherAttendanceOverviewController tactrl = loader.getController();
+            tactrl.getTeacherName(teacherName);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();

@@ -61,15 +61,16 @@ public class DAOTeacher implements IDAOTeacher {
     @Override
     public List<Teacher> getTeacherLoginData() {
         try ( Connection con = ds.getConnection()) {
-            String sql = "SELECT email, password FROM Teachers";
+            String sql = "SELECT name,email, password FROM Teachers";
             List<Teacher> teacherLst = new ArrayList();
 
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
+                String name = rs.getString("name");
                 String email = rs.getString("email");
                 String password = rs.getString("password");
-                Teacher teacher = new Teacher(email, password);
+                Teacher teacher = new Teacher(name, email, password);
                 teacherLst.add(teacher);
             }
             return teacherLst;

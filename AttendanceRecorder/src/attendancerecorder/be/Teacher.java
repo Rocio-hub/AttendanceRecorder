@@ -48,7 +48,8 @@ public class Teacher {
     public Teacher() {
     }
 
-    public Teacher(String email, String password) {
+    public Teacher(String name,String email, String password) {
+        this.name=name;
         this.password = password;
         this.email = email;
     }

@@ -32,6 +32,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
     ITeacherManager TeacherMng = new TeacherManager();
     private ObservableList<Student> presentStudents;
     private ObservableList<Student> absentStudents;
+    String teacherName;
     
     @FXML
     private Label percentageOfAbsence;
@@ -43,7 +44,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private TableView<Student> students;
     @FXML
     private Label text2;
-
     @FXML
     private Label lbl_popup;
     @FXML
@@ -75,15 +75,10 @@ public class TeacherAttendanceOverviewController implements Initializable {
         lbl_reasonForAbsence.setId("reasonForAbsence");
         className.setId("className");
         lbl_teacherName.setId("teacherName");
+        lbl_teacherName.setText(teacherName);
      
-        presentStudents =   FXCollections.observableArrayList(TeacherMng.getStudentsOnCondition("mañana", 1));
-        absentStudents =   FXCollections.observableArrayList(TeacherMng.getStudentsOnCondition("mañana", 0));
-       tableview_present.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-       tableview_absent.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        students.setItems(presentStudents);
-       
-        students1.setItems(absentStudents);
-     //   String a = datePicker.getValue().toString();
+      
+     
       //  System.out.println(a);
         
         
@@ -120,17 +115,27 @@ public class TeacherAttendanceOverviewController implements Initializable {
 */
     }
 
-    private void clickClose(ActionEvent event) {
+  
+
+    @FXML
+    private void click_close(ActionEvent event) {
         Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    private void click_close(ActionEvent event) {
-    }
-
-    @FXML
     private void click_search(ActionEvent event) {
+         String date = datePicker.getValue().toString();
+          presentStudents =   FXCollections.observableArrayList(TeacherMng.getStudentsOnCondition(date, 1));
+        absentStudents =   FXCollections.observableArrayList(TeacherMng.getStudentsOnCondition(date, 0));
+       tableview_present.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+       tableview_absent.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        students.setItems(presentStudents);
+        students1.setItems(absentStudents);
+        
+    }
+    public void getTeacherName(String name){
+        this.teacherName=name;
     }
 
 }
