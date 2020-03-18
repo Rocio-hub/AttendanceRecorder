@@ -26,8 +26,8 @@ public class TeacherManager implements ITeacherManager {
     }
 
     @Override
-    public List<Student> getStudentsOnCondition(String date, int present) {
-        return daoTeacher.getStudentsOnCondition(date, present);
+    public List<Student> getStudentsOnCondition(String date, int status) {
+        return daoTeacher.getStudentsOnCondition(date, status);
     }
     
 }

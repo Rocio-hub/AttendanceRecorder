@@ -85,6 +85,8 @@ public class TeacherAttendanceOverviewController implements Initializable {
         students.setItems(presentStudents);
        
         students1.setItems(absentStudents);
+     //   String a = datePicker.getValue().toString();
+      //  System.out.println(a);
         
         
 //        ObservableList<Student> tableItems = FXCollections.observableArrayList(manager.getAllStudents());
