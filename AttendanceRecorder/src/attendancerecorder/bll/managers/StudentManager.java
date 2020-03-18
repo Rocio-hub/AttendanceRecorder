@@ -18,10 +18,15 @@ public class StudentManager implements IStudentManager {
     //Instance for the Data Access Object
     IDAOStudent daoStudent = new DAOStudent();
     
+    //Creating a new Instance for the Data Access Objects
+    private DAOStudent DAOS = new DAOStudent();
+            
     //Lists that we will use to refer to the ones recieved from the methods of the Data Access Layer
     private List<Student> studentLst = new ArrayList();
     private List<Student> studentLoginLst = new ArrayList();
     private List<Course> courseLst = new ArrayList();
+    
+    
 
     @Override
     public List<Student> getAllStudents() {
@@ -39,6 +44,11 @@ public class StudentManager implements IStudentManager {
     public List<Course> getAllCourses() {
         courseLst = daoStudent.getAllCourses();
         return courseLst;
+    }
+
+    @Override
+    public void addNewAttendance(int studentId, int status, String date, String message) {
+       DAOS.addNewAttendance(studentId, status, date, message);
     }
 
 }

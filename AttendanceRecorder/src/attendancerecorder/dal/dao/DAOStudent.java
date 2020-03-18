@@ -110,24 +110,22 @@ public class DAOStudent implements IDAOStudent {
         return null;        
     }
     
-        public void addMovie(String name, float personalrating, float imdbrating, int lastview, String filelink, String imdbbrowser) {
+        public void addNewAttendance(int studentId, int status, String date, String message) {
         
         try (Connection con = ds.getConnection()) {
-            String sql = "INSERT INTO Movies (name, personalrating, imdbrating, lastview, filelink,imdbbrowser) values (?,?,?,?,?,?)";
+            String sql = "INSERT INTO Attendance (studentId, status, date, message) values (?,?,?,?)";
             PreparedStatement pstmt = con.prepareStatement(sql);
 
-            pstmt.setString(1, name);
-            pstmt.setFloat(2, personalrating);
-            pstmt.setFloat(3, imdbrating);
-            pstmt.setInt(4, lastview);
-            pstmt.setString(5, filelink);
-            pstmt.setString(6, imdbbrowser);
+            pstmt.setInt(1, studentId);
+            pstmt.setInt(2, status);
+            pstmt.setString(3, date);
+            pstmt.setString (4, message);
             pstmt.executeUpdate();
 
         } catch (SQLServerException ex) {
-            Logger.getLogger(DAOMovie.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(DAOMovie.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

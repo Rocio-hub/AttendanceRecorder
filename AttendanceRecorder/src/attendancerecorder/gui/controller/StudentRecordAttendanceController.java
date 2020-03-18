@@ -110,6 +110,7 @@ public class StudentRecordAttendanceController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/Confirmation.fxml"));
             Parent root = loader.load();
             ConfirmationController cctrl = loader.getController();
+            addNewAttendance();
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -125,8 +126,21 @@ public class StudentRecordAttendanceController implements Initializable {
             stage.close();
         }
     }
-    
-    public void getEmailFromLogin(int id){
+
+    public void getEmailFromLogin(int id) {
         this.idFromLogin = id;
+    }
+
+    private void addNewAttendance() {
+        int status;
+        if (cb_present.isSelected()) {
+            status = 1;
+        } else {
+            status = 0;
+            String date = datePicker.getValue().toString();
+            String message = txt_absentMessage.getText();
+
+            iStudentManager.addNewAttendance(idFromLogin, status, date, message);
+        }
     }
 }
