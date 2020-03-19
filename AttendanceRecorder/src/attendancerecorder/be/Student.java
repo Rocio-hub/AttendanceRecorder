@@ -12,6 +12,7 @@ public class Student {
     private String lastName;
     private String email;
     private String password;
+    private String message;
 
     //Getters and Setters for all variables
     public int getId() {
@@ -53,6 +54,13 @@ public class Student {
     public void setPassword(String password) {
         this.password = password;
     }
+        public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     //Constructors
     public Student() {
@@ -72,9 +80,12 @@ public class Student {
         this.password = password;
     }
 
-    public Student(String firstName) {
+    public Student(String firstName, String message) {
         this.firstName = firstName;
+        this.message=message;
     }
+
+
 
     //ToString
     @Override

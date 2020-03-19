@@ -41,8 +41,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
     @FXML
     private Label className;
     @FXML
-    private TableView<Student> students;
-    @FXML
     private Label text2;
     @FXML
     private Label lbl_popup;
@@ -57,26 +55,33 @@ public class TeacherAttendanceOverviewController implements Initializable {
     @FXML
     private Label lbl_teacherName;
     @FXML
-    private TableView<Student> students1;
-    @FXML
     private TableColumn<Student, String> tableview_absent;
     @FXML
     private JFXButton btn_search;
+    @FXML
+    private Label lbl_messageForAbsence;
+    @FXML
+    private JFXButton btn_showStudentReason;
+    @FXML
+    private TableView<Student> tc_present;
+    @FXML
+    private TableView<Student> tc_absent;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         lbl_popup.setVisible(false);
 //        text1.setVisible(false);
         lbl_reasonForAbsence.setVisible(false);
+        lbl_messageForAbsence.setVisible(false);
 //        text2.setVisible(false);
         percentageOfAbsence.setVisible(false);
 //        text3.setId("text3");
         btn_close.setId("exit");
-        lbl_reasonForAbsence.setId("reasonForAbsence");
+        lbl_messageForAbsence.setId("messageForAbsence");
         className.setId("className");
         lbl_teacherName.setId("teacherName");
-        lbl_teacherName.setText(teacherName);
-     
+        //lbl_teacherName.setText(teacherName);
+        
       
      
       //  System.out.println(a);
@@ -87,33 +92,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
 //        students.setItems(tableItems);
     }
 
-    @FXML
-    private void selectedStudent(MouseEvent event) {/*
-        String studentName = students.getSelectionModel().getSelectedItem().getName();
-        String value = calendar.getValue().toString();
-        if (studentName != null && value != null) {
-            if (studentName.equals("Rocio") || studentName.equals("Nadia") || studentName.equals("Francesco")) {
-                text2.setVisible(true);
-                text1.setVisible(false);
-                reasonForAbsence.setVisible(false);
-                percentageOfAbsence.setVisible(true);
-                lblStatus.setId("lblStatusGreen");
-                reasonForAbsence.setText("");
-                percentageOfAbsence.setText("12");
-            } else {
-                text1.setVisible(true);
-                reasonForAbsence.setVisible(true);
-                text2.setVisible(true);
-                percentageOfAbsence.setVisible(true);
-                reasonForAbsence.setText("I was sick");
-                lblStatus.setId("lblStatusRed");
-                percentageOfAbsence.setText("24");
-            }
-        } else {
-            lbl_popup.setVisible(true);
-        }
-*/
-    }
 
   
 
@@ -130,12 +108,40 @@ public class TeacherAttendanceOverviewController implements Initializable {
         absentStudents =   FXCollections.observableArrayList(TeacherMng.getStudentsOnCondition(date, 0));
        tableview_present.setCellValueFactory(new PropertyValueFactory<>("firstName"));
        tableview_absent.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        students.setItems(presentStudents);
-        students1.setItems(absentStudents);
+        tc_present.setItems(presentStudents);
+        tc_absent.setItems(absentStudents);
         
     }
     public void getTeacherName(String name){
         this.teacherName=name;
+        lbl_teacherName.setText(teacherName);
+    }
+
+    @FXML
+    private void click_showStudentReason(ActionEvent event) {
+        if (tc_absent.getSelectionModel().getSelectedItem() != null) {
+            lbl_reasonForAbsence.setVisible(true);
+            lbl_messageForAbsence.setVisible(true);
+            lbl_messageForAbsence.setText(tc_absent.getSelectionModel().getSelectedItem().getMessage());
+        } else {
+            lbl_reasonForAbsence.setVisible(false);
+            lbl_messageForAbsence.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void click_selectedPresentStudent(MouseEvent event) {
+        tc_absent.getSelectionModel().clearSelection();
+        lbl_reasonForAbsence.setVisible(false);
+            lbl_messageForAbsence.setVisible(false);
+    }
+
+    @FXML
+    private void click_selectedAbsentStudent(MouseEvent event) {
+        tc_present.getSelectionModel().clearSelection();
+         lbl_reasonForAbsence.setVisible(true);
+            lbl_messageForAbsence.setVisible(true);
+            lbl_messageForAbsence.setText(tc_absent.getSelectionModel().getSelectedItem().getMessage());
     }
 
 }
