@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #a6000f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendancerecorder.gui.controller.RecordAndOverallAttendanceController">
+   <children>
+      <AnchorPane layoutX="161.0" layoutY="107.0" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #F3F2ED;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXTabPane prefHeight="700.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <tabs>
+                  <Tab text="RECORD ATTENDANCE">
+                    <content>
+                      <AnchorPane prefHeight="666.0" prefWidth="1078.0">
+                           <children>
+                              <Pane prefHeight="666.0" prefWidth="900.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+                                 <children>
+                                    <GridPane layoutX="7.0" layoutY="-3.0" prefHeight="609.0" prefWidth="842.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="370.0" minWidth="0.0" prefWidth="300.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="676.0" minWidth="10.0" prefWidth="300.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="300.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label prefHeight="46.0" prefWidth="426.0" text="Please, select the date and your status" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                                             <font>
+                                                <Font name="Didot" size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXDatePicker fx:id="datePicker" defaultColor="#b00202" prefHeight="22.0" prefWidth="246.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
+                                          <JFXCheckBox fx:id="cb_present" onAction="#click_present" prefHeight="18.0" prefWidth="81.0" text="Present" unCheckedColor="#2e98fb" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                             <effect>
+                                                <Bloom />
+                                             </effect>
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </JFXCheckBox>
+                                          <JFXCheckBox fx:id="cb_absent" checkedColor="#9c1026" onAction="#click_absent" prefHeight="26.0" prefWidth="95.0" text="Absent" unCheckedColor="#2e98fb" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                             <effect>
+                                                <Bloom />
+                                             </effect>
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </JFXCheckBox>
+                                          <TableView fx:id="tv_courses" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="190.0" prefWidth="156.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                             <columns>
+                                                <TableColumn fx:id="tc_courses" prefWidth="155.0" text="Courses" />
+                                             </columns>
+                                          </TableView>
+                                          <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="261.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <children>
+                                                <Label fx:id="lbl_popup" prefHeight="30.0" prefWidth="219.0" text="Please, select the date">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Label fx:id="lbl_popup1" prefHeight="23.0" prefWidth="233.0" text="Please, select the status">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="20.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Label fx:id="lbl_popup2" prefHeight="23.0" prefWidth="264.0" text="Please, select the course(s)">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="20.0" />
+                                                   </padding>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <JFXTextArea fx:id="txt_absentMessage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="172.0" prefWidth="421.0" promptText="Please, specify the reason for your absense" style="-fx-border-color: #000000; -fx-background-color: #ffffffff;" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </JFXTextArea>
+                                          <JFXButton fx:id="btn_confirm" buttonType="RAISED" onAction="#click_confirm" onMouseClicked="#mouse_confirm" ripplerFill="#679fffdb" style="-fx-border-color: #000000;" text="Confirm" textFill="#a6000f" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                                             <font>
+                                                <Font name="Courier Bold" size="16.0" />
+                                             </font>
+                                          </JFXButton>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="VIEW OVERALL ATTENDANCE">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="860.0">
+                           <children>
+                              <SplitPane dividerPositions="0.5" prefHeight="663.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                       <children>
+                                          <Label layoutX="194.0" layoutY="63.0" text="Overall" />
+                                          <PieChart fx:id="overAllChart" layoutX="43.0" layoutY="124.0" prefHeight="331.0" prefWidth="341.0" />
+                                          <Label layoutX="47.0" layoutY="495.0" text="99 %" />
+                                          <Label layoutX="310.0" layoutY="495.0" text="99 %" />
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                       <children>
+                                          <JFXDatePicker defaultColor="#a6000f" layoutX="40.0" layoutY="158.0" prefHeight="28.0" prefWidth="317.0" />
+                                          <Label layoutX="169.0" layoutY="70.0" prefHeight="23.0" prefWidth="71.0" text="Sort by date" />
+                                          <Label fx:id="lbl_showStatus" layoutX="56.0" layoutY="380.0" prefHeight="23.0" prefWidth="315.0" />
+                                          <JFXButton fx:id="btn_search" layoutX="179.0" layoutY="258.0" onAction="#click_search" text="Search" />
+                                          <Label layoutX="200.0" layoutY="372.0" text="&quot;STATUS&quot;" />
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

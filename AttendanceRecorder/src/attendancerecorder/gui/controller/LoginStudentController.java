@@ -79,10 +79,10 @@ public class LoginStudentController implements Initializable {
             }
         }
         if (found) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/StudentRecordAttendance.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/RecordAndOverallAttendance.fxml"));
 
             Parent root = loader.load();
-            StudentRecordAttendanceController srac = loader.getController();
+            RecordAndOverallAttendanceController srac = loader.getController();
             srac.getEmailFromLogin(idFromLogin);
 
             Scene scene = new Scene(root);
