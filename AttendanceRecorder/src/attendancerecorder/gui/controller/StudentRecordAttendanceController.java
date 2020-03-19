@@ -146,6 +146,7 @@ public class StudentRecordAttendanceController implements Initializable {
             message = txt_absentMessage.getText();
         }
         iStudentManager.addNewAttendance(idFromLogin, status, date, message);
-
     }
+    
+    
 }

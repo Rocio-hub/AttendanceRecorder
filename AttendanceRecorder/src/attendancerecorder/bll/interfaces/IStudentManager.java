@@ -5,6 +5,7 @@
  */
 package attendancerecorder.bll.interfaces;
 
+import attendancerecorder.be.Attendance;
 import attendancerecorder.be.Course;
 import attendancerecorder.be.Student;
 import java.util.List;
@@ -19,6 +20,6 @@ public interface IStudentManager {
     
     public void addNewAttendance(int studentId, int status, String date, String message);
     
-    public void calculateOverallAttendance(int studentId, int status);
+    public List<Attendance> getAllAttendancesById();
 
 }

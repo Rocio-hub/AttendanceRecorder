@@ -5,9 +5,14 @@
  */
 package attendancerecorder.gui.controller;
 
+import attendancerecorder.be.Attendance;
+import attendancerecorder.bll.interfaces.IStudentManager;
+import attendancerecorder.bll.managers.StudentManager;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,11 +24,12 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class OverallAttendanceController implements Initializable {
 
+    IStudentManager iStudentManager = new StudentManager();
+    
     @FXML
     private Button btn_close;
     @FXML
@@ -110,6 +116,12 @@ public class OverallAttendanceController implements Initializable {
                         new PieChart.Data("Present", 82),
                         new PieChart.Data("Absent", 18));
         overAllChart.setData(overallChartData);
+    }
+
+    private void calculateOverallAttendance() {
+        List<Attendance> attLst = new ArrayList();
+        attLst = iStudentManager.getAllAttendancesById();
+        
     }
 
 }
