@@ -14,7 +14,7 @@
          <children>
             <JFXButton fx:id="btn_close" buttonType="RAISED" layoutX="776.0" layoutY="519.0" onAction="#click_close" ripplerFill="#009fe3" text="Close" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="24.0" />
             <Label fx:id="className" layoutX="14.0" layoutY="13.0" stylesheets="@TeacherAttendanceOverview.css" text="CS_2019B" />
-            <TableView fx:id="students" layoutX="22.0" layoutY="124.0" onMouseClicked="#selectedStudent" prefHeight="396.0" prefWidth="132.0">
+            <TableView fx:id="tc_present" layoutX="22.0" layoutY="124.0" onMouseClicked="#click_selectedPresentStudent" prefHeight="396.0" prefWidth="132.0">
                <columns>
                   <TableColumn fx:id="tableview_present" prefWidth="75.0" text="Present" />
                </columns>
@@ -34,7 +34,7 @@
             <Label fx:id="lbl_teacherName" layoutX="401.0" layoutY="38.0" prefHeight="30.0" prefWidth="384.0" text=" " />
             <JFXDatePicker fx:id="datePicker" defaultColor="#c10d0e" layoutX="558.0" layoutY="157.0" />
             <Label fx:id="lbl_popup" layoutX="550.0" layoutY="204.0" prefHeight="17.0" prefWidth="163.0" text="Please, select the date" />
-            <TableView fx:id="students1" layoutX="154.0" layoutY="124.0" onMouseClicked="#selectedStudent" prefHeight="396.0" prefWidth="132.0">
+            <TableView fx:id="tc_absent" layoutX="154.0" layoutY="124.0" onMouseClicked="#click_selectedAbsentStudent" prefHeight="396.0" prefWidth="132.0">
                <columns>
                   <TableColumn fx:id="tableview_absent" prefWidth="75.0" text="Absent" />
                </columns>
