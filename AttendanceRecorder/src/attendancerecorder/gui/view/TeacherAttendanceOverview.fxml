@@ -22,10 +22,10 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Label fx:id="lbl_reasonForAbsence" layoutX="359.0" layoutY="345.0" prefHeight="91.0" prefWidth="339.0" stylesheets="@TeacherAttendanceOverview.css" />
+            <Label fx:id="lbl_messageForAbsence" layoutX="359.0" layoutY="345.0" prefHeight="91.0" prefWidth="339.0" stylesheets="@TeacherAttendanceOverview.css" />
             <Label fx:id="text2" layoutX="333.0" layoutY="483.0" prefHeight="17.0" prefWidth="281.0" text="Total absence percentage:       %" />
             <Label fx:id="percentageOfAbsence" layoutX="526.0" layoutY="479.0" prefHeight="25.0" prefWidth="24.0" text="24" />
-            <Label layoutX="359.0" layoutY="299.0" stylesheets="@TeacherAttendanceOverview.css" text="Reason For Absence:" />
+            <Label fx:id="lbl_reasonForAbsence" layoutX="371.0" layoutY="314.0" stylesheets="@TeacherAttendanceOverview.css" text="Reason For Absence:" />
             <Label layoutX="327.0" layoutY="38.0" prefHeight="30.0" prefWidth="69.0" text="Hello,">
                <font>
                   <Font size="14.0" />
@@ -42,11 +42,12 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <JFXButton fx:id="btn_search" layoutX="734.0" layoutY="154.0" onAction="#click_search" prefHeight="5.0" prefWidth="5.0" text=" ">
+            <JFXButton fx:id="btn_search" layoutX="734.0" layoutY="154.0" onAction="#click_search" prefHeight="35.0" prefWidth="69.0" text="Search">
                <font>
                   <Font size="8.0" />
                </font>
             </JFXButton>
+            <JFXButton fx:id="btn_showStudentReason" layoutX="297.0" layoutY="290.0" onAction="#click_showStudentReason" prefHeight="35.0" prefWidth="60.0" text="View" />
          </children>
       </AnchorPane>
    </children>
