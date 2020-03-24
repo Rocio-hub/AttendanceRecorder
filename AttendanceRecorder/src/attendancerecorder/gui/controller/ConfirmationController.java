@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*
 package attendancerecorder.gui.controller;
 
 import java.io.IOException;
@@ -33,7 +32,6 @@ public class ConfirmationController implements Initializable {
     /**
      * Initializes the controller class.
      */
-/*
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btn_view_overall_attendance.setId("btn_view_overall_attendance");
@@ -66,4 +64,3 @@ public class ConfirmationController implements Initializable {
         stage.close();
     }
 }
-*/

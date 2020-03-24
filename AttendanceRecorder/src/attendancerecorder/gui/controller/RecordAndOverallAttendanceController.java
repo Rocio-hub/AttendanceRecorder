@@ -171,8 +171,16 @@ public class RecordAndOverallAttendanceController implements Initializable {
 
     @FXML
     private void click_confirm(ActionEvent event) throws IOException {
-        if (enableConfirmation()) {        
+        if (enableConfirmation()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/Confirmation.fxml"));
+            Parent root = loader.load();
+            ConfirmationController cctrl = loader.getController();
             addNewAttendance();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
         }
     }
 

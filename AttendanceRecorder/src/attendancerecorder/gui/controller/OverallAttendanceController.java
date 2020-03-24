@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*package attendancerecorder.gui.controller;
+package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Attendance;
 import attendancerecorder.bll.interfaces.IStudentManager;
@@ -54,7 +54,7 @@ public class OverallAttendanceController implements Initializable {
     /**
      * Initializes the controller class.
      */
-   /* @Override
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         initOverallChart();
@@ -125,4 +125,3 @@ public class OverallAttendanceController implements Initializable {
     }
 
 }
-*/
