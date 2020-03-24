@@ -11,12 +11,12 @@ package attendancerecorder.be;
  */
 public class Attendance {
     
-    private int studentId, status;
-    private String date, message;
-
-    public Attendance(int studentId, int status) {
-        this.studentId = studentId;
-        this.status = status;
+//    private int studentId, status;
+//    private String date, message;
+//
+//    public Attendance(int studentId, int status) {
+//        this.studentId = studentId;
+//        this.status = status;
     }
     
     
@@ -24,5 +24,4 @@ public class Attendance {
     
     
     
-}
 

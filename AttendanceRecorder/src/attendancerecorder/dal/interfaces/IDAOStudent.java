@@ -18,7 +18,9 @@ public interface IDAOStudent {
 
     public List<Course> getAllCourses();
 
-    public List<Attendance> getAllAttendancesById();
+    public List<Student> getAllAttendancesById();
 
     public void addNewAttendance(int studentId, int status, String date, String message);
+
+    public Student getReasonForAbsence(int studentId, String date);
 }

@@ -13,6 +13,7 @@ public class Student {
     private String email;
     private String password;
     private String message;
+    private int status;
 
     //Getters and Setters for all variables
     public int getId() {
@@ -54,12 +55,21 @@ public class Student {
     public void setPassword(String password) {
         this.password = password;
     }
-        public String getMessage() {
+
+    public String getMessage() {
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     //Constructors
@@ -82,15 +92,22 @@ public class Student {
 
     public Student(String firstName, String message) {
         this.firstName = firstName;
-        this.message=message;
+        this.message = message;
     }
 
-
+    public Student(int id, int status) {
+        this.id = id;
+        this.status = status;
+    }
+    
+    
 
     //ToString
     @Override
     public String toString() {
         return "Student{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password + '}';
     }
+    
+    
 
 }

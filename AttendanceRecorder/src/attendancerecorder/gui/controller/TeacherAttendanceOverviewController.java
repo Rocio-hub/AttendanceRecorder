@@ -28,12 +28,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class TeacherAttendanceOverviewController implements Initializable {
-    
+
     ITeacherManager TeacherMng = new TeacherManager();
     private ObservableList<Student> presentStudents;
     private ObservableList<Student> absentStudents;
     String teacherName;
-    
+
     @FXML
     private Label percentageOfAbsence;
     @FXML
@@ -79,19 +79,12 @@ public class TeacherAttendanceOverviewController implements Initializable {
         className.setId("className");
         lbl_teacherName.setId("teacherName");
         //lbl_teacherName.setText(teacherName);
-        
-      
-     
-      //  System.out.println(a);
-        
-        
+
+        //  System.out.println(a);
 //        ObservableList<Student> tableItems = FXCollections.observableArrayList(manager.getAllStudents());
 //        studentsColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 //        students.setItems(tableItems);
     }
-
-
-  
 
     @FXML
     private void click_close(ActionEvent event) {
@@ -101,17 +94,18 @@ public class TeacherAttendanceOverviewController implements Initializable {
 
     @FXML
     private void click_search(ActionEvent event) {
-         String date = datePicker.getValue().toString();
-          presentStudents =   FXCollections.observableArrayList(TeacherMng.getStudentsOnCondition(date, 1));
-        absentStudents =   FXCollections.observableArrayList(TeacherMng.getStudentsOnCondition(date, 0));
-       tableview_present.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-       tableview_absent.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        String date = datePicker.getValue().toString();
+        presentStudents = FXCollections.observableArrayList(TeacherMng.getStudentsOnCondition(date, 1));
+        absentStudents = FXCollections.observableArrayList(TeacherMng.getStudentsOnCondition(date, 0));
+        tableview_present.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        tableview_absent.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         tc_present.setItems(presentStudents);
         tc_absent.setItems(absentStudents);
-        
+
     }
-    public void getTeacherName(String name){
-        this.teacherName=name;
+
+    public void getTeacherName(String name) {
+        this.teacherName = name;
         lbl_teacherName.setText(teacherName);
     }
 
@@ -130,15 +124,15 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private void click_selectedPresentStudent(MouseEvent event) {
         tc_absent.getSelectionModel().clearSelection();
         lbl_reasonForAbsence.setVisible(false);
-            lbl_messageForAbsence.setVisible(false);
+        lbl_messageForAbsence.setVisible(false);
     }
 
     @FXML
     private void click_selectedAbsentStudent(MouseEvent event) {
         tc_present.getSelectionModel().clearSelection();
-         lbl_reasonForAbsence.setVisible(true);
-            lbl_messageForAbsence.setVisible(true);
-            lbl_messageForAbsence.setText(tc_absent.getSelectionModel().getSelectedItem().getMessage());
+        lbl_reasonForAbsence.setVisible(true);
+        lbl_messageForAbsence.setVisible(true);
+        lbl_messageForAbsence.setText(tc_absent.getSelectionModel().getSelectedItem().getMessage());
     }
 
 }

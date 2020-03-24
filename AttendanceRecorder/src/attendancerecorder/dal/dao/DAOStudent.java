@@ -132,11 +132,11 @@ public class DAOStudent implements IDAOStudent {
     }
 
     @Override
-    public List<Attendance> getAllAttendancesById() {
+    public List<Student> getAllAttendancesById() {
         
         try (Connection con = ds.getConnection()) {
             String sql = "SELECT studentId, status FROM Attendance";
-            List<Attendance> attendanceLst = new ArrayList();
+            List<Student> studentLst = new ArrayList();
 
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -144,16 +144,44 @@ public class DAOStudent implements IDAOStudent {
                 int studentId = rs.getInt("studentId");
                 int status = rs.getInt("status");                
                 
-                Attendance attendance = new Attendance(studentId, status);
-                attendanceLst.add(attendance);
+                Student student = new Student(studentId, status);
+                studentLst.add(student);
             }
-            return attendanceLst;
+            return studentLst;
         } catch (SQLServerException sqlse) {
             Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, sqlse);
         } catch (SQLException ex) {
             Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;              
+    }
+
+    @Override
+    public Student getReasonForAbsence(int studentId, String date) {
+         try (Connection con = ds.getConnection()) {
+            String sql = "SELECT studentId, status, date, message FROM Attendance JOIN Students ON Attendance.studentId = Students.id WHERE studentId = ? AND date = ?";
+            Student student = new Student();
+
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            
+            pstmt.setInt(1, studentId);
+            pstmt.setString(2, date);
+            
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {                
+                int status = rs.getInt("status");                      
+                String message = rs.getString("message");                
+                
+                student.setStatus(status);
+                student.setMessage(message);
+            }
+            return student;
+        } catch (SQLServerException sqlse) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, sqlse);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;    
     }
 
     

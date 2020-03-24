@@ -15,11 +15,13 @@ public interface IStudentManager {
     public List<Student> getAllStudents();
 
     public List<Student> getStudentLoginData();
-    
+
     public List<Course> getAllCourses();
-    
+
     public void addNewAttendance(int studentId, int status, String date, String message);
-    
-    public List<Attendance> getAllAttendancesById();
+
+    public List<Student> getAllAttendancesById();
+
+    public Student getReasonForAbsence(int studentId, String date);
 
 }

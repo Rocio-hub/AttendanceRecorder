@@ -7,6 +7,7 @@ package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Attendance;
 import attendancerecorder.be.Course;
+import attendancerecorder.be.Student;
 import attendancerecorder.bll.interfaces.IStudentManager;
 import attendancerecorder.bll.managers.StudentManager;
 import com.jfoenix.controls.JFXButton;
@@ -48,8 +49,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
     int idFromLogin;
 
     @FXML
-    private JFXDatePicker datePicker;
-    @FXML
     private JFXCheckBox cb_present;
     @FXML
     private JFXCheckBox cb_absent;
@@ -75,6 +74,12 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private JFXButton btn_confirm;
     @FXML
     private JFXButton btn_close;
+    @FXML
+    private JFXDatePicker datePicker_record;
+    @FXML
+    private JFXDatePicker datePicker_sort;
+    @FXML
+    private Label lbl_absentMessage;
 
     /**
      * Initializes the controller class.
@@ -96,7 +101,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     private boolean enableConfirmation() {
-        if (datePicker.getValue() == null) {
+        if (datePicker_record.getValue() == null) {
             lbl_popup.setVisible(true);
             return false;
         }
@@ -124,6 +129,15 @@ public class RecordAndOverallAttendanceController implements Initializable {
 
     @FXML
     private void click_search(ActionEvent event) {
+        String date = datePicker_sort.getValue().toString();
+        Student student = iStudentManager.getReasonForAbsence(idFromLogin, date);
+        lbl_absentMessage.setText(student.getMessage());
+        if (student.getStatus() == 0) {
+            lbl_showStatus.setText("ABSENT");
+        } else {
+            lbl_showStatus.setText("PRESENT");
+        }
+
     }
 
     public void getEmailFromLogin(int id) {
@@ -136,12 +150,12 @@ public class RecordAndOverallAttendanceController implements Initializable {
         String message;
         if (cb_present.isSelected()) {
             status = 1;
-            date = datePicker.getValue().toString();
+            date = datePicker_record.getValue().toString();
             message = null;
 
         } else {
             status = 0;
-            date = datePicker.getValue().toString();
+            date = datePicker_record.getValue().toString();
             message = txt_absentMessage.getText();
         }
         iStudentManager.addNewAttendance(idFromLogin, status, date, message);
@@ -156,9 +170,9 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     private void calculateOverallAttendance() {
-        List<Attendance> attLst = new ArrayList();
-        attLst = iStudentManager.getAllAttendancesById();
-
+        List<Student> studentLst = new ArrayList();
+        studentLst = iStudentManager.getAllAttendancesById();
+        // FINISHHH
     }
 
     @FXML

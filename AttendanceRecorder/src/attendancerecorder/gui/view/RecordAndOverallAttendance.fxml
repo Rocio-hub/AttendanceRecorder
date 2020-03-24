@@ -50,7 +50,7 @@
                                                 <Font name="Didot" size="25.0" />
                                              </font>
                                           </Label>
-                                          <JFXDatePicker fx:id="datePicker" defaultColor="#b00202" prefHeight="22.0" prefWidth="246.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
+                                          <JFXDatePicker fx:id="datePicker_record" defaultColor="#b00202" prefHeight="22.0" prefWidth="246.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" />
                                           <JFXCheckBox fx:id="cb_present" onAction="#click_present" prefHeight="18.0" prefWidth="81.0" text="Present" unCheckedColor="#2e98fb" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                              <effect>
                                                 <Bloom />
@@ -134,12 +134,12 @@
                                     </AnchorPane>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="0.0">
                                        <children>
-                                          <JFXDatePicker defaultColor="#a6000f" layoutX="40.0" layoutY="158.0" prefHeight="28.0" prefWidth="317.0" />
+                                          <JFXDatePicker fx:id="datePicker_sort" defaultColor="#a6000f" layoutX="40.0" layoutY="158.0" prefHeight="28.0" prefWidth="317.0" />
                                           <Label layoutX="169.0" layoutY="70.0" prefHeight="23.0" prefWidth="71.0" text="Sort by date" />
-                                          <Label fx:id="lbl_showStatus" layoutX="56.0" layoutY="380.0" prefHeight="23.0" prefWidth="315.0" />
+                                          <Label fx:id="lbl_showStatus" layoutX="56.0" layoutY="340.0" prefHeight="23.0" prefWidth="315.0" text="Status" />
                                           <JFXButton fx:id="btn_search" layoutX="179.0" layoutY="258.0" onAction="#click_search" text="Search" />
-                                          <Label layoutX="200.0" layoutY="372.0" text="&quot;STATUS&quot;" />
                                           <JFXButton fx:id="btn_close" buttonType="RAISED" layoutX="357.0" layoutY="580.0" onAction="#clickClose" prefHeight="31.0" prefWidth="67.0" ripplerFill="#fff379" text="Close" />
+                                          <Label fx:id="lbl_absentMessage" layoutX="56.0" layoutY="409.0" text="Message" />
                                        </children>
                                     </AnchorPane>
                                 </items>

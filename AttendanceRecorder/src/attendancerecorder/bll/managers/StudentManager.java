@@ -24,7 +24,6 @@ public class StudentManager implements IStudentManager {
     private List<Student> studentLst = new ArrayList();
     private List<Student> studentLoginLst = new ArrayList();
     private List<Course> courseLst = new ArrayList();
-    private List<Attendance> attLst = new ArrayList();
     
 
     @Override
@@ -51,12 +50,14 @@ public class StudentManager implements IStudentManager {
     }
 
     @Override
-    public List<Attendance> getAllAttendancesById() {
-        attLst = daoStudent.getAllAttendancesById();
-        return attLst;
+    public List<Student> getAllAttendancesById() {
+        studentLst = daoStudent.getAllAttendancesById();
+        return studentLst;
     }
 
-
-    
+    @Override
+    public Student getReasonForAbsence(int studentId, String date) {
+        return daoStudent.getReasonForAbsence(studentId, date);
+    }
 
 }
