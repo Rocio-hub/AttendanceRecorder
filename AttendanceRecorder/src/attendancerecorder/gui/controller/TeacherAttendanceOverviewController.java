@@ -61,8 +61,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
     @FXML
     private Label lbl_messageForAbsence;
     @FXML
-    private JFXButton btn_showStudentReason;
-    @FXML
     private TableView<Student> tc_present;
     @FXML
     private TableView<Student> tc_absent;
@@ -117,7 +115,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
         lbl_teacherName.setText(teacherName);
     }
 
-    @FXML
     private void click_showStudentReason(ActionEvent event) {
         if (tc_absent.getSelectionModel().getSelectedItem() != null) {
             lbl_reasonForAbsence.setVisible(true);

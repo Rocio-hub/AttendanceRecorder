@@ -47,7 +47,6 @@
                   <Font size="8.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btn_showStudentReason" layoutX="297.0" layoutY="290.0" onAction="#click_showStudentReason" prefHeight="35.0" prefWidth="60.0" text="View" />
          </children>
       </AnchorPane>
    </children>
