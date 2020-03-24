@@ -73,6 +73,8 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private JFXTextArea txt_absentMessage;
     @FXML
     private JFXButton btn_confirm;
+    @FXML
+    private JFXButton btn_close;
 
     /**
      * Initializes the controller class.
@@ -180,6 +182,12 @@ public class RecordAndOverallAttendanceController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
+    }
+
+    @FXML
+    private void clickClose(ActionEvent event) {
+        Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
+        stage.close();
     }
 
 }
