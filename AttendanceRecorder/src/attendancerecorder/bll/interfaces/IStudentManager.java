@@ -20,7 +20,7 @@ public interface IStudentManager {
 
     public void addNewAttendance(int studentId, int status, String date, String message);
 
-    public List<Student> getAllAttendancesById();
+    public List<Student> getAllAttendancesById(int studentId);
 
     public Student getReasonForAbsence(int studentId, String date);
 

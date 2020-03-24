@@ -50,8 +50,8 @@ public class StudentManager implements IStudentManager {
     }
 
     @Override
-    public List<Student> getAllAttendancesById() {
-        studentLst = daoStudent.getAllAttendancesById();
+    public List<Student> getAllAttendancesById(int studentId) {
+        studentLst = daoStudent.getAllAttendancesById(studentId);
         return studentLst;
     }
 

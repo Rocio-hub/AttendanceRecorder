@@ -132,16 +132,18 @@ public class DAOStudent implements IDAOStudent {
     }
 
     @Override
-    public List<Student> getAllAttendancesById() {
+    public List<Student> getAllAttendancesById(int studentId) {
         
         try (Connection con = ds.getConnection()) {
-            String sql = "SELECT studentId, status FROM Attendance";
+            String sql = "SELECT status FROM Attendance WHERE studentId = ?";
             List<Student> studentLst = new ArrayList();
 
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            
+            pstmt.setInt(1, studentId);
+            
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                int studentId = rs.getInt("studentId");
                 int status = rs.getInt("status");                
                 
                 Student student = new Student(studentId, status);

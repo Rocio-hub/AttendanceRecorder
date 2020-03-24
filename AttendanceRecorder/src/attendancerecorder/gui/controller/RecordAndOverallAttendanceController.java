@@ -80,6 +80,10 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private JFXDatePicker datePicker_sort;
     @FXML
     private Label lbl_absentMessage;
+    @FXML
+    private Label lbl_presentPercentage;
+    @FXML
+    private Label lbl_absentPercentage;
 
     /**
      * Initializes the controller class.
@@ -91,7 +95,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
         lbl_popup1.setVisible(false);
         lbl_popup2.setVisible(false);
         initCoursesTable();
-        initOverallChart();
+       
     }
 
     private void initCoursesTable() {
@@ -142,6 +146,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
 
     public void getEmailFromLogin(int id) {
         this.idFromLogin = id;
+         initOverallChart();
     }
 
     private void addNewAttendance() {
@@ -162,21 +167,42 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     private void initOverallChart() {
+        double presentPercentage = calculateOverallAttendance();
+        double absentPercentage = 100 - calculateOverallAttendance();
         ObservableList<PieChart.Data> overallChartData
                 = FXCollections.observableArrayList(
-                        new PieChart.Data("Present", 82),
-                        new PieChart.Data("Absent", 18));
+                        new PieChart.Data("Present", presentPercentage),
+                        new PieChart.Data("Absent", absentPercentage));
         overAllChart.setData(overallChartData);
+        
+        
+        lbl_absentPercentage.setText(Double.toString(absentPercentage));
+        lbl_presentPercentage.setText(Double.toString(presentPercentage));
     }
 
-    private void calculateOverallAttendance() {
+    private double calculateOverallAttendance() {
         List<Student> studentLst = new ArrayList();
-        studentLst = iStudentManager.getAllAttendancesById();
-        // FINISHHH
+        studentLst = iStudentManager.getAllAttendancesById(idFromLogin);
+        int counterPresent = 0;
+        int counterAbsent = 0;
+        int sum;
+
+        for (Student student : studentLst) {
+            if (student.getStatus() == 1) {
+                counterPresent++;
+            } else {
+                counterAbsent++;
+            }
+        }
+
+        sum = counterPresent + counterAbsent;
+
+        return ((counterPresent * 100) / sum);
     }
 
     @FXML
-    private void mouse_confirm(MouseEvent event) {
+    private void mouse_confirm(MouseEvent event
+    ) {
         if (enableConfirmation()) {
             Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
             stage.close();
@@ -199,7 +225,8 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     @FXML
-    private void clickClose(ActionEvent event) {
+    private void clickClose(ActionEvent event
+    ) {
         Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
         stage.close();
     }

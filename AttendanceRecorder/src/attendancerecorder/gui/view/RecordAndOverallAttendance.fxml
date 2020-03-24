@@ -128,8 +128,8 @@
                                        <children>
                                           <Label layoutX="194.0" layoutY="63.0" text="Overall" />
                                           <PieChart fx:id="overAllChart" layoutX="43.0" layoutY="124.0" prefHeight="331.0" prefWidth="341.0" />
-                                          <Label layoutX="47.0" layoutY="495.0" text="99 %" />
-                                          <Label layoutX="310.0" layoutY="495.0" text="99 %" />
+                                          <Label fx:id="lbl_presentPercentage" layoutX="47.0" layoutY="495.0" />
+                                          <Label fx:id="lbl_absentPercentage" layoutX="310.0" layoutY="495.0" />
                                        </children>
                                     </AnchorPane>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="0.0">
