@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendancerecorder.gui.controller;
+/*package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Course;
 import attendancerecorder.bll.interfaces.IStudentManager;
@@ -62,7 +62,7 @@ public class StudentRecordAttendanceController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @Override
+   /* @Override
     public void initialize(URL url, ResourceBundle rb) {
         txt_absentMessage.visibleProperty().set(false);
         lbl_popup.setVisible(false);
@@ -90,7 +90,7 @@ public class StudentRecordAttendanceController implements Initializable {
             lbl_popup2.setVisible(true);
             return false;
         }*/
-        return true;
+   /*     return true;
     }
 
     @FXML
@@ -107,15 +107,9 @@ public class StudentRecordAttendanceController implements Initializable {
     @FXML
     private void click_confirm(ActionEvent event) throws IOException {
         if (enableConfirmation()) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/Confirmation.fxml"));
-            Parent root = loader.load();
-            ConfirmationController cctrl = loader.getController();
+            
             addNewAttendance();
 
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
         }
     }
 
@@ -150,3 +144,4 @@ public class StudentRecordAttendanceController implements Initializable {
     
     
 }
+*/
