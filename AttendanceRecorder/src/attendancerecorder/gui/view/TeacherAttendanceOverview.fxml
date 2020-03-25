@@ -24,7 +24,7 @@
             </TableView>
             <Label fx:id="lbl_messageForAbsence" layoutX="359.0" layoutY="345.0" prefHeight="91.0" prefWidth="339.0" stylesheets="@TeacherAttendanceOverview.css" />
             <Label fx:id="text2" layoutX="333.0" layoutY="483.0" prefHeight="17.0" prefWidth="281.0" text="Total absence percentage:       %" />
-            <Label fx:id="percentageOfAbsence" layoutX="526.0" layoutY="479.0" prefHeight="25.0" prefWidth="24.0" text="24" />
+            <Label fx:id="lbl_percentageOfAbsence" layoutX="526.0" layoutY="508.0" prefHeight="25.0" prefWidth="52.0" />
             <Label fx:id="lbl_reasonForAbsence" layoutX="371.0" layoutY="314.0" stylesheets="@TeacherAttendanceOverview.css" text="Reason For Absence:" />
             <Label layoutX="327.0" layoutY="38.0" prefHeight="30.0" prefWidth="69.0" text="Hello,">
                <font>
