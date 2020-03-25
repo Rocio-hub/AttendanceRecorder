@@ -30,6 +30,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -47,6 +48,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     IStudentManager iStudentManager = new StudentManager();
     private ObservableList<Course> courseLst;
     int idFromLogin;
+    boolean isPresent = false;
 
     @FXML
     private JFXCheckBox cb_present;
@@ -84,6 +86,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private Label lbl_presentPercentage;
     @FXML
     private Label lbl_absentPercentage;
+    
 
     /**
      * Initializes the controller class.
@@ -123,6 +126,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     @FXML
     private void click_present(ActionEvent event) {
         cb_absent.setSelected(false);
+        isPresent = true;
     }
 
     @FXML
@@ -221,6 +225,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
+            alert();
         }
     }
 
@@ -229,6 +234,19 @@ public class RecordAndOverallAttendanceController implements Initializable {
     ) {
         Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
         stage.close();
+    }
+    
+    public void alert() {        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("CONFIRMATION");
+        alert.setHeaderText(null);
+        if(cb_present.isSelected()){
+        alert.setContentText("YOU HAVE SELECTED:\nDate: "+ datePicker_record.getValue().toString()+"\nStatus: PRESENT" );
+        }
+        else{
+            alert.setContentText("YOU HAVE SELECTED:\nDate: "+ datePicker_record.getValue().toString()+"\nStatus: ABSENT\nMessage: "+txt_absentMessage.getText());
+        }
+        alert.showAndWait();
     }
 
 }
