@@ -15,7 +15,9 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import java.io.IOException;
+import java.math.RoundingMode;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
@@ -183,9 +185,9 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private double calculateOverallAttendance() {
         List<Student> studentLst = new ArrayList();
         studentLst = iStudentManager.getAllAttendancesById(idFromLogin);
-        int counterPresent = 0;
-        int counterAbsent = 0;
-        int sum;
+        double counterPresent = 0;
+        double counterAbsent = 0;
+        double sum;
 
         for (Student student : studentLst) {
             if (student.getStatus() == 1) {
@@ -196,8 +198,9 @@ public class RecordAndOverallAttendanceController implements Initializable {
         }
 
         sum = counterPresent + counterAbsent;
-
-        return ((counterPresent * 100) / sum);
+        double total = ((counterPresent * 100) / sum);
+        return Math.floor(total*100) / 100;
+       
     }
 
     @FXML
