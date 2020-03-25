@@ -5,7 +5,6 @@
  */
 package attendancerecorder.dal.dao;
 
-import attendancerecorder.be.Attendance;
 import attendancerecorder.be.Course;
 import attendancerecorder.be.Student;
 import attendancerecorder.dal.interfaces.IDAOStudent;
@@ -51,31 +50,6 @@ public class DAOStudent implements IDAOStudent {
                 String password = rs.getString("password");                
 
                 Student student = new Student(id, firstName, lastName, email, password);
-                studentLst.add(student);
-            }
-            return studentLst;
-        } catch (SQLServerException sqlse) {
-            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, sqlse);
-        } catch (SQLException ex) {
-            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-
-    @Override
-    public List<Student> getStudentLoginData() {
-        try (Connection con = ds.getConnection()) {
-            String sql = "SELECT  id, email, password FROM Students";
-            List<Student> studentLst = new ArrayList();
-
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String email = rs.getString("email");
-                String password = rs.getString("password");                
-
-                Student student = new Student(id, email, password);
                 studentLst.add(student);
             }
             return studentLst;

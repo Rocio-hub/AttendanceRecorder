@@ -84,11 +84,11 @@ public class Student {
         this.password = password;
     }
 
-    public Student(int id, String email, String password) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-    }
+//    public Student(int id, String email, String password) {
+//        this.id = id;
+//        this.email = email;
+//        this.password = password;
+//    }
 
     public Student(String firstName, String message) {
         this.firstName = firstName;

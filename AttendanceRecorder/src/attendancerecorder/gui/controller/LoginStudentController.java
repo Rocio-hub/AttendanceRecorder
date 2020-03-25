@@ -6,11 +6,8 @@
 package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Student;
-import attendancerecorder.be.Teacher;
 import attendancerecorder.bll.interfaces.IStudentManager;
-import attendancerecorder.bll.interfaces.ITeacherManager;
 import attendancerecorder.bll.managers.StudentManager;
-import attendancerecorder.bll.managers.TeacherManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -33,6 +30,8 @@ import javafx.stage.Stage;
 public class LoginStudentController implements Initializable {
 
     IStudentManager studentMng = new StudentManager();
+    String studentFirstName;
+    String studentLastName;
 
     @FXML
     private JFXTextField txt_email;
@@ -56,7 +55,7 @@ public class LoginStudentController implements Initializable {
     private void mouse_login(MouseEvent event) {
 
         boolean found = false;
-        List<Student> studentLst = studentMng.getStudentLoginData();
+        List<Student> studentLst = studentMng.getAllStudents();
         for (Student student : studentLst) {
             if (txt_email.getText().equals(student.getEmail()) && txt_password.getText().equals(student.getPassword())) {
                 found = true;
@@ -71,11 +70,13 @@ public class LoginStudentController implements Initializable {
     @FXML
     private void click_login(ActionEvent event) throws IOException {
         boolean found = false;
-        List<Student> studentLst = studentMng.getStudentLoginData();
+        List<Student> studentLst = studentMng.getAllStudents();
         for (Student student : studentLst) {
             if (txt_email.getText().equals(student.getEmail()) && txt_password.getText().equals(student.getPassword())) {
                 found = true;
                 idFromLogin = student.getId();
+                studentFirstName=student.getFirstName();
+                studentLastName=student.getLastName();
             }
         }
         if (found) {
@@ -84,6 +85,8 @@ public class LoginStudentController implements Initializable {
             Parent root = loader.load();
             RecordAndOverallAttendanceController srac = loader.getController();
             srac.getEmailFromLogin(idFromLogin);
+            
+            srac.getStudentName(studentFirstName, studentLastName);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();

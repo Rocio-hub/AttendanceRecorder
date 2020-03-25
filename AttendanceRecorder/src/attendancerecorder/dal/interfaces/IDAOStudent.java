@@ -5,7 +5,6 @@
  */
 package attendancerecorder.dal.interfaces;
 
-import attendancerecorder.be.Attendance;
 import attendancerecorder.be.Course;
 import attendancerecorder.be.Student;
 import java.util.List;
@@ -13,8 +12,6 @@ import java.util.List;
 public interface IDAOStudent {
 
     public List<Student> getAllStudents();
-
-    public List<Student> getStudentLoginData();
 
     public List<Course> getAllCourses();
 
