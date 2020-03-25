@@ -90,7 +90,8 @@ public class Student {
 //        this.password = password;
 //    }
 
-    public Student(String firstName, String message) {
+    public Student(int id,String firstName, String message) {
+        this.id=id;
         this.firstName = firstName;
         this.message = message;
     }

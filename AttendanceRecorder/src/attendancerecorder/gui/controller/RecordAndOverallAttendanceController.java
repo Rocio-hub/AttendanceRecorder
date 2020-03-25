@@ -182,8 +182,8 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     private void initOverallChart() {
-        double presentPercentage = calculateOverallAttendance();
-        double absentPercentage = 100 - calculateOverallAttendance();
+        double presentPercentage = calculateOverallPresentAttendance();
+        double absentPercentage = 100 - calculateOverallPresentAttendance();
         ObservableList<PieChart.Data> overallChartData
                 = FXCollections.observableArrayList(
                         new PieChart.Data("Present", presentPercentage),
@@ -195,7 +195,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
         lbl_presentPercentage.setText(Double.toString(presentPercentage));
     }
 
-    private double calculateOverallAttendance() {
+    private double calculateOverallPresentAttendance() {
         List<Student> studentLst = new ArrayList();
         studentLst = iStudentManager.getAllAttendancesById(idFromLogin);
         double counterPresent = 0;

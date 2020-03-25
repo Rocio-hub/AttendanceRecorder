@@ -87,7 +87,7 @@ public class DAOTeacher implements IDAOTeacher {
         try ( Connection con = ds.getConnection()) {
 
             List<Student> studentLst = new ArrayList();
-            String sql = "SELECT Students.firstName, Attendance.status, Attendance.message FROM Students JOIN Attendance ON id=studentId WHERE date = ? AND status = ?";
+            String sql = "SELECT Students.id, Students.firstName, Attendance.status, Attendance.message FROM Students JOIN Attendance ON id=studentId WHERE date = ? AND status = ?";
 
             PreparedStatement pstmt = con.prepareStatement(sql);
             pstmt.setString(1, date);
@@ -96,9 +96,10 @@ public class DAOTeacher implements IDAOTeacher {
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String firstName = rs.getString("firstName");
                 String message = rs.getString("message");
-                Student student = new Student(firstName,message);
+                Student student = new Student(id,firstName,message);
                 studentLst.add(student);
             }
             return studentLst;
