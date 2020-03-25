@@ -5,7 +5,6 @@
  */
 package attendancerecorder.gui.controller;
 
-import attendancerecorder.be.Attendance;
 import attendancerecorder.be.Course;
 import attendancerecorder.be.Student;
 import attendancerecorder.bll.interfaces.IStudentManager;
@@ -49,6 +48,8 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private ObservableList<Course> courseLst;
     int idFromLogin;
     boolean isPresent = false;
+    String studentFirstName;
+    String studentLastName;
 
     @FXML
     private JFXCheckBox cb_present;
@@ -86,6 +87,8 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private Label lbl_presentPercentage;
     @FXML
     private Label lbl_absentPercentage;
+    @FXML
+    private Label lbl_name;
     
 
     /**
@@ -151,6 +154,12 @@ public class RecordAndOverallAttendanceController implements Initializable {
     public void getEmailFromLogin(int id) {
         this.idFromLogin = id;
          initOverallChart();
+    }
+    
+    public void getStudentName(String firstName, String lastName){
+        this.studentFirstName=firstName;
+        this.studentLastName=lastName;
+        lbl_name.setText(studentFirstName +" "+studentLastName);
     }
 
     private void addNewAttendance() {

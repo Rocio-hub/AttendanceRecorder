@@ -33,12 +33,6 @@ public class StudentManager implements IStudentManager {
     }
 
     @Override
-    public List<Student> getStudentLoginData() {
-        studentLoginLst = daoStudent.getStudentLoginData();
-        return studentLoginLst;
-    }
-
-    @Override
     public List<Course> getAllCourses() {
         courseLst = daoStudent.getAllCourses();
         return courseLst;
