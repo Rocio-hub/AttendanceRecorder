@@ -25,7 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.stage.Stage;
-
+/*
 public class OverallAttendanceController implements Initializable {
 
     IStudentManager iStudentManager = new StudentManager();
@@ -54,7 +54,7 @@ public class OverallAttendanceController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @Override
+   /* @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         initOverallChart();
@@ -98,7 +98,7 @@ public class OverallAttendanceController implements Initializable {
 //                        new PieChart.Data("Present", 55),
 //                        new PieChart.Data("Absent", 45));
 //        sdeChart2.setData(sde2ChartData);
-    }
+ /*   }
 
     @FXML
     private void clickClose(ActionEvent event) {
@@ -125,3 +125,4 @@ public class OverallAttendanceController implements Initializable {
     }
 
 }
+*/
