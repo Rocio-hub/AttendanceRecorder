@@ -113,4 +113,31 @@ public class DAOTeacher implements IDAOTeacher {
         return null;
     }
 
+    @Override
+    public List<Student> getMoreAbsentStudents() {
+        try ( Connection con = ds.getConnection()) {
+            String sql = "SELECT Students.id, Students.firstName, Students.lastName, Attendance.status FROM Students JOIN Attendance ON id=studentId";
+            List<Student> studentLst = new ArrayList();
+
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                String fullName = firstName + " " + lastName;
+                int status = rs.getInt("status");
+                Student student = new Student (fullName , status);
+                studentLst.add(student);    
+            }
+       
+            
+            return studentLst;
+        } catch (SQLServerException sqlse) {
+            Logger.getLogger(DAOTeacher.class.getName()).log(Level.SEVERE, null, sqlse);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOTeacher.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; 
+    }
+
 }

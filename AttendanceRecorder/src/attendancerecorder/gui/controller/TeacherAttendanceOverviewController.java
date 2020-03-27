@@ -23,6 +23,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -76,6 +77,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
         lbl_reasonForAbsence.setVisible(false);
         lbl_messageForAbsence.setVisible(false);
         lbl_percentageOfAbsence.setVisible(true);
+        text2.setVisible(false);
         btn_close.setId("exit");
         lbl_messageForAbsence.setId("messageForAbsence");
         className.setId("className");
@@ -120,6 +122,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
         tc_absent.getSelectionModel().clearSelection();
         lbl_reasonForAbsence.setVisible(false);
         lbl_messageForAbsence.setVisible(false);
+        text2.setVisible(true);
         calculateOverallAbsentAttendanceById(tc_present.getSelectionModel().getSelectedItem().getId());
     }
 
@@ -128,6 +131,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
         tc_present.getSelectionModel().clearSelection();
         lbl_reasonForAbsence.setVisible(true);
         lbl_messageForAbsence.setVisible(true);
+        text2.setVisible(true);
         lbl_messageForAbsence.setText(tc_absent.getSelectionModel().getSelectedItem().getMessage());
         calculateOverallAbsentAttendanceById(tc_absent.getSelectionModel().getSelectedItem().getId());
     }
@@ -151,5 +155,18 @@ public class TeacherAttendanceOverviewController implements Initializable {
         double absentPercentage = 100 - ((counterPresent * 100) / sum);
         absentPercentage = Math.floor(absentPercentage * 100) / 100;
         lbl_percentageOfAbsence.setText(String.valueOf(absentPercentage));
+    }
+     public void alert() {        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("CONFIRMATION");
+        alert.setHeaderText(null);
+        
+       // alert.setContentText("YOU HAVE SELECTED:\nDate: "+ datePicker_record.getValue().toString()+"\nStatus: PRESENT" );
+        
+        
+           // alert.setContentText("YOU HAVE SELECTED:\nDate: "+ datePicker_record.getValue().toString()+"\nStatus: ABSENT\nMessage: "+txt_absentMessage.getText());
+       
+        alert.showAndWait();
+       
     }
 }

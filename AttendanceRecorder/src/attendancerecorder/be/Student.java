@@ -89,20 +89,19 @@ public class Student {
 //        this.email = email;
 //        this.password = password;
 //    }
-
     public Student(int id,String firstName, String message) {
         this.id=id;
         this.firstName = firstName;
         this.message = message;
     }
-
     public Student(int id, int status) {
         this.id = id;
         this.status = status;
     }
-    
-    
-
+    public Student(String name, int status){
+        this.firstName=name;
+        this.status=status;
+    }
     //ToString
     @Override
     public String toString() {
