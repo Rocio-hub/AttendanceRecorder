@@ -91,7 +91,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private Label lbl_absentPercentage;
     @FXML
     private Label lbl_name;
-    
 
     /**
      * Initializes the controller class.
@@ -103,7 +102,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
         lbl_popup1.setVisible(false);
         lbl_popup2.setVisible(false);
         initCoursesTable();
-       
+
     }
 
     private void initCoursesTable() {
@@ -155,31 +154,39 @@ public class RecordAndOverallAttendanceController implements Initializable {
 
     public void getEmailFromLogin(int id) {
         this.idFromLogin = id;
-         initOverallChart();
-    }
-    
-    public void getStudentName(String firstName, String lastName){
-        this.studentFirstName=firstName;
-        this.studentLastName=lastName;
-        lbl_name.setText(studentFirstName +" "+studentLastName);
+        initOverallChart();
     }
 
-    private void addNewAttendance(){
+    public void getStudentName(String firstName, String lastName) {
+        this.studentFirstName = firstName;
+        this.studentLastName = lastName;
+        lbl_name.setText(studentFirstName + " " + studentLastName);
+    }
+
+    private void addNewAttendance() {
         int status;
         String date = datePicker_record.getValue().toString();
         String message = null;
-        
-        if(iStudentManager.checkAlreadyExistingAttendance(idFromLogin, date)){
+
+        if (iStudentManager.checkAlreadyExistingAttendance(idFromLogin, date)) {
             iStudentManager.deleteAttendanceByIdANDDate(idFromLogin, date);
-        }        
-        
-        if (cb_present.isSelected()) {
-            status = 1;
+            if (cb_present.isSelected()) {
+                status = 1;
+            } else {
+                status = 0;
+                message = txt_absentMessage.getText();
+            }
+            iStudentManager.addNewAttendance(idFromLogin, status, date, message);
         } else {
-            status = 0;
-            message = txt_absentMessage.getText();
+            if (cb_present.isSelected()) {
+                status = 1;
+            } else {
+                status = 0;
+                message = txt_absentMessage.getText();
+            }
+            iStudentManager.addNewAttendance(idFromLogin, status, date, message);
         }
-        iStudentManager.addNewAttendance(idFromLogin, status, date, message);
+
     }
 
     private void initOverallChart() {
@@ -190,8 +197,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
                         new PieChart.Data("Present", presentPercentage),
                         new PieChart.Data("Absent", absentPercentage));
         overAllChart.setData(overallChartData);
-        
-        
+
         lbl_absentPercentage.setText(Double.toString(absentPercentage));
         lbl_presentPercentage.setText(Double.toString(presentPercentage));
     }
@@ -213,8 +219,8 @@ public class RecordAndOverallAttendanceController implements Initializable {
 
         sum = counterPresent + counterAbsent;
         double total = ((counterPresent * 100) / sum);
-        return Math.floor(total*100) / 100;
-       
+        return Math.floor(total * 100) / 100;
+
     }
 
     @FXML
@@ -248,16 +254,15 @@ public class RecordAndOverallAttendanceController implements Initializable {
         Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
         stage.close();
     }
-    
-    public void alert() {        
+
+    public void alert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("CONFIRMATION");
         alert.setHeaderText(null);
-        if(cb_present.isSelected()){
-        alert.setContentText("YOU HAVE SELECTED:\nDate: "+ datePicker_record.getValue().toString()+"\nStatus: PRESENT" );
-        }
-        else{
-            alert.setContentText("YOU HAVE SELECTED:\nDate: "+ datePicker_record.getValue().toString()+"\nStatus: ABSENT\nMessage: "+txt_absentMessage.getText());
+        if (cb_present.isSelected()) {
+            alert.setContentText("YOU HAVE SELECTED:\nDate: " + datePicker_record.getValue().toString() + "\nStatus: PRESENT");
+        } else {
+            alert.setContentText("YOU HAVE SELECTED:\nDate: " + datePicker_record.getValue().toString() + "\nStatus: ABSENT\nMessage: " + txt_absentMessage.getText());
         }
         alert.showAndWait();
         initOverallChart(); //Calls again the method that reads from DB, calculates the percentages and sets the Pie charts, as, by the time the alert is displayed, the DB has already be altered with the new recorded attendance and so the pie charts have different data than the one they had the first time they read.

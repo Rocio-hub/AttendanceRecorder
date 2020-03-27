@@ -162,7 +162,7 @@ public class DAOStudent implements IDAOStudent {
     @Override
     public boolean checkAlreadyExistingAttendance(int id, String date) {
         try (Connection con = ds.getConnection()) {
-            String sql = "SELECT studentId, date FROM Students JOIN Attendande ON Attendance.studentId = Students.id WHERE studentId = ? AND date = ?";
+            String sql = "SELECT studentId, date FROM Attendance JOIN Students ON Students.id  = Attendance.studentId WHERE studentId = ? AND date = ?";
 
             PreparedStatement pstmt = con.prepareStatement(sql);
 
@@ -184,7 +184,7 @@ public class DAOStudent implements IDAOStudent {
     @Override
     public void deleteAttendanceByIdANDDate(int id, String date) {
         try (Connection con = ds.getConnection()) {
-            String sql = "DELETE FROM Students WHERE id = ? AND date = ?";
+            String sql = "DELETE FROM Attendance WHERE studentId = ? AND date = ?";
 
             PreparedStatement pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, id);
