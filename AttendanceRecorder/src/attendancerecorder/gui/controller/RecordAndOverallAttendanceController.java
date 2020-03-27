@@ -164,18 +164,19 @@ public class RecordAndOverallAttendanceController implements Initializable {
         lbl_name.setText(studentFirstName +" "+studentLastName);
     }
 
-    private void addNewAttendance() {
+    private void addNewAttendance(){
         int status;
-        String date;
-        String message;
+        String date = datePicker_record.getValue().toString();
+        String message = null;
+        
+        if(iStudentManager.checkAlreadyExistingAttendance(idFromLogin, date)){
+            iStudentManager.deleteAttendanceByIdANDDate(idFromLogin, date);
+        }        
+        
         if (cb_present.isSelected()) {
             status = 1;
-            date = datePicker_record.getValue().toString();
-            message = null;
-
         } else {
             status = 0;
-            date = datePicker_record.getValue().toString();
             message = txt_absentMessage.getText();
         }
         iStudentManager.addNewAttendance(idFromLogin, status, date, message);

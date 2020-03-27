@@ -21,4 +21,8 @@ public interface IStudentManager {
 
     public Student getReasonForAbsence(int studentId, String date);
 
+    public void deleteAttendanceByIdANDDate(int id, String date);
+
+    public boolean checkAlreadyExistingAttendance(int id, String date);
+
 }

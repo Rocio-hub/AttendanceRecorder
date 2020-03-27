@@ -15,16 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentManager implements IStudentManager {
-    
+
     //Instance for the Data Access Object
     IDAOStudent daoStudent = new DAOStudent();
-    
-          
+
     //Lists that we will use to refer to the ones recieved from the methods of the Data Access Layer
     private List<Student> studentLst = new ArrayList();
     private List<Student> studentLoginLst = new ArrayList();
     private List<Course> courseLst = new ArrayList();
-    
 
     @Override
     public List<Student> getAllStudents() {
@@ -40,7 +38,7 @@ public class StudentManager implements IStudentManager {
 
     @Override
     public void addNewAttendance(int studentId, int status, String date, String message) {
-       daoStudent.addNewAttendance(studentId, status, date, message);
+        daoStudent.addNewAttendance(studentId, status, date, message);
     }
 
     @Override
@@ -52,6 +50,17 @@ public class StudentManager implements IStudentManager {
     @Override
     public Student getReasonForAbsence(int studentId, String date) {
         return daoStudent.getReasonForAbsence(studentId, date);
+    }
+
+    @Override
+    public void deleteAttendanceByIdANDDate(int id, String date) {
+        daoStudent.deleteAttendanceByIdANDDate(id, date);
+    }
+
+    @Override
+    public boolean checkAlreadyExistingAttendance(int id, String date) {
+        boolean aaa = daoStudent.checkAlreadyExistingAttendance(id, date);
+        return aaa;
     }
 
 }

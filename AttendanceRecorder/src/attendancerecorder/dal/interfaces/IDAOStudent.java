@@ -20,4 +20,8 @@ public interface IDAOStudent {
     public void addNewAttendance(int studentId, int status, String date, String message);
 
     public Student getReasonForAbsence(int studentId, String date);
+
+    public void deleteAttendanceByIdANDDate(int id, String date);
+
+    public boolean checkAlreadyExistingAttendance(int id, String date);
 }
