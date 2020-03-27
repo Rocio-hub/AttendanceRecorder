@@ -259,7 +259,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
             alert.setContentText("YOU HAVE SELECTED:\nDate: "+ datePicker_record.getValue().toString()+"\nStatus: ABSENT\nMessage: "+txt_absentMessage.getText());
         }
         alert.showAndWait();
-        initOverallChart();
+        initOverallChart(); //Calls again the method that reads from DB, calculates the percentages and sets the Pie charts, as, by the time the alert is displayed, the DB has already be altered with the new recorded attendance and so the pie charts have different data than the one they had the first time they read.
     }
 
 }
