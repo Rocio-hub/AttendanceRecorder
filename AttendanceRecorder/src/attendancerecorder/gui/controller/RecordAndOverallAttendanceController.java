@@ -20,6 +20,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,12 +33,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import java.lang.String;
 
 /**
  * FXML Controller class
@@ -164,29 +168,10 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     private void addNewAttendance() {
-        int status;
+        int status=0;
         String date = datePicker_record.getValue().toString();
         String message = null;
-
-        if (iStudentManager.checkAlreadyExistingAttendance(idFromLogin, date)) {
-            iStudentManager.deleteAttendanceByIdANDDate(idFromLogin, date);
-            if (cb_present.isSelected()) {
-                status = 1;
-            } else {
-                status = 0;
-                message = txt_absentMessage.getText();
-            }
-            iStudentManager.addNewAttendance(idFromLogin, status, date, message);
-        } else {
-            if (cb_present.isSelected()) {
-                status = 1;
-            } else {
-                status = 0;
-                message = txt_absentMessage.getText();
-            }
-            iStudentManager.addNewAttendance(idFromLogin, status, date, message);
-        }
-
+        confirmationOverwrittingAttendance(date, status, message);
     }
 
     private void initOverallChart() {
@@ -244,7 +229,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
-            alert();
+            confirmationAttendanceAlert();
         }
     }
 
@@ -255,7 +240,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
         stage.close();
     }
 
-    public void alert() {
+    public void confirmationAttendanceAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("CONFIRMATION");
         alert.setHeaderText(null);
@@ -266,6 +251,35 @@ public class RecordAndOverallAttendanceController implements Initializable {
         }
         alert.showAndWait();
         initOverallChart(); //Calls again the method that reads from DB, calculates the percentages and sets the Pie charts, as, by the time the alert is displayed, the DB has already be altered with the new recorded attendance and so the pie charts have different data than the one they had the first time they read.
+    }
+
+    public void confirmationOverwrittingAttendance(String date, int status, String message) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Look, a Confirmation Dialog");
+        alert.setContentText("Are you sure you want to overwrite your previous attendance?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            if (iStudentManager.checkAlreadyExistingAttendance(idFromLogin, date)) {
+                iStudentManager.deleteAttendanceByIdANDDate(idFromLogin, date);
+                if (cb_present.isSelected()) {
+                    status = 1;
+                } else {
+                    status = 0;
+                    message = txt_absentMessage.getText();
+                }
+                iStudentManager.addNewAttendance(idFromLogin, status, date, message);
+            } else {
+                if (cb_present.isSelected()) {
+                    status = 1;
+                } else {
+                    status = 0;
+                    message = txt_absentMessage.getText();
+                }
+                iStudentManager.addNewAttendance(idFromLogin, status, date, message);
+            }
+        } 
     }
 
 }

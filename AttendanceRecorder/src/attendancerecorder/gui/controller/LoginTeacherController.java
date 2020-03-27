@@ -87,6 +87,7 @@ public class LoginTeacherController implements Initializable {
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
+            stage.setTitle("View Students Attendance");
             stage.show();
         } else {
             lbl_wrongpassword.setText("Wrong password or username");

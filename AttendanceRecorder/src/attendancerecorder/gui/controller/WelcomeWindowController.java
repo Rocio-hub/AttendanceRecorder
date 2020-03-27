@@ -45,7 +45,7 @@ public class WelcomeWindowController implements Initializable {
         btn_student.setId("btn_student");
         btn_teacher.setId("btn_teacher");
         btn_close.setId("btn_close");
-       
+
 //        lbl1.setId("lbl1");
 //        lbl2.setId("lbl2");
     }
@@ -72,7 +72,7 @@ public class WelcomeWindowController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-         stage.setTitle("Teacher Log-in");
+        stage.setTitle("Teacher Log-in");
         stage.show();
     }
 
