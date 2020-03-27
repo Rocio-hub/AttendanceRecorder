@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendancerecorder.gui.controller;
+/*package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Course;
 import attendancerecorder.bll.interfaces.IStudentManager;
@@ -61,7 +61,7 @@ public class StudentRecordAttendanceController implements Initializable {
 
     /**
      * Initializes the controller class.
-     */
+     *//*
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         txt_absentMessage.visibleProperty().set(false);
@@ -90,7 +90,7 @@ public class StudentRecordAttendanceController implements Initializable {
             lbl_popup2.setVisible(true);
             return false;
         }*/
-        return true;
+        /*return true;
     }
 
     @FXML
@@ -150,3 +150,4 @@ public class StudentRecordAttendanceController implements Initializable {
     
     
 }
+*/

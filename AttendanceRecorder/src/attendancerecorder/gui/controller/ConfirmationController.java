@@ -41,14 +41,21 @@ public class ConfirmationController implements Initializable {
     @FXML
     private void clickOverallAttendance(ActionEvent event) throws IOException {
         if (btn_view_overall_attendance != null) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/OverallAttendance.fxml"));
-            Parent root = loader.load();
-            OverallAttendanceController oactrl = loader.getController();
-
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/OverallAttendance.fxml"));
+//            Parent root = loader.load();
+//            OverallAttendanceController oactrl = loader.getController();
+//
+//            Scene scene = new Scene(root);
+//            Stage stage = new Stage();
+//            stage.setScene(scene); FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/OverallAttendance.fxml"));
+//            Parent root = loader.load();
+//            OverallAttendanceController oactrl = loader.getController();
+//
+//            Scene scene = new Scene(root);
+//            Stage stage = new Stage();
+//            stage.setScene(scene);
+//            stage.show();
+//            stage.show();
         }
     }
 
