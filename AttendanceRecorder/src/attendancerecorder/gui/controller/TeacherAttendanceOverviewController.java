@@ -155,7 +155,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
         double absentPercentage = 100 - ((counterPresent * 100) / sum);
         absentPercentage = Math.floor(absentPercentage * 100) / 100;
         lbl_percentageOfAbsence.setText(String.valueOf(absentPercentage));
-
     }
      public void alert() {        
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
