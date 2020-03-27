@@ -259,6 +259,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
             alert.setContentText("YOU HAVE SELECTED:\nDate: "+ datePicker_record.getValue().toString()+"\nStatus: ABSENT\nMessage: "+txt_absentMessage.getText());
         }
         alert.showAndWait();
+        initOverallChart();
     }
 
 }
