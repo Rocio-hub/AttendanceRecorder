@@ -14,9 +14,7 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import java.io.IOException;
-import java.math.RoundingMode;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
@@ -41,12 +39,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import java.lang.String;
 
 /**
  * FXML Controller class
- *
- * @author rtlop
  */
 public class RecordAndOverallAttendanceController implements Initializable {
 
@@ -220,22 +215,21 @@ public class RecordAndOverallAttendanceController implements Initializable {
     @FXML
     private void click_confirm(ActionEvent event) throws IOException {
         if (enableConfirmation()) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/Confirmation.fxml"));
-            Parent root = loader.load();
-            ConfirmationController cctrl = loader.getController();
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/Confirmation.fxml"));
+//            Parent root = loader.load();
+//            ConfirmationController cctrl = loader.getController();
             addNewAttendance();
 
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-            confirmationAttendanceAlert();
+//            Scene scene = new Scene(root);
+//            Stage stage = new Stage();
+//            stage.setScene(scene);
+//            stage.show();
+            
         }
     }
 
     @FXML
-    private void clickClose(ActionEvent event
-    ) {
+    private void clickClose(ActionEvent event) {
         Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
         stage.close();
     }
@@ -256,7 +250,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     public void confirmationOverwrittingAttendance(String date, int status, String message) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Look, a Confirmation Dialog");
+        alert.setHeaderText("OVERWRITE ALERT");
         alert.setContentText("Are you sure you want to overwrite your previous attendance?");
 
         Optional<ButtonType> result = alert.showAndWait();
@@ -279,6 +273,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
                 }
                 iStudentManager.addNewAttendance(idFromLogin, status, date, message);
             }
+            confirmationAttendanceAlert();
         } 
     }
 
