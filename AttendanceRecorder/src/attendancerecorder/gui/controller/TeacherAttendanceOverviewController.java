@@ -32,12 +32,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class TeacherAttendanceOverviewController implements Initializable {
+
     IStudentManager studentMng = new StudentManager();
     ITeacherManager TeacherMng = new TeacherManager();
     private ObservableList<Student> presentStudents;
     private ObservableList<Student> absentStudents;
     String teacherName;
-
 
     @FXML
     private AnchorPane pane;
@@ -73,22 +73,13 @@ public class TeacherAttendanceOverviewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         lbl_popup.setVisible(false);
-//        text1.setVisible(false);
         lbl_reasonForAbsence.setVisible(false);
         lbl_messageForAbsence.setVisible(false);
-//        text2.setVisible(false);
-         lbl_percentageOfAbsence.setVisible(true);
-//        text3.setId("text3");
+        lbl_percentageOfAbsence.setVisible(true);
         btn_close.setId("exit");
         lbl_messageForAbsence.setId("messageForAbsence");
         className.setId("className");
         lbl_teacherName.setId("teacherName");
-        //lbl_teacherName.setText(teacherName);
-
-        //  System.out.println(a);
-//        ObservableList<Student> tableItems = FXCollections.observableArrayList(manager.getAllStudents());
-//        studentsColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-//        students.setItems(tableItems);
     }
 
     @FXML
@@ -106,7 +97,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
         tableview_absent.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         tc_present.setItems(presentStudents);
         tc_absent.setItems(absentStudents);
-
     }
 
     public void getTeacherName(String name) {
@@ -130,7 +120,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
         tc_absent.getSelectionModel().clearSelection();
         lbl_reasonForAbsence.setVisible(false);
         lbl_messageForAbsence.setVisible(false);
-         calculateOverallAbsentAttendanceById(tc_present.getSelectionModel().getSelectedItem().getId());
+        calculateOverallAbsentAttendanceById(tc_present.getSelectionModel().getSelectedItem().getId());
     }
 
     @FXML
@@ -141,8 +131,9 @@ public class TeacherAttendanceOverviewController implements Initializable {
         lbl_messageForAbsence.setText(tc_absent.getSelectionModel().getSelectedItem().getMessage());
         calculateOverallAbsentAttendanceById(tc_absent.getSelectionModel().getSelectedItem().getId());
     }
-private void calculateOverallAbsentAttendanceById(int id){
-     List<Student> studentLst = new ArrayList();
+
+    private void calculateOverallAbsentAttendanceById(int id) {
+        List<Student> studentLst = new ArrayList();
         studentLst = studentMng.getAllAttendancesById(id);
         double counterPresent = 0;
         double counterAbsent = 0;
@@ -157,9 +148,9 @@ private void calculateOverallAbsentAttendanceById(int id){
         }
 
         sum = counterPresent + counterAbsent;
-        double absentPercentage = 100-((counterPresent * 100) / sum);
-        absentPercentage = Math.floor(absentPercentage*100) / 100;
-         lbl_percentageOfAbsence.setText(String.valueOf(absentPercentage));
-       
-}
+        double absentPercentage = 100 - ((counterPresent * 100) / sum);
+        absentPercentage = Math.floor(absentPercentage * 100) / 100;
+        lbl_percentageOfAbsence.setText(String.valueOf(absentPercentage));
+
+    }
 }
