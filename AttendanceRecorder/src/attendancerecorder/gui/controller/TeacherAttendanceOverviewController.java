@@ -83,7 +83,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
         className.setId("className");
         lbl_teacherName.setId("teacherName");
 
-        absentStudentsAlert();
+//        absentStudentsAlert();
     }
 
     @FXML
