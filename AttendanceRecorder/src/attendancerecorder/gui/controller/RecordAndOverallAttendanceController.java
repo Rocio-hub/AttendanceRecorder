@@ -233,7 +233,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
         stage.close();
     }
 
-    public void confirmationAttendanceAlert() {
+    private void confirmationAttendanceAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("CONFIRMATION");
         alert.setHeaderText(null);
@@ -247,7 +247,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     //THERE MIGHT BE SOME CODE DOUBLED, CHECK IN THE addNewAttendance METHOD
-    public void confirmationOverwrittingAttendance(String date, int status, String message) {
+    private void confirmationOverwrittingAttendance(String date, int status, String message) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText("OVERWRITE ALERT");

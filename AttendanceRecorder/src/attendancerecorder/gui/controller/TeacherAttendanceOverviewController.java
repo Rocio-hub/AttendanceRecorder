@@ -82,6 +82,8 @@ public class TeacherAttendanceOverviewController implements Initializable {
         lbl_messageForAbsence.setId("messageForAbsence");
         className.setId("className");
         lbl_teacherName.setId("teacherName");
+
+        absentStudentsAlert();
     }
 
     @FXML
@@ -136,7 +138,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
         calculateOverallAbsentAttendanceById(tc_absent.getSelectionModel().getSelectedItem().getId());
     }
 
-    private void calculateOverallAbsentAttendanceById(int id) {
+    private double calculateOverallAbsentAttendanceById(int id) {
         List<Student> studentLst = new ArrayList();
         studentLst = studentMng.getAllAttendancesById(id);
         double counterPresent = 0;
@@ -155,18 +157,25 @@ public class TeacherAttendanceOverviewController implements Initializable {
         double absentPercentage = 100 - ((counterPresent * 100) / sum);
         absentPercentage = Math.floor(absentPercentage * 100) / 100;
         lbl_percentageOfAbsence.setText(String.valueOf(absentPercentage));
+        return absentPercentage;
     }
-     public void alert() {        
+    //WORKING ALERT. COMMENTED BC ANNOYING
+    private void absentStudentsAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("CONFIRMATION");
-        alert.setHeaderText(null);
-        
-       // alert.setContentText("YOU HAVE SELECTED:\nDate: "+ datePicker_record.getValue().toString()+"\nStatus: PRESENT" );
-        
-        
-           // alert.setContentText("YOU HAVE SELECTED:\nDate: "+ datePicker_record.getValue().toString()+"\nStatus: ABSENT\nMessage: "+txt_absentMessage.getText());
-       
+        alert.setTitle("Informational dialog");
+        alert.setHeaderText("There are some students with the absent percentage above X%");
+        List<String> list = new ArrayList();
+        for (int i = 0; i < 32; i++) {
+            if (calculateOverallAbsentAttendanceById(i) >= 40) {
+
+                String normal = "Student with id: " + i + "has " + calculateOverallAbsentAttendanceById(i) + " % of absence\n";
+                list.add(normal);
+            }
+        }
+        alert.setContentText(list.toString());
         alert.showAndWait();
-       
     }
+
+
+
 }
