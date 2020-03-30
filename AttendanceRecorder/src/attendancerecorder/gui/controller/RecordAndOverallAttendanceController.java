@@ -162,7 +162,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
         String date = datePicker_record.getValue().toString();
         String message = null;
         if (iStudentManager.checkAlreadyExistingAttendance(idFromLogin, date)) {
-            confirmationOverwrittingAttendance(date, status, message);
+            confirmationOverwritingAttendance(date, status, message);
         } else {
             iStudentManager.addNewAttendance(idFromLogin, status, date, message);
             confirmationAttendanceAlert();
@@ -215,15 +215,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     @FXML
     private void click_confirm(ActionEvent event) throws IOException {
         if (enableConfirmation()) {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/Confirmation.fxml"));
-//            Parent root = loader.load();
-//            ConfirmationController cctrl = loader.getController();
             addNewAttendance();
-
-//            Scene scene = new Scene(root);
-//            Stage stage = new Stage();
-//            stage.setScene(scene);
-//            stage.show();
         }
     }
 
@@ -247,7 +239,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     //THERE MIGHT BE SOME CODE DOUBLED, CHECK IN THE addNewAttendance METHOD
-    private void confirmationOverwrittingAttendance(String date, int status, String message) {
+    private void confirmationOverwritingAttendance(String date, int status, String message) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText("OVERWRITE ALERT");
