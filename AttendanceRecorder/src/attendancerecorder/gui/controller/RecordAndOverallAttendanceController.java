@@ -24,11 +24,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -101,7 +98,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
         lbl_popup1.setVisible(false);
         lbl_popup2.setVisible(false);
         initCoursesTable();
-
     }
 
     private void initCoursesTable() {
@@ -148,7 +144,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
         } else {
             lbl_showStatus.setText("PRESENT");
         }
-
     }
 
     public void getEmailFromLogin(int id) {
@@ -163,10 +158,15 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     private void addNewAttendance() {
-        int status=0;
+        int status = 0;
         String date = datePicker_record.getValue().toString();
         String message = null;
-        confirmationOverwrittingAttendance(date, status, message);
+        if (iStudentManager.checkAlreadyExistingAttendance(idFromLogin, date)) {
+            confirmationOverwrittingAttendance(date, status, message);
+        } else {
+            iStudentManager.addNewAttendance(idFromLogin, status, date, message);
+            confirmationAttendanceAlert();
+        }
     }
 
     private void initOverallChart() {
@@ -224,7 +224,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
 //            Stage stage = new Stage();
 //            stage.setScene(scene);
 //            stage.show();
-            
         }
     }
 
@@ -247,6 +246,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
         initOverallChart(); //Calls again the method that reads from DB, calculates the percentages and sets the Pie charts, as, by the time the alert is displayed, the DB has already be altered with the new recorded attendance and so the pie charts have different data than the one they had the first time they read.
     }
 
+    //THERE MIGHT BE SOME CODE DOUBLED, CHECK IN THE addNewAttendance METHOD
     public void confirmationOverwrittingAttendance(String date, int status, String message) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
@@ -274,7 +274,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
                 iStudentManager.addNewAttendance(idFromLogin, status, date, message);
             }
             confirmationAttendanceAlert();
-        } 
+        }
     }
 
 }
