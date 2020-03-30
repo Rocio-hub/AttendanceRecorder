@@ -160,7 +160,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
         return absentPercentage;
     }
     //WORKING ALERT. COMMENTED BC ANNOYING
-    private void absentStudentsAlert() {
+    /*private void absentStudentsAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Informational dialog");
         alert.setHeaderText("There are some students with the absent percentage above X%");
@@ -174,8 +174,5 @@ public class TeacherAttendanceOverviewController implements Initializable {
         }
         alert.setContentText(list.toString());
         alert.showAndWait();
-    }
-
-
-
+    }*/
 }
