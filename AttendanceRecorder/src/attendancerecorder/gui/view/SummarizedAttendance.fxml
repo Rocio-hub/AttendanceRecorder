@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="489.0" prefWidth="718.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="attendancerecorder.gui.controller.SummarizedAttendanceController">
+    <stylesheets>
+        <URL value="@summarizedattendance.css" />
+    </stylesheets>
+   <children>
+      <TableView fx:id="tv_summarizedAttendance" layoutX="63.0" layoutY="25.0" prefHeight="424.0" prefWidth="261.0">
+        <columns>
+          <TableColumn fx:id="tc_name" prefWidth="203.0" text="Name" />
+          <TableColumn fx:id="tc_percentage" prefWidth="57.0" text="\%" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btn_contact" layoutX="496.0" layoutY="202.0" onAction="#click_contact" text="Contact" />
+   </children>
+</AnchorPane>

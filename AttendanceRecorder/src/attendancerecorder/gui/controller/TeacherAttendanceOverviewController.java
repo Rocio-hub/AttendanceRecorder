@@ -12,6 +12,7 @@ import attendancerecorder.bll.managers.StudentManager;
 import attendancerecorder.bll.managers.TeacherManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.EventObject;
@@ -21,9 +22,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -70,6 +73,8 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private TableView<Student> tc_absent;
     @FXML
     private Label lbl_percentageOfAbsence;
+    @FXML
+    private JFXButton btn_summarizedAttendance;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -175,4 +180,16 @@ public class TeacherAttendanceOverviewController implements Initializable {
         alert.setContentText(list.toString());
         alert.showAndWait();
     }*/
+
+    @FXML
+    private void click_summarizedAttendance(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/SummarizedAttendance.fxml"));
+        Parent root = loader.load();
+      
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Summarized Attendance");
+        stage.show();
+    }
 }

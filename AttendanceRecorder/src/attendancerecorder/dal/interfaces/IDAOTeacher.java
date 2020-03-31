@@ -15,5 +15,5 @@ public interface IDAOTeacher {
     public List<Teacher>getAllTeachers();
     public List<Teacher>getTeacherLoginData();
     public List<Student>getStudentsOnCondition(String date, int present);
-    public List<Student>getMoreAbsentStudents();
+    public List<Student>getAllStudentsForAbsenceOverview();
 }

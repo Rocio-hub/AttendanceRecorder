@@ -14,5 +14,6 @@ public interface ITeacherManager {
     public List<Teacher>getAllTeachers();
     public List<Teacher>getTeacherLoginData();
      public List<Student> getStudentsOnCondition(String date, int status);
+     public List<Student> getAllStudentsForAbsenceOverview();
 
 }

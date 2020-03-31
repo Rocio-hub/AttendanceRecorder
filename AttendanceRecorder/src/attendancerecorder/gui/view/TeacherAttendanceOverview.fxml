@@ -47,6 +47,7 @@
                   <Font size="8.0" />
                </font>
             </JFXButton>
+            <JFXButton fx:id="btn_summarizedAttendance" layoutX="552.0" layoutY="107.0" onAction="#click_summarizedAttendance" text="OpenSumarizedAttandanceButton" />
          </children>
       </AnchorPane>
    </children>
