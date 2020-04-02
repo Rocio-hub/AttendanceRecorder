@@ -198,4 +198,22 @@ public class DAOStudent implements IDAOStudent {
         }
     }
 
+    @Override
+    public void updateAbsencePercentageById(int id, float newAbsencePercentage) {
+        try (Connection con = ds.getConnection()) {
+            String sql = "UPDATE Students SET absencePercentage = ? WHERE id = ? ";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+
+            pstmt.setFloat(1, newAbsencePercentage);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+
+        } catch (SQLServerException sqlse) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, sqlse);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
 }

@@ -34,5 +34,10 @@ public class TeacherManager implements ITeacherManager {
     public List<Student> getAllStudentsForAbsenceOverview() {
         return daoTeacher.getAllStudentsForAbsenceOverview();
     }
+
+    @Override
+    public float getAbsenceById(int id) {
+        return daoTeacher.getAbsenceById(id);
+    }
     
 }

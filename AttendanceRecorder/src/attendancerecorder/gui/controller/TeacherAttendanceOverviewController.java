@@ -38,7 +38,7 @@ import javafx.stage.Stage;
 public class TeacherAttendanceOverviewController implements Initializable {
 
     IStudentManager studentMng = new StudentManager();
-    ITeacherManager TeacherMng = new TeacherManager();
+    ITeacherManager teacherMng = new TeacherManager();
     private ObservableList<Student> presentStudents;
     private ObservableList<Student> absentStudents;
     String teacherName;
@@ -100,8 +100,8 @@ public class TeacherAttendanceOverviewController implements Initializable {
     @FXML
     private void click_search(ActionEvent event) {
         String date = datePicker.getValue().toString();
-        presentStudents = FXCollections.observableArrayList(TeacherMng.getStudentsOnCondition(date, 1));
-        absentStudents = FXCollections.observableArrayList(TeacherMng.getStudentsOnCondition(date, 0));
+        presentStudents = FXCollections.observableArrayList(teacherMng.getStudentsOnCondition(date, 1));
+        absentStudents = FXCollections.observableArrayList(teacherMng.getStudentsOnCondition(date, 0));
         tableview_present.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         tableview_absent.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         tc_present.setItems(presentStudents);
@@ -130,7 +130,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
         lbl_reasonForAbsence.setVisible(false);
         lbl_messageForAbsence.setVisible(false);
         text2.setVisible(true);
-        calculateOverallAbsentAttendanceById(tc_present.getSelectionModel().getSelectedItem().getId());
+        getAbsenceById(tc_present.getSelectionModel().getSelectedItem().getId());
     }
 
     @FXML
@@ -140,10 +140,10 @@ public class TeacherAttendanceOverviewController implements Initializable {
         lbl_messageForAbsence.setVisible(true);
         text2.setVisible(true);
         lbl_messageForAbsence.setText(tc_absent.getSelectionModel().getSelectedItem().getMessage());
-        calculateOverallAbsentAttendanceById(tc_absent.getSelectionModel().getSelectedItem().getId());
+        getAbsenceById(tc_absent.getSelectionModel().getSelectedItem().getId());
     }
 
-    private double calculateOverallAbsentAttendanceById(int id) {
+    /*   private double calculateOverallAbsentAttendanceById(int id) {
         List<Student> studentLst = new ArrayList();
         studentLst = studentMng.getAllAttendancesById(id);
         double counterPresent = 0;
@@ -162,8 +162,10 @@ public class TeacherAttendanceOverviewController implements Initializable {
         double absentPercentage = 100 - ((counterPresent * 100) / sum);
         absentPercentage = Math.floor(absentPercentage * 100) / 100;
         lbl_percentageOfAbsence.setText(String.valueOf(absentPercentage));
-        return absentPercentage;
-    }
+        return absentPercentage;*/
+    
+    
+    
     //WORKING ALERT. COMMENTED BC ANNOYING
     /*private void absentStudentsAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -180,12 +182,20 @@ public class TeacherAttendanceOverviewController implements Initializable {
         alert.setContentText(list.toString());
         alert.showAndWait();
     }*/
+    
+    
+    private void getAbsenceById(int id) {
+        float absenceById = teacherMng.getAbsenceById(id);
+        lbl_percentageOfAbsence.setText(String.valueOf(absenceById));
+        System.out.println(absenceById);
+        System.out.println(String.valueOf(absenceById));
+    }
 
     @FXML
     private void click_summarizedAttendance(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/SummarizedAttendance.fxml"));
         Parent root = loader.load();
-      
+
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);

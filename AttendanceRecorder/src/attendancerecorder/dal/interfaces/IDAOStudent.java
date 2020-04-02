@@ -24,4 +24,6 @@ public interface IDAOStudent {
     public void deleteAttendanceByIdANDDate(int id, String date);
 
     public boolean checkAlreadyExistingAttendance(int id, String date);
+    
+    public void updateAbsencePercentageById(int id, float newAbsencePercentage);
 }

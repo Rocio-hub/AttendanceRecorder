@@ -4,27 +4,6 @@
  * and open the template in the editor.
  */
 package attendancerecorder.gui.controller;
-
-import attendancerecorder.be.Attendance;
-import attendancerecorder.bll.interfaces.IStudentManager;
-import attendancerecorder.bll.managers.StudentManager;
-import com.jfoenix.controls.JFXButton;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.EventObject;
-import java.util.List;
-import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.stage.Stage;
 /*
 public class OverallAttendanceController implements Initializable {
 

@@ -9,11 +9,16 @@ import attendancerecorder.be.Student;
 import attendancerecorder.be.Teacher;
 import java.util.List;
 
-
 public interface ITeacherManager {
-    public List<Teacher>getAllTeachers();
-    public List<Teacher>getTeacherLoginData();
-     public List<Student> getStudentsOnCondition(String date, int status);
-     public List<Student> getAllStudentsForAbsenceOverview();
+
+    public List<Teacher> getAllTeachers();
+
+    public List<Teacher> getTeacherLoginData();
+
+    public List<Student> getStudentsOnCondition(String date, int status);
+
+    public List<Student> getAllStudentsForAbsenceOverview();
+    
+    public float getAbsenceById(int id);
 
 }

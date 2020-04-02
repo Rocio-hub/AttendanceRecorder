@@ -5,7 +5,6 @@
  */
 package attendancerecorder.bll.managers;
 
-import attendancerecorder.be.Attendance;
 import attendancerecorder.be.Course;
 import attendancerecorder.be.Student;
 import attendancerecorder.bll.interfaces.IStudentManager;
@@ -61,6 +60,11 @@ public class StudentManager implements IStudentManager {
     public boolean checkAlreadyExistingAttendance(int id, String date) {
         boolean aaa = daoStudent.checkAlreadyExistingAttendance(id, date);
         return aaa;
+    }
+    
+    @Override
+    public void updateAbsencePercentageById(int id, float newAbsencePercentage) {
+        daoStudent.updateAbsencePercentageById(id, newAbsencePercentage);
     }
 
 }

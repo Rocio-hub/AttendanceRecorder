@@ -116,7 +116,7 @@ public class DAOTeacher implements IDAOTeacher {
     @Override
     public List<Student> getAllStudentsForAbsenceOverview() {
         try ( Connection con = ds.getConnection()) {
-            String sql = "SELECT Students.id, Students.firstName, Students.lastName, Attendance.status FROM Students JOIN Attendance ON id=studentId";
+            String sql = "SELECT id, firstName, lastName, absencePercentage FROM Students";
             List<Student> studentLst = new ArrayList();
 
             Statement stmt = con.createStatement();
@@ -125,8 +125,8 @@ public class DAOTeacher implements IDAOTeacher {
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
                 String fullName = firstName + " " + lastName;
-                int status = rs.getInt("status");
-                Student student = new Student (fullName , status);
+                float absencePercentage = rs.getFloat("absencePercentage");
+                Student student = new Student (fullName , absencePercentage);
                 studentLst.add(student);    
             }
             return studentLst;
@@ -138,4 +138,23 @@ public class DAOTeacher implements IDAOTeacher {
         return null; 
     }
 
+     public float getAbsenceById(int id){
+          try ( Connection con = ds.getConnection()) {
+            String sql = "SELECT absencePercentage FROM Students WHERE id = ?";
+            float absencePercentage = 0;
+            
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                absencePercentage = rs.getFloat("absencePercentage");
+            }
+            return absencePercentage;
+        } catch (SQLServerException sqlse) {
+            Logger.getLogger(DAOTeacher.class.getName()).log(Level.SEVERE, null, sqlse);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOTeacher.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0; 
+     }
 }

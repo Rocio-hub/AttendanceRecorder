@@ -13,7 +13,8 @@ public class Student {
     private String email;
     private String password;
     private String message;
-    private int status;
+    private int status; //1: present 0: absent
+    private float absencePercentage;
 
     //Getters and Setters for all variables
     public int getId() {
@@ -71,6 +72,13 @@ public class Student {
     public void setStatus(int status) {
         this.status = status;
     }
+     public float getAbsencePercentage() {
+        return absencePercentage;
+    }
+
+    public void setAbsencePercentage(float absencePercentage) {
+        this.absencePercentage = absencePercentage;
+    }
 
     //Constructors
     public Student() {
@@ -84,30 +92,31 @@ public class Student {
         this.password = password;
     }
 
-//    public Student(int id, String email, String password) {
-//        this.id = id;
-//        this.email = email;
-//        this.password = password;
-//    }
     public Student(int id,String firstName, String message) {
         this.id=id;
         this.firstName = firstName;
         this.message = message;
     }
+    
     public Student(int id, int status) {
         this.id = id;
         this.status = status;
     }
+    
     public Student(String name, int status){
         this.firstName=name;
         this.status=status;
     }
+
+    public Student(String name, float absencePercentage) {
+        this.firstName = name;
+        this.absencePercentage = absencePercentage;
+    }
+            
     //ToString
     @Override
     public String toString() {
         return "Student{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password + '}';
     }
     
-    
-
 }

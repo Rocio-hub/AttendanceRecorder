@@ -15,6 +15,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
@@ -42,7 +43,7 @@ import javafx.stage.Stage;
  */
 public class RecordAndOverallAttendanceController implements Initializable {
 
-    IStudentManager iStudentManager = new StudentManager();
+    IStudentManager studentMng = new StudentManager();
     private ObservableList<Course> courseLst;
     int idFromLogin;
     boolean isPresent = false;
@@ -101,7 +102,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     private void initCoursesTable() {
-        courseLst = FXCollections.observableArrayList(iStudentManager.getAllCourses());
+        courseLst = FXCollections.observableArrayList(studentMng.getAllCourses());
         tc_courses.setCellValueFactory(new PropertyValueFactory<>("name"));
         tv_courses.setItems(courseLst);
     }
@@ -137,7 +138,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     @FXML
     private void click_search(ActionEvent event) {
         String date = datePicker_sort.getValue().toString();
-        Student student = iStudentManager.getReasonForAbsence(idFromLogin, date);
+        Student student = studentMng.getReasonForAbsence(idFromLogin, date);
         lbl_absentMessage.setText(student.getMessage());
         if (student.getStatus() == 0) {
             lbl_showStatus.setText("ABSENT");
@@ -161,17 +162,17 @@ public class RecordAndOverallAttendanceController implements Initializable {
         int status = 0;
         String date = datePicker_record.getValue().toString();
         String message = null;
-        if (iStudentManager.checkAlreadyExistingAttendance(idFromLogin, date)) {
+        if (studentMng.checkAlreadyExistingAttendance(idFromLogin, date)) {
             confirmationOverwritingAttendance(date, status, message);
         } else {
-            iStudentManager.addNewAttendance(idFromLogin, status, date, message);
+            studentMng.addNewAttendance(idFromLogin, status, date, message);
             confirmationAttendanceAlert();
         }
     }
 
     private void initOverallChart() {
-        double presentPercentage = calculateOverallPresentAttendance();
-        double absentPercentage = 100 - calculateOverallPresentAttendance();
+        float presentPercentage = 100 - updateAbsencePercentage();
+        float absentPercentage = updateAbsencePercentage();
         ObservableList<PieChart.Data> overallChartData
                 = FXCollections.observableArrayList(
                         new PieChart.Data("Present", presentPercentage),
@@ -182,12 +183,12 @@ public class RecordAndOverallAttendanceController implements Initializable {
         lbl_presentPercentage.setText(Double.toString(presentPercentage));
     }
 
-    private double calculateOverallPresentAttendance() {
+    private float updateAbsencePercentage() {
         List<Student> studentLst = new ArrayList();
-        studentLst = iStudentManager.getAllAttendancesById(idFromLogin);
-        double counterPresent = 0;
-        double counterAbsent = 0;
-        double sum;
+        studentLst = studentMng.getAllAttendancesById(idFromLogin);
+        float counterPresent = 0;
+        float counterAbsent = 0;
+        float sum;
 
         for (Student student : studentLst) {
             if (student.getStatus() == 1) {
@@ -198,14 +199,14 @@ public class RecordAndOverallAttendanceController implements Initializable {
         }
 
         sum = counterPresent + counterAbsent;
-        double total = ((counterPresent * 100) / sum);
-        return Math.floor(total * 100) / 100;
-
+        float absencePercentage = (counterAbsent * 100) / sum;
+        studentMng.updateAbsencePercentageById(idFromLogin, absencePercentage);
+        
+        return absencePercentage;
     }
 
     @FXML
-    private void mouse_confirm(MouseEvent event
-    ) {
+    private void mouse_confirm(MouseEvent event) {
         if (enableConfirmation()) {
             Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
             stage.close();
@@ -247,15 +248,15 @@ public class RecordAndOverallAttendanceController implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            if (iStudentManager.checkAlreadyExistingAttendance(idFromLogin, date)) {
-                iStudentManager.deleteAttendanceByIdANDDate(idFromLogin, date);
+            if (studentMng.checkAlreadyExistingAttendance(idFromLogin, date)) {
+                studentMng.deleteAttendanceByIdANDDate(idFromLogin, date);
                 if (cb_present.isSelected()) {
                     status = 1;
                 } else {
                     status = 0;
                     message = txt_absentMessage.getText();
                 }
-                iStudentManager.addNewAttendance(idFromLogin, status, date, message);
+                studentMng.addNewAttendance(idFromLogin, status, date, message);
             } else {
                 if (cb_present.isSelected()) {
                     status = 1;
@@ -263,7 +264,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
                     status = 0;
                     message = txt_absentMessage.getText();
                 }
-                iStudentManager.addNewAttendance(idFromLogin, status, date, message);
+                studentMng.addNewAttendance(idFromLogin, status, date, message);
             }
             confirmationAttendanceAlert();
         }
