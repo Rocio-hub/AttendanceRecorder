@@ -18,7 +18,9 @@ public interface ITeacherManager {
     public List<Student> getStudentsOnCondition(String date, int status);
 
     public List<Student> getAllStudentsForAbsenceOverview();
-    
+
     public float getAbsenceById(int id);
+
+    public void updatePasswordById(int id, String newPassword);
 
 }

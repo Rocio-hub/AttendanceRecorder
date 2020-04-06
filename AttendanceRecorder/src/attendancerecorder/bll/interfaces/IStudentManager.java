@@ -26,5 +26,7 @@ public interface IStudentManager {
     public boolean checkAlreadyExistingAttendance(int id, String date);
     
     public void updateAbsencePercentageById(int id, float newAbsencePercentage);
+    
+    public void updatePasswordById(int id, String newPassword);
 
 }

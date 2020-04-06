@@ -25,11 +25,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -88,6 +92,8 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private Label lbl_absentPercentage;
     @FXML
     private Label lbl_name;
+    @FXML
+    private Button btn_changePassword;
 
     /**
      * Initializes the controller class.
@@ -270,4 +276,17 @@ public class RecordAndOverallAttendanceController implements Initializable {
         }
     }
 
+    @FXML
+    private void click_changePassword(ActionEvent event)  throws IOException  {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/ChangePassword.fxml"));
+        Parent root = loader.load();
+        ChangePasswordController cpctrl = loader.getController();
+        cpctrl.getStudentId(idFromLogin);
+        
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Change Password");
+        stage.show();
+    }
 }

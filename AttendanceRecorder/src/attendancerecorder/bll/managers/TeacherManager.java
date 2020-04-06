@@ -39,5 +39,10 @@ public class TeacherManager implements ITeacherManager {
     public float getAbsenceById(int id) {
         return daoTeacher.getAbsenceById(id);
     }
+
+    @Override
+    public void updatePasswordById(int id, String newPassword) {
+        daoTeacher.updatePasswordById(id, newPassword);
+    }
     
 }

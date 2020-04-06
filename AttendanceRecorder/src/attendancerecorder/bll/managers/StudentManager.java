@@ -67,4 +67,9 @@ public class StudentManager implements IStudentManager {
         daoStudent.updateAbsencePercentageById(id, newAbsencePercentage);
     }
 
+    @Override
+    public void updatePasswordById(int id, String newPassword) {
+       daoStudent.updatePasswordById(id, newPassword);
+    }
+
 }

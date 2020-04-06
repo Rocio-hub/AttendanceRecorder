@@ -213,7 +213,23 @@ public class DAOStudent implements IDAOStudent {
         } catch (SQLException ex) {
             Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+    }
+
+    @Override
+    public void updatePasswordById(int id, String newPassword) {
+        try (Connection con = ds.getConnection()) {
+            String sql = "UPDATE Students SET password = ? WHERE id = ? ";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+
+            pstmt.setString(1, newPassword);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+
+        } catch (SQLServerException sqlse) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, sqlse);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

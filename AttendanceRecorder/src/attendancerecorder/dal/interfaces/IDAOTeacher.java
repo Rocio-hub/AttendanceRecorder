@@ -21,4 +21,6 @@ public interface IDAOTeacher {
 
     public float getAbsenceById(int id);
     
+    public void updatePasswordById(int id, String newPassword);
+    
     }
