@@ -68,8 +68,8 @@ public class StudentManager implements IStudentManager {
     }
 
     @Override
-    public void updatePasswordById(int id, String newPassword) {
-       daoStudent.updatePasswordById(id, newPassword);
+    public void updateStudentPasswordById(int id, String newPassword) {
+       daoStudent.updateStudentPasswordById(id, newPassword);
     }
 
 }

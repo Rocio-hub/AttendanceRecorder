@@ -48,7 +48,7 @@ public class ChangePasswordController implements Initializable {
     @FXML
     private void click_confirm(ActionEvent event) {
         if(txtfield_password!=null)
-        studentMng.updatePasswordById(idFromLogin, txtfield_password.getText());
+        studentMng.updateStudentPasswordById(idFromLogin, txtfield_password.getText());
     }
 
     @FXML

@@ -27,5 +27,5 @@ public interface IDAOStudent {
 
     public void updateAbsencePercentageById(int id, float newAbsencePercentage);
 
-    public void updatePasswordById(int id, String newPassword);
+    public void updateStudentPasswordById(int id, String newPassword);
 }

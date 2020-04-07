@@ -61,16 +61,17 @@ public class DAOTeacher implements IDAOTeacher {
     @Override
     public List<Teacher> getTeacherLoginData() {
         try ( Connection con = ds.getConnection()) {
-            String sql = "SELECT name,email, password FROM Teachers";
+            String sql = "SELECT id, name, email, password FROM Teachers";
             List<Teacher> teacherLst = new ArrayList();
 
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 String password = rs.getString("password");
-                Teacher teacher = new Teacher(name, email, password);
+                Teacher teacher = new Teacher(id, name, email, password);
                 teacherLst.add(teacher);
             }
             return teacherLst;
@@ -161,6 +162,23 @@ public class DAOTeacher implements IDAOTeacher {
     public void updatePasswordById(int id, String newPassword) {
         try ( Connection con = ds.getConnection()) {
             String sql = "UPDATE Students SET password = ? WHERE id = ? ";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+
+            pstmt.setString(1, newPassword);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+
+        } catch (SQLServerException sqlse) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, sqlse);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Override
+    public void updateTeacherPasswordById(int id, String newPassword) {
+        try (Connection con = ds.getConnection()) {
+            String sql = "UPDATE Teachers SET password = ? WHERE id = ? ";
             PreparedStatement pstmt = con.prepareStatement(sql);
 
             pstmt.setString(1, newPassword);

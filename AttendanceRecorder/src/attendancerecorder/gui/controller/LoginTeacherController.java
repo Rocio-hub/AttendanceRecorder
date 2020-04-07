@@ -32,6 +32,7 @@ public class LoginTeacherController implements Initializable {
 
     ITeacherManager teacherMng = new TeacherManager();
     String teacherName;
+    int idFromLogin;
 
     @FXML
     private JFXTextField txt_email;
@@ -52,7 +53,6 @@ public class LoginTeacherController implements Initializable {
 
     @FXML
     private void mouse_login(MouseEvent event) {
-
         boolean found = false;
         List<Teacher> teacherLst = teacherMng.getTeacherLoginData();
         for (Teacher teacher : teacherLst) {
@@ -68,13 +68,13 @@ public class LoginTeacherController implements Initializable {
 
     @FXML
     private void click_login(ActionEvent event) throws IOException {
-
         boolean found = false;
         List<Teacher> teacherLst = teacherMng.getTeacherLoginData();
         for (Teacher teacher : teacherLst) {
             if (txt_email.getText().equals(teacher.getEmail()) && txt_password.getText().equals(teacher.getPassword())) {
                 found = true;
                 teacherName = teacher.getName();
+                idFromLogin = teacher.getId();
             }
         }
         if (found) {
@@ -83,6 +83,7 @@ public class LoginTeacherController implements Initializable {
             Parent root = loader.load();
             TeacherAttendanceOverviewController tactrl = loader.getController();
             tactrl.getTeacherName(teacherName);
+            tactrl.getTeacherId(idFromLogin);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -93,6 +94,5 @@ public class LoginTeacherController implements Initializable {
             lbl_wrongpassword.setText("Wrong password or username");
         }
         btn_login.pressedProperty();
-
     }
 }

@@ -21,6 +21,6 @@ public interface ITeacherManager {
 
     public float getAbsenceById(int id);
 
-    public void updatePasswordById(int id, String newPassword);
+    public void updateTeacherPasswordById(int id, String newPassword);
 
 }

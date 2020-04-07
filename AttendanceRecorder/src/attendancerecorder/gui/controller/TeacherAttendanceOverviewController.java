@@ -42,6 +42,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private ObservableList<Student> presentStudents;
     private ObservableList<Student> absentStudents;
     String teacherName;
+    int idFromLogin;
 
     @FXML
     private AnchorPane pane;
@@ -75,6 +76,8 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private Label lbl_percentageOfAbsence;
     @FXML
     private JFXButton btn_summarizedAttendance;
+    @FXML
+    private JFXButton btn_changePassword;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -202,4 +205,24 @@ public class TeacherAttendanceOverviewController implements Initializable {
         stage.setTitle("Summarized Attendance");
         stage.show();
     }
+    
+    public void getTeacherId(int id){
+        idFromLogin=id;
+    }
+
+    @FXML
+    private void click_changePassword(ActionEvent event) throws IOException  {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/ChangePassword.fxml"));
+        Parent root = loader.load();
+        ChangePasswordController cpctrl = loader.getController();
+        cpctrl.getStudentId(idFromLogin);
+        
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Change Password");
+        stage.show(); 
+    }
+    
+    
 }

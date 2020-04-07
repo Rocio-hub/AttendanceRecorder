@@ -41,8 +41,10 @@ public class TeacherManager implements ITeacherManager {
     }
 
     @Override
-    public void updatePasswordById(int id, String newPassword) {
-        daoTeacher.updatePasswordById(id, newPassword);
+    public void updateTeacherPasswordById(int id, String newPassword) {
+        daoTeacher.updateTeacherPasswordById(id, newPassword);
     }
+    
+    
     
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.scene.control.Label?>
@@ -49,7 +48,7 @@
                </font>
             </JFXButton>
             <JFXButton fx:id="btn_summarizedAttendance" layoutX="552.0" layoutY="107.0" onAction="#click_summarizedAttendance" text="OpenSumarizedAttandanceButton" />
-            <BottomNavigationButton fx:id="btn_changePasswordd" layoutX="59.0" layoutY="68.0" onAction="#click_changePassword" prefHeight="35.0" prefWidth="178.0" text="Change password" />
+            <JFXButton fx:id="btn_changePassword" layoutX="102.0" layoutY="75.0" onAction="#click_changePassword" text="Change password" />
          </children>
       </AnchorPane>
    </children>

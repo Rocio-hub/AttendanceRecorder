@@ -20,7 +20,7 @@ public interface IDAOTeacher {
     public List<Student> getAllStudentsForAbsenceOverview();
 
     public float getAbsenceById(int id);
+
+    public void updateTeacherPasswordById(int id, String newPassword);
     
-    public void updatePasswordById(int id, String newPassword);
-    
-    }
+}

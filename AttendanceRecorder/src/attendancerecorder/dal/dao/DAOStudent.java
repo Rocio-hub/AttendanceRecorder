@@ -216,7 +216,7 @@ public class DAOStudent implements IDAOStudent {
     }
 
     @Override
-    public void updatePasswordById(int id, String newPassword) {
+    public void updateStudentPasswordById(int id, String newPassword) {
         try (Connection con = ds.getConnection()) {
             String sql = "UPDATE Students SET password = ? WHERE id = ? ";
             PreparedStatement pstmt = con.prepareStatement(sql);

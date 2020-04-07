@@ -32,6 +32,7 @@ public class LoginStudentController implements Initializable {
     IStudentManager studentMng = new StudentManager();
     String studentFirstName;
     String studentLastName;
+    
 
     @FXML
     private JFXTextField txt_email;
