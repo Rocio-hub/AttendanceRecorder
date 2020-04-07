@@ -24,8 +24,6 @@ public class WelcomeWindowController implements Initializable {
 
     @FXML
     private Button btn_close;
-//    @FXML
-//    private AnchorPane pane_1;
     @FXML
     private JFXButton btn_student;
     @FXML
@@ -37,9 +35,7 @@ public class WelcomeWindowController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        btn_student.setId("btn_student");
-        btn_teacher.setId("btn_teacher");
-        btn_close.setId("btn_close");
+        //TODO
     }
 
     @FXML

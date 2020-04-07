@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="489.0" prefWidth="718.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="attendancerecorder.gui.controller.SummarizedAttendanceController">
+<AnchorPane id="AnchorPane" prefHeight="489.0" prefWidth="718.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendancerecorder.gui.controller.SummarizedAttendanceController">
     <stylesheets>
         <URL value="@summarizedattendance.css" />
     </stylesheets>
@@ -17,6 +17,6 @@
           <TableColumn fx:id="tc_percentage" prefWidth="57.0" text="\%" />
         </columns>
       </TableView>
-      <JFXButton fx:id="btn_contact" layoutX="496.0" layoutY="202.0" onAction="#click_contact" text="Contact" />
+      <JFXButton layoutX="496.0" layoutY="202.0" onAction="#click_contact" text="Contact" />
    </children>
 </AnchorPane>

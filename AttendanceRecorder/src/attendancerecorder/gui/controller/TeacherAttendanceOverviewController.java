@@ -46,8 +46,8 @@ public class TeacherAttendanceOverviewController implements Initializable {
     int idFromLogin;
     boolean isStudent;
 
-//    @FXML
-//    private AnchorPane pane;
+    @FXML
+    private AnchorPane pane;
     @FXML
     private Label className;
     @FXML
@@ -57,8 +57,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
     @FXML
     private JFXDatePicker datePicker;
     @FXML
-    private JFXButton btn_close;
-    @FXML
     private TableColumn<Student, String> tableview_present;
     @FXML
     private Label lbl_reasonForAbsence;
@@ -66,8 +64,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private Label lbl_teacherName;
     @FXML
     private TableColumn<Student, String> tableview_absent;
-//    @FXML
-//    private JFXButton btn_search;
     @FXML
     private Label lbl_messageForAbsence;
     @FXML
@@ -76,10 +72,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private TableView<Student> tc_absent;
     @FXML
     private Label lbl_percentageOfAbsence;
-//    @FXML
-//    private JFXButton btn_summarizedAttendance;
-//    @FXML
-//    private JFXButton btn_changePassword;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

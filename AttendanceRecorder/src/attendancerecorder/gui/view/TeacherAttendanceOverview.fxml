@@ -12,7 +12,7 @@
    <children>
       <AnchorPane layoutX="21.0" layoutY="20.0" prefHeight="410.0" prefWidth="608.0" style="-fx-background-color: #F3F2ED;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="20.0">
          <children>
-            <JFXButton fx:id="btn_close" buttonType="RAISED" layoutX="776.0" layoutY="519.0" onAction="#click_close" ripplerFill="#009fe3" text="Close" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="24.0" />
+            <JFXButton buttonType="RAISED" layoutX="776.0" layoutY="519.0" onAction="#click_close" ripplerFill="#009fe3" text="Close" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="24.0" />
             <Label fx:id="className" layoutX="14.0" layoutY="13.0" stylesheets="@TeacherAttendanceOverview.css" text="CS_2019B" />
             <TableView fx:id="tc_present" layoutX="22.0" layoutY="124.0" onMouseClicked="#click_selectedPresentStudent" prefHeight="396.0" prefWidth="132.0">
                <columns>
@@ -42,13 +42,13 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <JFXButton fx:id="btn_search" layoutX="734.0" layoutY="154.0" onAction="#click_search" prefHeight="35.0" prefWidth="69.0" text="Search">
+            <JFXButton layoutX="734.0" layoutY="154.0" onAction="#click_search" prefHeight="35.0" prefWidth="69.0" text="Search">
                <font>
                   <Font size="8.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btn_summarizedAttendance" layoutX="552.0" layoutY="107.0" onAction="#click_summarizedAttendance" text="OpenSumarizedAttandanceButton" />
-            <JFXButton fx:id="btn_changePassword" layoutX="102.0" layoutY="75.0" onAction="#click_changePassword" text="Change password" />
+            <JFXButton layoutX="552.0" layoutY="107.0" onAction="#click_summarizedAttendance" text="OpenSumarizedAttandanceButton" />
+            <JFXButton layoutX="102.0" layoutY="75.0" onAction="#click_changePassword" text="Change password" />
          </children>
       </AnchorPane>
    </children>

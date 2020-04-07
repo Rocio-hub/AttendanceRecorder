@@ -7,7 +7,6 @@
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
@@ -106,7 +105,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </JFXTextArea>
-                                          <JFXButton fx:id="btn_confirm" buttonType="RAISED" onAction="#click_confirm" onMouseClicked="#mouse_confirm" ripplerFill="#679fffdb" style="-fx-border-color: #000000;" text="Confirm" textFill="#a6000f" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                                          <JFXButton buttonType="RAISED" onAction="#click_confirm" onMouseClicked="#mouse_confirm" ripplerFill="#679fffdb" style="-fx-border-color: #000000;" text="Confirm" textFill="#a6000f" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                                              <font>
                                                 <Font name="Courier Bold" size="16.0" />
                                              </font>
@@ -116,7 +115,7 @@
                                                 <Label fx:id="lbl_name" alignment="TOP_CENTER" layoutY="38.0" prefHeight="17.0" prefWidth="282.0" text="Label" />
                                              </children>
                                           </Pane>
-                                          <Button fx:id="btn_changePassword" mnemonicParsing="false" onAction="#click_changePassword" text="Change password" GridPane.rowIndex="2" />
+                                          <JFXButton alignment="TOP_RIGHT" onAction="#click_changePassword" text="Change password" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
                                        </children>
                                     </GridPane>
                                  </children>
@@ -144,8 +143,8 @@
                                           <JFXDatePicker fx:id="datePicker_sort" defaultColor="#a6000f" layoutX="40.0" layoutY="158.0" prefHeight="28.0" prefWidth="317.0" />
                                           <Label layoutX="169.0" layoutY="70.0" prefHeight="23.0" prefWidth="71.0" text="Sort by date" />
                                           <Label fx:id="lbl_showStatus" layoutX="56.0" layoutY="340.0" prefHeight="23.0" prefWidth="315.0" text="Status" />
-                                          <JFXButton fx:id="btn_search" layoutX="179.0" layoutY="258.0" onAction="#click_search" text="Search" />
-                                          <JFXButton fx:id="btn_close" buttonType="RAISED" layoutX="357.0" layoutY="580.0" onAction="#clickClose" prefHeight="31.0" prefWidth="67.0" ripplerFill="#fff379" text="Close" />
+                                          <JFXButton layoutX="179.0" layoutY="258.0" onAction="#click_search" text="Search" />
+                                          <JFXButton buttonType="RAISED" layoutX="357.0" layoutY="580.0" onAction="#clickClose" prefHeight="31.0" prefWidth="67.0" ripplerFill="#fff379" text="Close" />
                                           <Label fx:id="lbl_absentMessage" layoutX="56.0" layoutY="409.0" text="Message" />
                                        </children>
                                     </AnchorPane>

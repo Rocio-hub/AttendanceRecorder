@@ -67,14 +67,8 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private PieChart overAllChart;
     @FXML
     private Label lbl_showStatus;
-//    @FXML
-//    private JFXButton btn_search;
     @FXML
     private JFXTextArea txt_absentMessage;
-//    @FXML
-//    private JFXButton btn_confirm;
-//    @FXML
-//    private JFXButton btn_close;
     @FXML
     private JFXDatePicker datePicker_record;
     @FXML
@@ -87,8 +81,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private Label lbl_absentPercentage;
     @FXML
     private Label lbl_name;
-//    @FXML
-//    private Button btn_changePassword;
 
     /**
      * Initializes the controller class.

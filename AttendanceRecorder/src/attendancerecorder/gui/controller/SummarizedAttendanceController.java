@@ -37,8 +37,6 @@ public class SummarizedAttendanceController implements Initializable {
     private TableColumn<Student, String> tc_name;
     @FXML
     private TableColumn<Student, String> tc_percentage;
-//    @FXML
-//    private JFXButton btn_contact;
 
     /**
      * Initializes the controller class.
