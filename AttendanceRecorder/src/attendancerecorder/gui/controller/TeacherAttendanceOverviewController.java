@@ -43,6 +43,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private ObservableList<Student> absentStudents;
     String teacherName;
     int idFromLogin;
+    boolean isStudent;
 
     @FXML
     private AnchorPane pane;
@@ -216,12 +217,17 @@ public class TeacherAttendanceOverviewController implements Initializable {
         Parent root = loader.load();
         ChangePasswordController cpctrl = loader.getController();
         cpctrl.getStudentId(idFromLogin);
+        cpctrl.getIsStudent(isStudent);
         
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Change Password");
         stage.show(); 
+    }
+    
+    public void getIsStudent(boolean isStudent) {
+        this.isStudent = isStudent;
     }
     
     

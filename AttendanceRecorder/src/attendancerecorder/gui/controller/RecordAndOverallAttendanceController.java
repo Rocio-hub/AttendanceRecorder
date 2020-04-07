@@ -53,6 +53,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     boolean isPresent = false;
     String studentFirstName;
     String studentLastName;
+    boolean isStudent;
 
     @FXML
     private JFXCheckBox cb_present;
@@ -282,11 +283,16 @@ public class RecordAndOverallAttendanceController implements Initializable {
         Parent root = loader.load();
         ChangePasswordController cpctrl = loader.getController();
         cpctrl.getStudentId(idFromLogin);
+        cpctrl.getIsStudent(isStudent);
         
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Change Password");
         stage.show();
+    }
+    
+    public void getIsStudent(boolean isStudent) {
+        this.isStudent = isStudent;
     }
 }

@@ -33,6 +33,7 @@ public class LoginTeacherController implements Initializable {
     ITeacherManager teacherMng = new TeacherManager();
     String teacherName;
     int idFromLogin;
+    boolean isStudent=false;
 
     @FXML
     private JFXTextField txt_email;
@@ -84,6 +85,7 @@ public class LoginTeacherController implements Initializable {
             TeacherAttendanceOverviewController tactrl = loader.getController();
             tactrl.getTeacherName(teacherName);
             tactrl.getTeacherId(idFromLogin);
+            tactrl.getIsStudent(isStudent);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();

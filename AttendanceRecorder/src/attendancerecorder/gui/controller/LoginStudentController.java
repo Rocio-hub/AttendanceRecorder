@@ -32,7 +32,8 @@ public class LoginStudentController implements Initializable {
     IStudentManager studentMng = new StudentManager();
     String studentFirstName;
     String studentLastName;
-    
+    int idFromLogin;
+    boolean isStudent = true;
 
     @FXML
     private JFXTextField txt_email;
@@ -42,7 +43,6 @@ public class LoginStudentController implements Initializable {
     private JFXPasswordField txt_password;
     @FXML
     private Label lbl_wrongpassword;
-    int idFromLogin;
 
     /**
      * Initializes the controller class.
@@ -76,8 +76,8 @@ public class LoginStudentController implements Initializable {
             if (txt_email.getText().equals(student.getEmail()) && txt_password.getText().equals(student.getPassword())) {
                 found = true;
                 idFromLogin = student.getId();
-                studentFirstName=student.getFirstName();
-                studentLastName=student.getLastName();
+                studentFirstName = student.getFirstName();
+                studentLastName = student.getLastName();
             }
         }
         if (found) {
@@ -86,8 +86,8 @@ public class LoginStudentController implements Initializable {
             Parent root = loader.load();
             RecordAndOverallAttendanceController srac = loader.getController();
             srac.getEmailFromLogin(idFromLogin);
-            
             srac.getStudentName(studentFirstName, studentLastName);
+            srac.getIsStudent(isStudent);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
