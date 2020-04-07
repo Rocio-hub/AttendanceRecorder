@@ -1,22 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Course;
 import attendancerecorder.be.Student;
 import attendancerecorder.bll.interfaces.IStudentManager;
 import attendancerecorder.bll.managers.StudentManager;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import java.io.IOException;
 import java.net.URL;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +25,6 @@ import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -47,13 +38,16 @@ import javafx.stage.Stage;
  */
 public class RecordAndOverallAttendanceController implements Initializable {
 
+    //Instance for the business logic layer
     IStudentManager studentMng = new StudentManager();
+
+    //Needed variables
     private ObservableList<Course> courseLst;
-    int idFromLogin;
-    boolean isPresent = false;
     String studentFirstName;
     String studentLastName;
+    int idFromLogin;
     boolean isStudent;
+    boolean isPresent = false;
 
     @FXML
     private JFXCheckBox cb_present;
@@ -73,14 +67,14 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private PieChart overAllChart;
     @FXML
     private Label lbl_showStatus;
-    @FXML
-    private JFXButton btn_search;
+//    @FXML
+//    private JFXButton btn_search;
     @FXML
     private JFXTextArea txt_absentMessage;
-    @FXML
-    private JFXButton btn_confirm;
-    @FXML
-    private JFXButton btn_close;
+//    @FXML
+//    private JFXButton btn_confirm;
+//    @FXML
+//    private JFXButton btn_close;
     @FXML
     private JFXDatePicker datePicker_record;
     @FXML
@@ -93,14 +87,15 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private Label lbl_absentPercentage;
     @FXML
     private Label lbl_name;
-    @FXML
-    private Button btn_changePassword;
+//    @FXML
+//    private Button btn_changePassword;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //labels are not visible at first and the table is filled
         txt_absentMessage.visibleProperty().set(false);
         lbl_popup.setVisible(false);
         lbl_popup1.setVisible(false);
@@ -191,8 +186,9 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     private float updateAbsencePercentage() {
-        List<Student> studentLst = new ArrayList();
-        studentLst = studentMng.getAllAttendancesById(idFromLogin);
+//        List<Student> studentLst = new ArrayList();
+//        studentLst = studentMng.getAllAttendancesById(idFromLogin);
+        List<Student> studentLst = studentMng.getAllAttendancesById(idFromLogin);
         float counterPresent = 0;
         float counterAbsent = 0;
         float sum;
@@ -208,7 +204,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
         sum = counterPresent + counterAbsent;
         float absencePercentage = (counterAbsent * 100) / sum;
         studentMng.updateAbsencePercentageById(idFromLogin, absencePercentage);
-        
+
         return absencePercentage;
     }
 
@@ -222,9 +218,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
 
     @FXML
     private void click_confirm(ActionEvent event) throws IOException {
-        if (enableConfirmation()) {
-            addNewAttendance();
-        }
+        if (enableConfirmation()) addNewAttendance();
     }
 
     @FXML
@@ -243,7 +237,8 @@ public class RecordAndOverallAttendanceController implements Initializable {
             alert.setContentText("YOU HAVE SELECTED:\nDate: " + datePicker_record.getValue().toString() + "\nStatus: ABSENT\nMessage: " + txt_absentMessage.getText());
         }
         alert.showAndWait();
-        initOverallChart(); //Calls again the method that reads from DB, calculates the percentages and sets the Pie charts, as, by the time the alert is displayed, the DB has already be altered with the new recorded attendance and so the pie charts have different data than the one they had the first time they read.
+        //Calls again the method that reads from DB, calculates the percentages and sets the Pie charts, as, by the time the alert is displayed, the DB has already be altered with the new recorded attendance and so the pie charts have different data than the one they had the first time they read.
+        initOverallChart(); 
     }
 
     //THERE MIGHT BE SOME CODE DOUBLED, CHECK IN THE addNewAttendance METHOD
@@ -278,20 +273,21 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     @FXML
-    private void click_changePassword(ActionEvent event)  throws IOException  {
+    private void click_changePassword(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/ChangePassword.fxml"));
         Parent root = loader.load();
+        //The following three lines are created so both idFromLogin and isStudent are accesible from ChangePasswordController
         ChangePasswordController cpctrl = loader.getController();
         cpctrl.getStudentId(idFromLogin);
         cpctrl.getIsStudent(isStudent);
-        
+
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Change Password");
         stage.show();
     }
-    
+
     public void getIsStudent(boolean isStudent) {
         this.isStudent = isStudent;
     }

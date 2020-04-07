@@ -1,10 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package attendancerecorder.be;
 
+package attendancerecorder.be;
 
 public class Teacher {
     private int id;
@@ -12,6 +7,7 @@ public class Teacher {
     private String email;
     private String password;
    
+    //Getters and Setters for all variables
 
     public int getId() {
         return id;
@@ -45,6 +41,8 @@ public class Teacher {
         this.email = email;
     }
 
+    //Constructors
+    
     public Teacher() {
     }
 

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package attendancerecorder.be;
 
 public class Student {
@@ -13,10 +9,11 @@ public class Student {
     private String email;
     private String password;
     private String message;
-    private int status; //1: present 0: absent
+    private int status; // 1: present 0: absent
     private float absencePercentage;
 
     //Getters and Setters for all variables
+    
     public int getId() {
         return id;
     }
@@ -72,7 +69,8 @@ public class Student {
     public void setStatus(int status) {
         this.status = status;
     }
-     public float getAbsencePercentage() {
+
+    public float getAbsencePercentage() {
         return absencePercentage;
     }
 
@@ -81,6 +79,7 @@ public class Student {
     }
 
     //Constructors
+    
     public Student() {
     }
 
@@ -92,31 +91,33 @@ public class Student {
         this.password = password;
     }
 
-    public Student(int id,String firstName, String message) {
-        this.id=id;
+    public Student(int id, String firstName, String message) {
+        this.id = id;
         this.firstName = firstName;
         this.message = message;
     }
-    
+
     public Student(int id, int status) {
         this.id = id;
         this.status = status;
     }
-    
-    public Student(String name, int status){
-        this.firstName=name;
-        this.status=status;
+
+    public Student(String name, int status) {
+        this.firstName = name;
+        this.status = status;
     }
 
-    public Student(String name, float absencePercentage) {
+    public Student(String name, float absencePercentage, String email) {
         this.firstName = name;
         this.absencePercentage = absencePercentage;
+        this.email = email;
     }
-            
+
     //ToString
+    
     @Override
     public String toString() {
         return "Student{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password + '}';
     }
-    
+
 }

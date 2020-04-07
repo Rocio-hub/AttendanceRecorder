@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Student;
@@ -27,9 +22,15 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * FXML Controller class
+ */
 public class LoginStudentController implements Initializable {
 
+    //Instance for the business logic layer
     IStudentManager studentMng = new StudentManager();
+
+    //Needed variables
     String studentFirstName;
     String studentLastName;
     int idFromLogin;
@@ -49,22 +50,17 @@ public class LoginStudentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lbl_wrongpassword.setId("lbl_wrongpassword");
+        //TODO
     }
 
     @FXML
     private void mouse_login(MouseEvent event) {
-
-        boolean found = false;
         List<Student> studentLst = studentMng.getAllStudents();
         for (Student student : studentLst) {
             if (txt_email.getText().equals(student.getEmail()) && txt_password.getText().equals(student.getPassword())) {
-                found = true;
+                Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
+                stage.close();
             }
-        }
-        if (found) {
-            Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
-            stage.close();
         }
     }
 
@@ -80,6 +76,7 @@ public class LoginStudentController implements Initializable {
                 studentLastName = student.getLastName();
             }
         }
+        //We created this found variable so we made sure that the application first sets the values of idFromLogin, studentFirstName, studentLastName before opening the new window
         if (found) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/RecordAndOverallAttendance.fxml"));
 

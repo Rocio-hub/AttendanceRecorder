@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package attendancerecorder.gui.controller;
 
 import attendancerecorder.bll.interfaces.IStudentManager;
@@ -23,13 +18,14 @@ import javafx.stage.Stage;
 
 /**
  * FXML Controller class
- *
- * @author rtlop
  */
 public class ChangePasswordController implements Initializable {
 
+    //Instances for the business logic layer
     IStudentManager studentMng = new StudentManager();
     ITeacherManager teacherMng = new TeacherManager();
+    
+    //Needed variables
     int idFromLogin;
     boolean isStudent;
 
@@ -41,15 +37,18 @@ public class ChangePasswordController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    
+    //Gets the id of the student from the previous opened window
     public void getStudentId(int id) {
         this.idFromLogin = id;
     }
     
+    //Gets wether the user is student or not from the previous opened window
     public void getIsStudent(boolean isStudent) {
         this.isStudent = isStudent;
     }

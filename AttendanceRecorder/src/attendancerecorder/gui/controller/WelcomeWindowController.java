@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package attendancerecorder.gui.controller;
 
 import com.jfoenix.controls.JFXButton;
@@ -18,17 +14,18 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+/**
+ * FXML Controller class
+ */
 
 public class WelcomeWindowController implements Initializable {
 
-//    private Label lbl1;
-//    private Label lbl2;
     @FXML
     private Button btn_close;
-    @FXML
-    private AnchorPane pane_1;
+//    @FXML
+//    private AnchorPane pane_1;
     @FXML
     private JFXButton btn_student;
     @FXML
@@ -37,14 +34,12 @@ public class WelcomeWindowController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btn_student.setId("btn_student");
         btn_teacher.setId("btn_teacher");
         btn_close.setId("btn_close");
-
-//        lbl1.setId("lbl1");
-//        lbl2.setId("lbl2");
     }
 
     @FXML

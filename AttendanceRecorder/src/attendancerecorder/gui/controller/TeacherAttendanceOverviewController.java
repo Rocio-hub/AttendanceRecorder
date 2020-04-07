@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Student;
@@ -35,18 +30,24 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * FXML Controller class
+ */
 public class TeacherAttendanceOverviewController implements Initializable {
 
+    //Instances for the business logic layer
     IStudentManager studentMng = new StudentManager();
     ITeacherManager teacherMng = new TeacherManager();
+
+    //Needed variables
     private ObservableList<Student> presentStudents;
     private ObservableList<Student> absentStudents;
     String teacherName;
     int idFromLogin;
     boolean isStudent;
 
-    @FXML
-    private AnchorPane pane;
+//    @FXML
+//    private AnchorPane pane;
     @FXML
     private Label className;
     @FXML
@@ -65,8 +66,8 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private Label lbl_teacherName;
     @FXML
     private TableColumn<Student, String> tableview_absent;
-    @FXML
-    private JFXButton btn_search;
+//    @FXML
+//    private JFXButton btn_search;
     @FXML
     private Label lbl_messageForAbsence;
     @FXML
@@ -75,23 +76,19 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private TableView<Student> tc_absent;
     @FXML
     private Label lbl_percentageOfAbsence;
-    @FXML
-    private JFXButton btn_summarizedAttendance;
-    @FXML
-    private JFXButton btn_changePassword;
+//    @FXML
+//    private JFXButton btn_summarizedAttendance;
+//    @FXML
+//    private JFXButton btn_changePassword;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //labels are not visible at first and alert is set
         lbl_popup.setVisible(false);
         lbl_reasonForAbsence.setVisible(false);
         lbl_messageForAbsence.setVisible(false);
         lbl_percentageOfAbsence.setVisible(true);
         text2.setVisible(false);
-        btn_close.setId("exit");
-        lbl_messageForAbsence.setId("messageForAbsence");
-        className.setId("className");
-        lbl_teacherName.setId("teacherName");
-
 //        absentStudentsAlert();
     }
 
@@ -113,7 +110,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
     }
 
     public void getTeacherName(String name) {
-        this.teacherName = name;
+        teacherName = name;
         lbl_teacherName.setText(teacherName);
     }
 
@@ -147,31 +144,9 @@ public class TeacherAttendanceOverviewController implements Initializable {
         getAbsenceById(tc_absent.getSelectionModel().getSelectedItem().getId());
     }
 
-    /*   private double calculateOverallAbsentAttendanceById(int id) {
-        List<Student> studentLst = new ArrayList();
-        studentLst = studentMng.getAllAttendancesById(id);
-        double counterPresent = 0;
-        double counterAbsent = 0;
-        double sum;
-
-        for (Student student : studentLst) {
-            if (student.getStatus() == 1) {
-                counterPresent++;
-            } else {
-                counterAbsent++;
-            }
-        }
-
-        sum = counterPresent + counterAbsent;
-        double absentPercentage = 100 - ((counterPresent * 100) / sum);
-        absentPercentage = Math.floor(absentPercentage * 100) / 100;
-        lbl_percentageOfAbsence.setText(String.valueOf(absentPercentage));
-        return absentPercentage;*/
     
-    
-    
-    //WORKING ALERT. COMMENTED BC ANNOYING
-    /*private void absentStudentsAlert() {
+    /*WORKING ALERT. COMMENTED BC ANNOYING
+      private void absentStudentsAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Informational dialog");
         alert.setHeaderText("There are some students with the absent percentage above X%");
@@ -187,12 +162,9 @@ public class TeacherAttendanceOverviewController implements Initializable {
         alert.showAndWait();
     }*/
     
-    
     private void getAbsenceById(int id) {
         float absenceById = teacherMng.getAbsenceById(id);
         lbl_percentageOfAbsence.setText(String.valueOf(absenceById));
-        System.out.println(absenceById);
-        System.out.println(String.valueOf(absenceById));
     }
 
     @FXML
@@ -206,29 +178,27 @@ public class TeacherAttendanceOverviewController implements Initializable {
         stage.setTitle("Summarized Attendance");
         stage.show();
     }
-    
-    public void getTeacherId(int id){
-        idFromLogin=id;
+
+    public void getTeacherId(int id) {
+        idFromLogin = id;
     }
 
     @FXML
-    private void click_changePassword(ActionEvent event) throws IOException  {
+    private void click_changePassword(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/ChangePassword.fxml"));
         Parent root = loader.load();
         ChangePasswordController cpctrl = loader.getController();
         cpctrl.getStudentId(idFromLogin);
         cpctrl.getIsStudent(isStudent);
-        
+
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Change Password");
-        stage.show(); 
+        stage.show();
     }
-    
+
     public void getIsStudent(boolean isStudent) {
         this.isStudent = isStudent;
     }
-    
-    
 }

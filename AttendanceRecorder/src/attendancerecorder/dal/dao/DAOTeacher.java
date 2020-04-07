@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package attendancerecorder.dal.dao;
 
 import attendancerecorder.be.Student;
@@ -50,6 +46,7 @@ public class DAOTeacher implements IDAOTeacher {
                 teacherLst.add(teacher);
             }
             return teacherLst;
+            
         } catch (SQLServerException sqlse) {
             Logger.getLogger(DAOTeacher.class.getName()).log(Level.SEVERE, null, sqlse);
         } catch (SQLException ex) {
@@ -74,6 +71,7 @@ public class DAOTeacher implements IDAOTeacher {
                 Teacher teacher = new Teacher(id, name, email, password);
                 teacherLst.add(teacher);
             }
+            
             return teacherLst;
         } catch (SQLServerException sqlse) {
             Logger.getLogger(DAOTeacher.class.getName()).log(Level.SEVERE, null, sqlse);
@@ -89,8 +87,8 @@ public class DAOTeacher implements IDAOTeacher {
 
             List<Student> studentLst = new ArrayList();
             String sql = "SELECT Students.id, Students.firstName, Students.lastName, Attendance.status, Attendance.message FROM Students JOIN Attendance ON id=studentId WHERE date = ? AND status = ?";
-
             PreparedStatement pstmt = con.prepareStatement(sql);
+            
             pstmt.setString(1, date);
             pstmt.setInt(2, status);
 
@@ -105,6 +103,7 @@ public class DAOTeacher implements IDAOTeacher {
                 Student student = new Student(id, fullName, message);
                 studentLst.add(student);
             }
+            
             return studentLst;
         } catch (SQLServerException sqlse) {
             Logger.getLogger(DAOTeacher.class.getName()).log(Level.SEVERE, null, sqlse);
@@ -117,7 +116,7 @@ public class DAOTeacher implements IDAOTeacher {
     @Override
     public List<Student> getAllStudentsForAbsenceOverview() {
         try ( Connection con = ds.getConnection()) {
-            String sql = "SELECT id, firstName, lastName, absencePercentage FROM Students ORDER BY absencePercentage DESC";
+            String sql = "SELECT id, firstName, lastName, absencePercentage, email FROM Students ORDER BY absencePercentage DESC";
             List<Student> studentLst = new ArrayList();
 
             Statement stmt = con.createStatement();
@@ -127,9 +126,11 @@ public class DAOTeacher implements IDAOTeacher {
                 String lastName = rs.getString("lastName");
                 String fullName = firstName + " " + lastName;
                 float absencePercentage = rs.getFloat("absencePercentage");
-                Student student = new Student(fullName, absencePercentage);
+                String email = rs.getString("email");
+                Student student = new Student(fullName, absencePercentage, email);
                 studentLst.add(student);
             }
+            
             return studentLst;
         } catch (SQLServerException sqlse) {
             Logger.getLogger(DAOTeacher.class.getName()).log(Level.SEVERE, null, sqlse);
@@ -141,16 +142,17 @@ public class DAOTeacher implements IDAOTeacher {
 
     public float getAbsenceById(int id) {
         try ( Connection con = ds.getConnection()) {
-            String sql = "SELECT absencePercentage FROM Students WHERE id = ?";
             float absencePercentage = 0;
-
+            String sql = "SELECT absencePercentage FROM Students WHERE id = ?";
             PreparedStatement pstmt = con.prepareStatement(sql);
+            
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 absencePercentage = rs.getFloat("absencePercentage");
             }
             return absencePercentage;
+            
         } catch (SQLServerException sqlse) {
             Logger.getLogger(DAOTeacher.class.getName()).log(Level.SEVERE, null, sqlse);
         } catch (SQLException ex) {

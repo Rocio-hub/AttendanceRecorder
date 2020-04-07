@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Teacher;
@@ -13,7 +8,6 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -28,12 +22,19 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * FXML Controller class
+ */
+
 public class LoginTeacherController implements Initializable {
 
+    //Instance for the business logic layer
     ITeacherManager teacherMng = new TeacherManager();
+
+    //Needed variables
     String teacherName;
     int idFromLogin;
-    boolean isStudent=false;
+    boolean isStudent = false;
 
     @FXML
     private JFXTextField txt_email;
@@ -49,21 +50,17 @@ public class LoginTeacherController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lbl_wrongpassword.setId("lbl_wrongpassword");
+        //TODO
     }
 
     @FXML
     private void mouse_login(MouseEvent event) {
-        boolean found = false;
         List<Teacher> teacherLst = teacherMng.getTeacherLoginData();
         for (Teacher teacher : teacherLst) {
             if (txt_email.getText().equals(teacher.getEmail()) && txt_password.getText().equals(teacher.getPassword())) {
-                found = true;
+                Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
+                stage.close();
             }
-        }
-        if (found) {
-            Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
-            stage.close();
         }
     }
 
@@ -78,6 +75,7 @@ public class LoginTeacherController implements Initializable {
                 idFromLogin = teacher.getId();
             }
         }
+        //We created this found variable so we made sure that the application first sets the values of idFromLogin, studentFirstName, studentLastName before opening the new window
         if (found) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/TeacherAttendanceOverview.fxml"));
 

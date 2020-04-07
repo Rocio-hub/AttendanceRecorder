@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package attendancerecorder.bll.managers;
 
 import attendancerecorder.be.Course;
@@ -10,7 +6,6 @@ import attendancerecorder.be.Student;
 import attendancerecorder.bll.interfaces.IStudentManager;
 import attendancerecorder.dal.dao.DAOStudent;
 import attendancerecorder.dal.interfaces.IDAOStudent;
-import java.util.ArrayList;
 import java.util.List;
 
 public class StudentManager implements IStudentManager {
@@ -18,21 +13,14 @@ public class StudentManager implements IStudentManager {
     //Instance for the Data Access Object
     IDAOStudent daoStudent = new DAOStudent();
 
-    //Lists that we will use to refer to the ones recieved from the methods of the Data Access Layer
-    private List<Student> studentLst = new ArrayList();
-    private List<Student> studentLoginLst = new ArrayList();
-    private List<Course> courseLst = new ArrayList();
-
     @Override
     public List<Student> getAllStudents() {
-        studentLst = daoStudent.getAllStudents();
-        return studentLst;
+        return daoStudent.getAllStudents();
     }
 
     @Override
     public List<Course> getAllCourses() {
-        courseLst = daoStudent.getAllCourses();
-        return courseLst;
+        return daoStudent.getAllCourses();
     }
 
     @Override
@@ -42,8 +30,7 @@ public class StudentManager implements IStudentManager {
 
     @Override
     public List<Student> getAllAttendancesById(int studentId) {
-        studentLst = daoStudent.getAllAttendancesById(studentId);
-        return studentLst;
+        return daoStudent.getAllAttendancesById(studentId);
     }
 
     @Override
@@ -58,8 +45,7 @@ public class StudentManager implements IStudentManager {
 
     @Override
     public boolean checkAlreadyExistingAttendance(int id, String date) {
-        boolean aaa = daoStudent.checkAlreadyExistingAttendance(id, date);
-        return aaa;
+       return daoStudent.checkAlreadyExistingAttendance(id, date);
     }
     
     @Override

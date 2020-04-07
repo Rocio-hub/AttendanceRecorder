@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package attendancerecorder.dal.dao;
 
 import attendancerecorder.be.Course;
@@ -24,7 +20,8 @@ public class DAOStudent implements IDAOStudent {
 
     private final SQLServerDataSource ds;
 
-    // set up connection to the Database
+    // Set up connection to the database
+    
     public DAOStudent() {
         ds = new SQLServerDataSource();
         ds.setDatabaseName("AttendanceRecorder");
@@ -36,7 +33,7 @@ public class DAOStudent implements IDAOStudent {
 
     @Override
     public List<Student> getAllStudents() {
-        try ( Connection con = ds.getConnection()) {
+        try (Connection con = ds.getConnection()) {
             String sql = "SELECT id, firstName, lastName, email, password FROM Students";
             List<Student> studentLst = new ArrayList();
 
@@ -85,10 +82,10 @@ public class DAOStudent implements IDAOStudent {
         return null;
     }
 
+    @Override
     public void addNewAttendance(int studentId, int status, String date, String message) {
-
-        try ( Connection con = ds.getConnection()) {
-            String sql = "INSERT INTO Attendance (studentId, status, date, message) values (?,?,?,?)";
+        try (Connection con = ds.getConnection()) {
+            String sql = "INSERT INTO Attendance (studentId, status, date, message) VALUES (?,?,?,?)";
             PreparedStatement pstmt = con.prepareStatement(sql);
 
             pstmt.setInt(1, studentId);
@@ -97,8 +94,8 @@ public class DAOStudent implements IDAOStudent {
             pstmt.setString(4, message);
             pstmt.executeUpdate();
 
-        } catch (SQLServerException ex) {
-            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLServerException sqlse) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, sqlse);
         } catch (SQLException ex) {
             Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -106,11 +103,9 @@ public class DAOStudent implements IDAOStudent {
 
     @Override
     public List<Student> getAllAttendancesById(int studentId) {
-
-        try ( Connection con = ds.getConnection()) {
+        try (Connection con = ds.getConnection()) {
             String sql = "SELECT status FROM Attendance WHERE studentId = ?";
             List<Student> studentLst = new ArrayList();
-
             PreparedStatement pstmt = con.prepareStatement(sql);
 
             pstmt.setInt(1, studentId);
@@ -173,8 +168,9 @@ public class DAOStudent implements IDAOStudent {
             while (rs.next()) {
                 return true;
             }
-        } catch (SQLServerException ex) {
-            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
+            
+        } catch (SQLServerException sqlse) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, sqlse);
         } catch (SQLException ex) {
             Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -185,14 +181,14 @@ public class DAOStudent implements IDAOStudent {
     public void deleteAttendanceByIdANDDate(int id, String date) {
         try (Connection con = ds.getConnection()) {
             String sql = "DELETE FROM Attendance WHERE studentId = ? AND date = ?";
-
             PreparedStatement pstmt = con.prepareStatement(sql);
+            
             pstmt.setInt(1, id);
             pstmt.setString(2, date);
             pstmt.executeUpdate();
 
-        } catch (SQLServerException ex) {
-            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLServerException sqlse) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, sqlse);
         } catch (SQLException ex) {
             Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -224,12 +220,11 @@ public class DAOStudent implements IDAOStudent {
             pstmt.setString(1, newPassword);
             pstmt.setInt(2, id);
             pstmt.executeUpdate();
-
+            
         } catch (SQLServerException sqlse) {
             Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, sqlse);
         } catch (SQLException ex) {
             Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }
