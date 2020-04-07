@@ -117,7 +117,7 @@ public class DAOTeacher implements IDAOTeacher {
     @Override
     public List<Student> getAllStudentsForAbsenceOverview() {
         try ( Connection con = ds.getConnection()) {
-            String sql = "SELECT id, firstName, lastName, absencePercentage FROM Students";
+            String sql = "SELECT id, firstName, lastName, absencePercentage FROM Students ORDER BY absencePercentage DESC";
             List<Student> studentLst = new ArrayList();
 
             Statement stmt = con.createStatement();

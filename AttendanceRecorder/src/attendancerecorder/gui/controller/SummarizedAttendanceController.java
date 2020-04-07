@@ -47,9 +47,9 @@ public class SummarizedAttendanceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     
-        studentLst = FXCollections.observableArrayList();
-        tc_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        tc_percentage.setCellValueFactory(new PropertyValueFactory<>("percentage"));
+        studentLst = FXCollections.observableArrayList(teacherMng.getAllStudentsForAbsenceOverview());
+        tc_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        tc_percentage.setCellValueFactory(new PropertyValueFactory<>("absencePercentage"));
         tv_summarizedAttendance.setItems(studentLst);
      }    
 
@@ -57,25 +57,7 @@ public class SummarizedAttendanceController implements Initializable {
     private void click_contact(ActionEvent event) {
     }
     
-//     private double calculateOverallAbsentAttendance() {
-//        List<Student> studentLst = teacherMng.getAllStudentsForAbsenceOverview();
-//        double counterPresent = 0;
-//        double counterAbsent = 0;
-//        double sum;
-//
-//        for (Student student : studentLst) {
-//            if (student.getStatus() == 1) {
-//                counterPresent++;
-//            } else {
-//                counterAbsent++;
-//            }
-//        }
-//
-//        sum = counterPresent + counterAbsent;
-//        double absentPercentage = 100 - ((counterPresent * 100) / sum);
-//        absentPercentage = Math.floor(absentPercentage * 100) / 100;
-//        return absentPercentage;
-//    }
+
      
      
    
