@@ -13,7 +13,7 @@ public interface IDAOStudent {
 
     public List<Student> getAllAttendancesById(int studentId);
 
-    public void addNewAttendance(int studentId, int status, String date, String message);
+    public void addNewAttendance(int studentId, int status, String date, String message, String dayOfWeek);
 
     public Student getReasonForAbsence(int studentId, String date);
 

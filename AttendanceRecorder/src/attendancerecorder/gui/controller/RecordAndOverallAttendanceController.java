@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.EventObject;
 import java.util.List;
 import java.util.Optional;
@@ -161,7 +162,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
         if (studentMng.checkAlreadyExistingAttendance(idFromLogin, date)) {
             confirmationOverwritingAttendance(date, status, message);
         } else {
-            studentMng.addNewAttendance(idFromLogin, status, date, message);
+            studentMng.addNewAttendance(idFromLogin, status, date, message, getDayOfWeek());
             confirmationAttendanceAlert();
         }
     }
@@ -252,7 +253,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
                     status = 0;
                     message = txt_absentMessage.getText();
                 }
-                studentMng.addNewAttendance(idFromLogin, status, date, message);
+                studentMng.addNewAttendance(idFromLogin, status, date, message, getDayOfWeek());
             } else {
                 if (cb_present.isSelected()) {
                     status = 1;
@@ -260,7 +261,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
                     status = 0;
                     message = txt_absentMessage.getText();
                 }
-                studentMng.addNewAttendance(idFromLogin, status, date, message);
+                studentMng.addNewAttendance(idFromLogin, status, date, message, getDayOfWeek());
             }
             confirmationAttendanceAlert();
         }
@@ -284,5 +285,10 @@ public class RecordAndOverallAttendanceController implements Initializable {
 
     public void getIsStudent(boolean isStudent) {
         this.isStudent = isStudent;
+    }
+    public String getDayOfWeek(){
+        LocalDate ld = datePicker_record.getValue();
+        String dayOfWeek = ld.getDayOfWeek().toString();
+        return dayOfWeek;
     }
 }
