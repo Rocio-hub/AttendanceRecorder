@@ -20,5 +20,7 @@ public interface ITeacherManager {
     public void updateTeacherPasswordById(int id, String newPassword);
     
     public void addNewStudent(String firstName, String lastName, String email, String password);
+    
+    public List<Student> getDaysOfAbsenceById(int id);
 
 }

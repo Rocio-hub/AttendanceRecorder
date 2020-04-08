@@ -46,5 +46,9 @@ public class TeacherManager implements ITeacherManager {
     public void addNewStudent(String firstName, String lastName, String email, String password) {
         daoTeacher.addNewStudent(firstName, lastName, email, password);
     }
+    @Override
+     public List<Student> getDaysOfAbsenceById(int id){
+         return daoTeacher.getDaysOfAbsenceById(id);
+     }
     
 }

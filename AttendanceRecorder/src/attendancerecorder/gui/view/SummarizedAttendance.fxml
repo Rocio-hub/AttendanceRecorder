@@ -2,6 +2,9 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import java.net.URL?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,12 +14,21 @@
         <URL value="@summarizedattendance.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="tv_summarizedAttendance" layoutX="63.0" layoutY="25.0" prefHeight="424.0" prefWidth="261.0">
+      <TableView fx:id="tv_summarizedAttendance" layoutX="22.0" layoutY="25.0" prefHeight="424.0" prefWidth="261.0">
         <columns>
           <TableColumn fx:id="tc_name" prefWidth="203.0" text="Name" />
           <TableColumn fx:id="tc_percentage" prefWidth="57.0" text="\%" />
         </columns>
       </TableView>
-      <JFXButton layoutX="496.0" layoutY="202.0" onAction="#click_contact" text="Contact" />
+      <JFXButton layoutX="646.0" layoutY="437.0" onAction="#click_contact" text="Contact" />
+      <BarChart fx:id="chart_weeklyAbsence" layoutX="305.0" layoutY="25.0" prefHeight="366.0" prefWidth="391.0">
+        <xAxis>
+          <CategoryAxis fx:id="categoryAxis_weekDays" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="numberAxis_daysAbsent" side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <JFXButton layoutX="333.0" layoutY="391.0" onAction="#checkAbsenceDays" text="Check Absence" />
    </children>
 </AnchorPane>

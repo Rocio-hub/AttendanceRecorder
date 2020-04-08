@@ -9,6 +9,7 @@ public class Student {
     private String email;
     private String password;
     private String message;
+    private String dayOfWeek;
     private int status; // 1: present 0: absent
     private float absencePercentage;
 
@@ -61,6 +62,13 @@ public class Student {
     public void setMessage(String message) {
         this.message = message;
     }
+     public String getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public void setDayOfWeek(String dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
+    }
 
     public int getStatus() {
         return status;
@@ -107,10 +115,15 @@ public class Student {
         this.status = status;
     }
 
-    public Student(String name, float absencePercentage, String email) {
+    public Student(int id,String name, float absencePercentage, String email) {
+        this.id = id;
         this.firstName = name;
         this.absencePercentage = absencePercentage;
         this.email = email;
+    }
+    public Student(int id, String dayOfWeek ){
+        this.id=id;
+        this.dayOfWeek=dayOfWeek;
     }
 
     //ToString

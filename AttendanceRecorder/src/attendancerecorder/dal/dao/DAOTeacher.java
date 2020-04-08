@@ -122,12 +122,13 @@ public class DAOTeacher implements IDAOTeacher {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
                 String fullName = firstName + " " + lastName;
                 float absencePercentage = rs.getFloat("absencePercentage");
                 String email = rs.getString("email");
-                Student student = new Student(fullName, absencePercentage, email);
+                Student student = new Student(id,fullName, absencePercentage, email);
                 studentLst.add(student);
             }
             
@@ -212,4 +213,27 @@ public class DAOTeacher implements IDAOTeacher {
             Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @Override
+    public List<Student> getDaysOfAbsenceById(int id) {
+         try (Connection con = ds.getConnection()) {
+            List<Student> studentLst = new ArrayList();
+            String sql = "SELECT Students.id ,Attendance.dayOfWeek FROM Students JOIN Attendance ON id=studentId WHERE Students.id = ? AND status = 0";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int studentId = rs.getInt("id");
+                String dayOfWeek = rs.getString("dayOfWeek");
+                Student student = new Student(studentId, dayOfWeek);
+                studentLst.add(student);
+            }
+            return studentLst;
+        } catch (SQLServerException sqlse) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, sqlse);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return null;
+    }   
 }
