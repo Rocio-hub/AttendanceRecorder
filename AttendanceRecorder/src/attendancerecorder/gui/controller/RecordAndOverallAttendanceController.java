@@ -81,6 +81,8 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private Label lbl_absentPercentage;
     @FXML
     private Label lbl_name;
+    @FXML
+    private Label lbl_dayOfWeek;
 
     /**
      * Initializes the controller class.

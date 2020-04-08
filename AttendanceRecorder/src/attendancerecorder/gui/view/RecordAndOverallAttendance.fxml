@@ -146,6 +146,7 @@
                                           <JFXButton layoutX="179.0" layoutY="258.0" onAction="#click_search" text="Search" />
                                           <JFXButton buttonType="RAISED" layoutX="357.0" layoutY="580.0" onAction="#clickClose" prefHeight="31.0" prefWidth="67.0" ripplerFill="#fff379" text="Close" />
                                           <Label fx:id="lbl_absentMessage" layoutX="56.0" layoutY="409.0" text="Message" />
+                                          <Label fx:id="lbl_dayOfWeek" layoutX="185.0" layoutY="479.0" />
                                        </children>
                                     </AnchorPane>
                                 </items>
