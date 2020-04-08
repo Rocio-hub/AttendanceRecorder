@@ -18,5 +18,7 @@ public interface ITeacherManager {
     public float getAbsenceById(int id);
 
     public void updateTeacherPasswordById(int id, String newPassword);
+    
+    public void addNewStudent(String firstName, String lastName, String email, String password);
 
 }

@@ -49,6 +49,7 @@
             </JFXButton>
             <JFXButton layoutX="552.0" layoutY="107.0" onAction="#click_summarizedAttendance" text="OpenSumarizedAttandanceButton" />
             <JFXButton layoutX="102.0" layoutY="75.0" onAction="#click_changePassword" text="Change password" />
+            <JFXButton layoutX="606.0" layoutY="521.0" onAction="#click_addNewStudent" text="add new student..." />
          </children>
       </AnchorPane>
    </children>

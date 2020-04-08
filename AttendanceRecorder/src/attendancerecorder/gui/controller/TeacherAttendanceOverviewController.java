@@ -193,4 +193,17 @@ public class TeacherAttendanceOverviewController implements Initializable {
     public void getIsStudent(boolean isStudent) {
         this.isStudent = isStudent;
     }
+
+    @FXML
+    private void click_addNewStudent(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/AddNewStudent.fxml"));
+        Parent root = loader.load();
+
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Add a new student");
+        stage.show();
+    }
 }

@@ -193,4 +193,23 @@ public class DAOTeacher implements IDAOTeacher {
             Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @Override
+    public void addNewStudent(String firstName, String lastName, String email, String password) {
+        try (Connection con = ds.getConnection()) {
+            String sql = "INSERT INTO Students (firstName, lastName, email, password) values (?,?,?,?)";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+
+            pstmt.setString(1, firstName);
+            pstmt.setString(2, lastName);
+            pstmt.setString(3, email);
+            pstmt.setString(4, password);
+            pstmt.executeUpdate();
+
+        } catch (SQLServerException sqlse) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, sqlse);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
