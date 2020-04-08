@@ -81,20 +81,23 @@ public class AddNewStudentController implements Initializable {
             lbl_addFirstName.setVisible(true);
             return false;
         }
+        else lbl_addFirstName.setVisible(false);
         if (txtfield_lastName.getText().trim().equals("")) {
             lbl_addLastName.setVisible(true);
             return false;
         }
+        else lbl_addLastName.setVisible(false);
         if (txtfield_email.getText().trim().equals("")) {
             lbl_addEmail.setVisible(true);
             return false;
         }
+        else lbl_addEmail.setVisible(false);
         if (txtfield_password.getText().trim().equals("")) {
             lbl_addPassword.setVisible(true);
             return false;
         }
+        else lbl_addPassword.setVisible(false);
         return true;
-
     }
 
 }
