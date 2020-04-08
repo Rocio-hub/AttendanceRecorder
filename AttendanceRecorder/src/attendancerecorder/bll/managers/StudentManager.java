@@ -24,8 +24,8 @@ public class StudentManager implements IStudentManager {
     }
 
     @Override
-    public void addNewAttendance(int studentId, int status, String date, String message) {
-        daoStudent.addNewAttendance(studentId, status, date, message);
+    public void addNewAttendance(int studentId, int status, String date, String message, String dayOfWeek) {
+        daoStudent.addNewAttendance(studentId, status, date, message, dayOfWeek);
     }
 
     @Override

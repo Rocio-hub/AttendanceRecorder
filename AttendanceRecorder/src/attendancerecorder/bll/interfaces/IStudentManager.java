@@ -11,7 +11,7 @@ public interface IStudentManager {
 
     public List<Course> getAllCourses();
 
-    public void addNewAttendance(int studentId, int status, String date, String message);
+    public void addNewAttendance(int studentId, int status, String date, String message, String dayOfWeek);
 
     public List<Student> getAllAttendancesById(int studentId);
 

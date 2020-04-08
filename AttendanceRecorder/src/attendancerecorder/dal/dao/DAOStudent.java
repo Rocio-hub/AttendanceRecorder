@@ -83,15 +83,16 @@ public class DAOStudent implements IDAOStudent {
     }
 
     @Override
-    public void addNewAttendance(int studentId, int status, String date, String message) {
+    public void addNewAttendance(int studentId, int status, String date, String message, String dayOfWeek) {
         try (Connection con = ds.getConnection()) {
-            String sql = "INSERT INTO Attendance (studentId, status, date, message) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO Attendance (studentId, status, date, message, dayOfWeek) VALUES (?,?,?,?,?)";
             PreparedStatement pstmt = con.prepareStatement(sql);
 
             pstmt.setInt(1, studentId);
             pstmt.setInt(2, status);
             pstmt.setString(3, date);
             pstmt.setString(4, message);
+            pstmt.setString(5, dayOfWeek);
             pstmt.executeUpdate();
 
         } catch (SQLServerException sqlse) {
