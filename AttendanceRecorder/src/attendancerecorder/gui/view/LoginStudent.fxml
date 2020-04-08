@@ -3,52 +3,44 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/loginstudentCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendancerecorder.gui.controller.LoginStudentController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/cascadeStyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendancerecorder.gui.controller.LoginStudentController">
 
    <children>
-      <Pane layoutX="11.0" layoutY="36.0" prefHeight="277.0" prefWidth="557.0" style="-fx-background-color: #F3F2ED;" stylesheets="@loginstudentCSS.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-         <effect>
-            <DropShadow />
-         </effect>
+      <GridPane fx:id="gridpane" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Label layoutX="210.0" layoutY="108.0" prefHeight="23.0" prefWidth="123.0" text="Welcome">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
 
-            <JFXTextField fx:id="txt_email" focusColor="BLACK" labelFloat="true" layoutX="173.0" layoutY="196.0" prefHeight="40.0" prefWidth="200.0" promptText="E-mail">
-               <font>
-                  <Font size="14.0" />
-               </font></JFXTextField>
-            <JFXButton fx:id="btn_login" buttonType="RAISED" layoutX="475.0" layoutY="307.0" onAction="#click_login" onMouseClicked="#mouse_login" prefHeight="40.0" prefWidth="70.0" ripplerFill="#fff379" text="Log In" />
-            <JFXPasswordField fx:id="txt_password" focusColor="BLACK" labelFloat="true" layoutX="173.0" layoutY="257.0" prefHeight="40.0" prefWidth="200.0" promptText="Password">
-               <font>
-                  <Font size="14.0" />
-               </font></JFXPasswordField>
-            <Label layoutX="189.0" layoutY="71.0" prefHeight="23.0" prefWidth="165.0" text="Hello, Student!">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
+            <JFXTextField fx:id="txt_email" labelFloat="true" prefHeight="40.0" prefWidth="200.0" promptText="E-mail" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <JFXButton fx:id="btn_login" onAction="#click_login" onMouseClicked="#mouse_login" prefHeight="36.0" prefWidth="65.0" text="Log in" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="7.0" right="7.0" />
+               </padding></JFXButton>
+            <JFXPasswordField fx:id="txt_password" labelFloat="true" prefHeight="40.0" prefWidth="200.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+            <Label prefHeight="26.0" prefWidth="104.0" text="Hello, Student!" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
 
-            <Label fx:id="lbl_wrongpassword" layoutX="124.0" layoutY="155.0" prefHeight="25.0" prefWidth="296.0" textFill="RED" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="345.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../icons/logo.png" />
-               </image>
-            </ImageView>
-
+            <Label fx:id="lbl_wrongpassword" prefHeight="25.0" prefWidth="296.0" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
          </children>
-      </Pane>
+      </GridPane>
 
    </children>
 </AnchorPane>

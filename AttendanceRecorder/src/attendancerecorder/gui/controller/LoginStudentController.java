@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
@@ -44,6 +45,8 @@ public class LoginStudentController implements Initializable {
     private JFXPasswordField txt_password;
     @FXML
     private Label lbl_wrongpassword;
+    @FXML
+    private GridPane gridpane;
 
     /**
      * Initializes the controller class.

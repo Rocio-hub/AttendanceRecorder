@@ -13,6 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
@@ -39,16 +41,23 @@ public class AddNewStudentController implements Initializable {
     private Label lbl_addEmail;
     @FXML
     private Label lbl_addPassword;
+    @FXML
+    private GridPane gridpane;
+    @FXML
+    private Label lbl_title;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         lbl_addFirstName.setVisible(false);
         lbl_addLastName.setVisible(false);
         lbl_addEmail.setVisible(false);
         lbl_addPassword.setVisible(false);
+
+
     }
 
     @FXML

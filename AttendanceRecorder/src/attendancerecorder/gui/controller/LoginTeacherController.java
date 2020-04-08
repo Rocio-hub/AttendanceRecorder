@@ -53,7 +53,6 @@ public class LoginTeacherController implements Initializable {
         //TODO
     }
 
-    @FXML
     private void mouse_login(MouseEvent event) {
         List<Teacher> teacherLst = teacherMng.getTeacherLoginData();
         for (Teacher teacher : teacherLst) {
