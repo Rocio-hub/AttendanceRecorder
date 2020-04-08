@@ -1,9 +1,9 @@
-
 package attendancerecorder.gui.controller;
 
 import attendancerecorder.bll.interfaces.ITeacherManager;
 import attendancerecorder.bll.managers.TeacherManager;
 import com.jfoenix.controls.JFXTextField;
+import com.microsoft.sqlserver.jdbc.StringUtils;
 import java.net.URL;
 import java.util.EventObject;
 import java.util.ResourceBundle;
@@ -19,8 +19,9 @@ import javafx.stage.Stage;
  * FXML Controller class
  */
 public class AddNewStudentController implements Initializable {
-    
+
     ITeacherManager teacherMng = new TeacherManager();
+    String firstName, lastName, email, password;
 
     @FXML
     private JFXTextField txtfield_firstName;
@@ -42,31 +43,58 @@ public class AddNewStudentController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        lbl_addFirstName.setVisible(false);
+        lbl_addLastName.setVisible(false);
+        lbl_addEmail.setVisible(false);
+        lbl_addPassword.setVisible(false);
+    }
 
     @FXML
     private void click_confirm(ActionEvent event) {
-        String firstName = txtfield_firstName.getText();
-        String lastName = txtfield_lastName.getText();
-        String email = txtfield_email.getText();
-        String password = txtfield_password.getText();
-        teacherMng.addNewStudent(firstName, lastName, email, password);
+        firstName = txtfield_firstName.getText();
+        lastName = txtfield_lastName.getText();
+        email = txtfield_email.getText();
+        password = txtfield_password.getText();
+        if (enableConfirmation()) {
+            teacherMng.addNewStudent(firstName, lastName, email, password);
+        }
     }
 
     @FXML
     private void mouse_confirm(MouseEvent event) {
-        Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
-        stage.close();
+        if (enableConfirmation()) {
+            Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
+            stage.close();
+        }
     }
-        
+
     @FXML
     private void click_cancel(ActionEvent event) {
         Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
         stage.close();
     }
-    
+
+    private boolean enableConfirmation() {
+        if (txtfield_firstName.getText().trim().equals("")){
+            lbl_addFirstName.setVisible(true);
+            return false;
+        }
+        if (txtfield_lastName.getText().trim().equals("")) {
+            lbl_addLastName.setVisible(true);
+            return false;
+        }
+        if (txtfield_email.getText().trim().equals("")) {
+            lbl_addEmail.setVisible(true);
+            return false;
+        }
+        if (txtfield_password.getText().trim().equals("")) {
+            lbl_addPassword.setVisible(true);
+            return false;
+        }
+        return true;
+
+    }
+
 }
