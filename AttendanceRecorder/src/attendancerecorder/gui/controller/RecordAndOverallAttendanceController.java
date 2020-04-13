@@ -104,7 +104,10 @@ public class RecordAndOverallAttendanceController implements Initializable {
         lbl_popup.setVisible(false);
         lbl_popup1.setVisible(false);
         lbl_popup2.setVisible(false);
+        datePicker_record.setEditable(false);
         initCoursesTable();
+        cb_absent.setDisable(true);
+        cb_present.setDisable(true);
     }
 
     private void initCoursesTable() {
@@ -319,6 +322,9 @@ public class RecordAndOverallAttendanceController implements Initializable {
 
     @FXML
     private void dp_hiding(Event event) {
+        cb_absent.setSelected(false);
+        cb_present.setSelected(false);
+        
         LocalDate chosenDate = datePicker_record.getValue();
         LocalDate today = getCurrentDate();
 
