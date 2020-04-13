@@ -165,9 +165,14 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     private void addNewAttendance() {
-        int status = 0;
+        int status = 1;
         String date = datePicker_record.getValue().toString();
         String message = null;
+        if(cb_absent.isSelected()){
+            status=0;
+            message = txt_absentMessage.getText();
+        } 
+        if(!getDayOfWeek().equals("SATURDAY")&&!getDayOfWeek().equals("SUNDAY")){
         if (studentMng.checkAlreadyExistingAttendance(idFromLogin, date)) {
             confirmationOverwritingAttendance(date, status, message);
         } else {
@@ -175,7 +180,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
             confirmationAttendanceAlert();
         }
     }
-
+    }
     private void initOverallChart() {
         float presentPercentage = 100 - updateAbsencePercentage();
         float absentPercentage = updateAbsencePercentage();
