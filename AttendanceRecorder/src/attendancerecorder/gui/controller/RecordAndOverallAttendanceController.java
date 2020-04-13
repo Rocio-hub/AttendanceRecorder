@@ -114,7 +114,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     private boolean enableConfirmation() {
-        if (datePicker_record.getValue() == null) {
+        if (datePicker_record.getValue() == null ) {
             lbl_popup.setVisible(true);
             return false;
         }
