@@ -9,7 +9,11 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.EventObject;
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +21,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,7 +37,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javax.swing.text.DateFormatter;
 
 /**
  * FXML Controller class
@@ -84,6 +91,8 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private Label lbl_name;
     @FXML
     private Label lbl_dayOfWeek;
+    @FXML
+    private GridPane gridpane;
 
     /**
      * Initializes the controller class.
@@ -213,7 +222,9 @@ public class RecordAndOverallAttendanceController implements Initializable {
 
     @FXML
     private void click_confirm(ActionEvent event) throws IOException {
-        if (enableConfirmation()) addNewAttendance();
+        if (enableConfirmation()) {
+            addNewAttendance();
+        }
     }
 
     @FXML
@@ -233,7 +244,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
         }
         alert.showAndWait();
         //Calls again the method that reads from DB, calculates the percentages and sets the Pie charts, as, by the time the alert is displayed, the DB has already be altered with the new recorded attendance and so the pie charts have different data than the one they had the first time they read.
-        initOverallChart(); 
+        initOverallChart();
     }
 
     //THERE MIGHT BE SOME CODE DOUBLED, CHECK IN THE addNewAttendance METHOD
@@ -281,14 +292,58 @@ public class RecordAndOverallAttendanceController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Change Password");
         stage.show();
+
     }
 
     public void getIsStudent(boolean isStudent) {
         this.isStudent = isStudent;
     }
-    public String getDayOfWeek(){
+
+    public String getDayOfWeek() {
         LocalDate ld = datePicker_record.getValue();
         String dayOfWeek = ld.getDayOfWeek().toString();
         return dayOfWeek;
     }
+
+    public LocalDate getCurrentDate() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate now = LocalDate.now();
+        return now;
+    }
+
+    @FXML
+    private void dp_hiding(Event event) {
+        LocalDate chosenDate = datePicker_record.getValue();
+        LocalDate today = getCurrentDate();
+
+        if (chosenDate == null || chosenDate.equals(today)) {
+            cb_absent.setDisable(false);
+            cb_present.setDisable(false);
+        } else {
+            cb_present.setDisable(true);
+            System.out.println(chosenDate.compareTo(today));
+
+            if (chosenDate.compareTo(today) > 0) {
+
+                cb_absent.setDisable(false);
+                cb_present.setDisable(true);
+            }
+            if (chosenDate.compareTo(today) < 0) {
+                cb_absent.setDisable(true);
+                cb_present.setDisable(true);
+//                } else {
+//                    cb_absent.setDisable(false);
+//                    cb_present.setDisable(false);
+//                }
+            }
+        }
+    }
+
+//    public Date getCurrentDate() {
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+//        Date date = new Date();
+//
+////    System.out.println(formatter.format(date));  
+//        return date.now();
+//    }
 }

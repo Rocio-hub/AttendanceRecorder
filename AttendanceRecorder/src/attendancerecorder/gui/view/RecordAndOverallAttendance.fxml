@@ -18,7 +18,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@../style/cascadeStyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendancerecorder.gui.controller.RecordAndOverallAttendanceController">
@@ -42,7 +41,7 @@
                           </rowConstraints>
                            <children>
                               <Label text="Please, select the date and your status" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                              <JFXDatePicker fx:id="datePicker_record" defaultColor="#b00202" prefHeight="22.0" prefWidth="246.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+                              <JFXDatePicker fx:id="datePicker_record" defaultColor="#b00202" onHiding="#dp_hiding" prefHeight="22.0" prefWidth="246.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
                               <JFXCheckBox fx:id="cb_present" onAction="#click_present" prefHeight="18.0" prefWidth="81.0" text="Present" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                  <effect>
                                     <Bloom />
@@ -58,8 +57,7 @@
                                     <TableColumn fx:id="tc_courses" prefWidth="155.0" text="Courses" />
                                  </columns>
                               </TableView>
-                              <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="261.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                              <JFXTextArea fx:id="txt_absentMessage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="172.0" prefWidth="421.0" promptText="Please, specify the reason for your absense" style="-fx-border-color: #000000; -fx-background-color: #ffffffff;" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                              <JFXTextArea fx:id="txt_absentMessage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="172.0" prefWidth="421.0" promptText="Please, specify the reason for your absense" style="-fx-border-color: #000000; -fx-background-color: #ffffffff;" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
