@@ -30,7 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * FXML Controller class
  */
 public class SummarizedAttendanceController implements Initializable {
-    
+
     //Instance for the business logic layer
     ITeacherManager teacherMng = new TeacherManager();
 
@@ -79,25 +79,25 @@ public class SummarizedAttendanceController implements Initializable {
         }
     }
 
-    public void setChartData(int mondayAbsence,int tuesdayAbsence, int wednesdayAbsence, int thursdayAbsence, int fridayAbsence) {
+    public void setChartData(int mondayAbsence, int tuesdayAbsence, int wednesdayAbsence, int thursdayAbsence, int fridayAbsence) {
         chart_weeklyAbsence.getData().clear();
-        int arrayForSorting[] ={mondayAbsence,tuesdayAbsence,wednesdayAbsence,thursdayAbsence,fridayAbsence};
+        int arrayForSorting[] = {mondayAbsence, tuesdayAbsence, wednesdayAbsence, thursdayAbsence, fridayAbsence};
         bubbleSort(arrayForSorting);
         numberAxis_daysAbsent.setAutoRanging(false); //Avoids the Y-Axis to decide by itself the tick amount between values
         numberAxis_daysAbsent.setTickUnit(1.0); //We set the tick to one
         numberAxis_daysAbsent.setLowerBound(0); //We set the lower bound to 0
-        numberAxis_daysAbsent.setUpperBound(arrayForSorting[0]+2); //We set the upper bound to the most absent day plus some margin
+        numberAxis_daysAbsent.setUpperBound(arrayForSorting[0] + 2); //We set the upper bound to the most absent day plus some margin
         numberAxis_daysAbsent.setLabel("Days of Absence");
         categoryAxis_weekDays.setCategories(FXCollections.<String>observableArrayList(Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")));
         categoryAxis_weekDays.setLabel("Weekdays");
-        XYChart.Series<String, Number> series1 = new XYChart.Series<>();
-        series1.setName("Absence");
-        series1.getData().add(new XYChart.Data<>("Monday", mondayAbsence));
-        series1.getData().add(new XYChart.Data<>("Tuesday", tuesdayAbsence));
-        series1.getData().add(new XYChart.Data<>("Wednesday", wednesdayAbsence));
-        series1.getData().add(new XYChart.Data<>("Thursday", thursdayAbsence));
-        series1.getData().add(new XYChart.Data<>("Friday", fridayAbsence));
-        chart_weeklyAbsence.getData().addAll(series1);
+        XYChart.Series<String, Number> seriesAbsence = new XYChart.Series<>();
+        seriesAbsence.setName("Absence");
+        seriesAbsence.getData().add(new XYChart.Data<>("Monday", mondayAbsence));
+        seriesAbsence.getData().add(new XYChart.Data<>("Tuesday", tuesdayAbsence));
+        seriesAbsence.getData().add(new XYChart.Data<>("Wednesday", wednesdayAbsence));
+        seriesAbsence.getData().add(new XYChart.Data<>("Thursday", thursdayAbsence));
+        seriesAbsence.getData().add(new XYChart.Data<>("Friday", fridayAbsence));
+        chart_weeklyAbsence.getData().addAll(seriesAbsence);
     }
 
     @FXML
@@ -109,26 +109,33 @@ public class SummarizedAttendanceController implements Initializable {
         thursdayAbsence = 0;
         fridayAbsence = 0;
         for (Student student : absentStudent) {
-            if(student.getDayOfWeek().equals("MONDAY")) mondayAbsence++;
-            else if (student.getDayOfWeek().equals("TUESDAY")) tuesdayAbsence++;
-            else if (student.getDayOfWeek().equals("WEDNESDAY")) wednesdayAbsence++;
-            else if (student.getDayOfWeek().equals("THURSDAY")) thursdayAbsence++;
-            else if (student.getDayOfWeek().equals("FRIDAY")) fridayAbsence++;
+            if (student.getDayOfWeek().equals("MONDAY")) {
+                mondayAbsence++;
+            } else if (student.getDayOfWeek().equals("TUESDAY")) {
+                tuesdayAbsence++;
+            } else if (student.getDayOfWeek().equals("WEDNESDAY")) {
+                wednesdayAbsence++;
+            } else if (student.getDayOfWeek().equals("THURSDAY")) {
+                thursdayAbsence++;
+            } else if (student.getDayOfWeek().equals("FRIDAY")) {
+                fridayAbsence++;
+            }
         }
-        setChartData( mondayAbsence,tuesdayAbsence,wednesdayAbsence,thursdayAbsence,fridayAbsence);
+        setChartData(mondayAbsence, tuesdayAbsence, wednesdayAbsence, thursdayAbsence, fridayAbsence);
     }
-      public void bubbleSort(int[] arr) {  
-        int n = arr.length;  
-        int temp = 0;  
-         for(int i=0; i < n; i++){  
-                 for(int j=1; j < (n-i); j++){  
-                          if(arr[j-1] < arr[j]){    
-                                 temp = arr[j-1];  
-                                 arr[j-1] = arr[j];  
-                                 arr[j] = temp;  
-                         }  
-                          
-                 }  
-         }
-      }
+
+    public void bubbleSort(int[] arr) {
+        int n = arr.length;
+        int temp = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 1; j < (n - i); j++) {
+                if (arr[j - 1] < arr[j]) {
+                    temp = arr[j - 1];
+                    arr[j - 1] = arr[j];
+                    arr[j] = temp;
+                }
+
+            }
+        }
+    }
 }
