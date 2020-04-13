@@ -168,11 +168,11 @@ public class RecordAndOverallAttendanceController implements Initializable {
         int status = 1;
         String date = datePicker_record.getValue().toString();
         String message = null;
-        if(cb_absent.isSelected()){
-            status=0;
+        if (cb_absent.isSelected()) {
+            status = 0;
             message = txt_absentMessage.getText();
-        } 
-        if(!getDayOfWeek().equals("SATURDAY")&&!getDayOfWeek().equals("SUNDAY")){
+        }
+
         if (studentMng.checkAlreadyExistingAttendance(idFromLogin, date)) {
             confirmationOverwritingAttendance(date, status, message);
         } else {
@@ -180,7 +180,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
             confirmationAttendanceAlert();
         }
     }
-    }
+
     private void initOverallChart() {
         float presentPercentage = 100 - updateAbsencePercentage();
         float absentPercentage = updateAbsencePercentage();
@@ -306,6 +306,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
 
     public String getDayOfWeek() {
         LocalDate ld = datePicker_record.getValue();
+        if (ld == null) return "";
         String dayOfWeek = ld.getDayOfWeek().toString();
         return dayOfWeek;
     }
@@ -322,33 +323,30 @@ public class RecordAndOverallAttendanceController implements Initializable {
         LocalDate today = getCurrentDate();
 
         if (chosenDate == null || chosenDate.equals(today)) {
-            cb_absent.setDisable(false);
-            cb_present.setDisable(false);
+            if (!getDayOfWeek().equals("SATURDAY") && !getDayOfWeek().equals("SUNDAY")) {
+                cb_absent.setDisable(false);
+                cb_present.setDisable(false);
+            } else {
+                cb_absent.setDisable(true);
+                cb_present.setDisable(true);
+            }
         } else {
             cb_present.setDisable(true);
-            System.out.println(chosenDate.compareTo(today));
+           
 
             if (chosenDate.compareTo(today) > 0) {
-
-                cb_absent.setDisable(false);
-                cb_present.setDisable(true);
+                if (!getDayOfWeek().equals("SATURDAY") && !getDayOfWeek().equals("SUNDAY")) {
+                    cb_absent.setDisable(false);
+                    cb_present.setDisable(true);
+                } else {
+                    cb_absent.setDisable(true);
+                    cb_present.setDisable(true);
+                }
             }
             if (chosenDate.compareTo(today) < 0) {
                 cb_absent.setDisable(true);
                 cb_present.setDisable(true);
-//                } else {
-//                    cb_absent.setDisable(false);
-//                    cb_present.setDisable(false);
-//                }
             }
         }
     }
-
-//    public Date getCurrentDate() {
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//        Date date = new Date();
-//
-////    System.out.println(formatter.format(date));  
-//        return date.now();
-//    }
 }
