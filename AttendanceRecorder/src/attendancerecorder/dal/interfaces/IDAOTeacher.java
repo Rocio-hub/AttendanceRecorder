@@ -1,4 +1,3 @@
-
 package attendancerecorder.dal.interfaces;
 
 import attendancerecorder.be.Student;
@@ -18,9 +17,13 @@ public interface IDAOTeacher {
     public float getAbsenceById(int id);
 
     public void updateTeacherPasswordById(int id, String newPassword);
-    
+
     public void addNewStudent(String firstName, String lastName, String email, String password);
-    
+
     public List<Student> getDaysOfAbsenceById(int id);
+
+    public List<Student> getAllAttendancesByDate(String date);
+
+    public void insertNewStatus(List<Student> studentLst);
 
 }

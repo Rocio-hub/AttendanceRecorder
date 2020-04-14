@@ -126,6 +126,14 @@ public class Student {
         this.dayOfWeek=dayOfWeek;
     }
 
+    public Student(int id, int status, String dayOfWeek) {
+        this.id = id;
+        this.status = status;
+        this.dayOfWeek = dayOfWeek;        
+    }
+    
+    
+
     //ToString
     
     @Override

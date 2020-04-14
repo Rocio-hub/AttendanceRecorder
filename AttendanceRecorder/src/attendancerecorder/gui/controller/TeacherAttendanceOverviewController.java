@@ -9,7 +9,10 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EventObject;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -136,7 +139,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
         getAbsenceById(tc_absent.getSelectionModel().getSelectedItem().getId());
     }
 
-    
     /*WORKING ALERT. COMMENTED BC ANNOYING
       private void absentStudentsAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -153,7 +155,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
         alert.setContentText(list.toString());
         alert.showAndWait();
     }*/
-    
     private void getAbsenceById(int id) {
         float absenceById = teacherMng.getAbsenceById(id);
         lbl_percentageOfAbsence.setText(String.valueOf(absenceById));
@@ -199,11 +200,37 @@ public class TeacherAttendanceOverviewController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/AddNewStudent.fxml"));
         Parent root = loader.load();
 
-
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Add a new student");
         stage.show();
+    }
+
+    @FXML
+    private void click_fromNullToAbsent(ActionEvent event) {
+        List<Student> studentLst = teacherMng.getAllStudentsForAbsenceOverview();
+//        String today = getCurrentDate();
+        List<Student> studentByDateLst = teacherMng.getAllAttendancesByDate(getCurrentDate());
+        int num[] = new int[studentByDateLst.size()];
+        int number = 0;
+        for (Student student : studentByDateLst) {
+            num[number] = student.getId();
+            number+=1;
+        }
+        for (Student student : studentLst){
+            for(int i =0; i<studentByDateLst.size();i++){
+                if(student.getId() != num[i]){
+                    studentLst.remove(student);
+                } 
+            }                    
+        }
+        teacherMng.insertNewStatus(studentLst);
+    }
+
+    public String getCurrentDate() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate now = LocalDate.now();
+        return now.toString();
     }
 }

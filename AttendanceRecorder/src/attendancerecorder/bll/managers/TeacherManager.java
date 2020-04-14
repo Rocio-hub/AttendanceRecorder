@@ -50,5 +50,17 @@ public class TeacherManager implements ITeacherManager {
      public List<Student> getDaysOfAbsenceById(int id){
          return daoTeacher.getDaysOfAbsenceById(id);
      }
+
+    @Override
+    public List<Student> getAllAttendancesByDate(String date) {
+        return daoTeacher.getAllAttendancesByDate(date);
+    }
+
+    @Override
+    public void insertNewStatus(List<Student> studentLst) {
+        daoTeacher.insertNewStatus(studentLst);
+    }
+    
+    
     
 }
