@@ -225,29 +225,8 @@ public class TeacherAttendanceOverviewController implements Initializable {
                 notRecordedList.add(studentId);
             }
         }
-        teacherMng.insertNewStatusII(notRecordedList);
+        teacherMng.insertNewStatus(notRecordedList);
         
-        
-               
-//List<Student> studentLst = teacherMng.getAllStudentsForAbsenceOverview();
-       
-//        String today = getCurrentDate();
-  //      List<Student> studentByDateLst = teacherMng.getAllAttendancesByDate(getCurrentDate());
-        /*int num[] = new int[studentByDateLst.size()];
-        int number = 0;
-        for (Student student : studentByDateLst) {
-            num[number] = student.getId();
-            number+=1;
-        }
-        for (Student student : studentLst){
-            for(int i =0; i<studentByDateLst.size();i++){
-                if(student.getId() != num[i]){
-                    studentLst.remove(student);
-                } 
-            }                    
-        }
-        teacherMng.insertNewStatus(studentLst);
-*/
     }
 
     public String getCurrentDate() {

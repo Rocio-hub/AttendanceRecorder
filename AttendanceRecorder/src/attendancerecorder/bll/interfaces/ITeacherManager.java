@@ -23,15 +23,11 @@ public interface ITeacherManager {
     
     public List<Student> getDaysOfAbsenceById(int id);
     
-    public List<Student> getAllAttendancesByDate(String date);
-    
-    public void insertNewStatus(List<Student> studentLst);
-    
     public List<Integer> getAllStudentsIds();
     
     public List<Integer> getAllAttendancesIdsByDate(String date);
     
-    public void insertNewStatusII(List<Integer> idList);
+    public void insertNewStatus(List<Integer> idList);
          
 
 }

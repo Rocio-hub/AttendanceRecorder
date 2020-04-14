@@ -238,49 +238,7 @@ public class DAOTeacher implements IDAOTeacher {
         return null;
     }
 
-    @Override
-    public List<Student> getAllAttendancesByDate(String date) {
-        try ( Connection con = ds.getConnection()) {
-            List<Student> studentLst = new ArrayList();
-            String sql = "SELECT studentId, status, date FROM Attendance WHERE date = ?";
-            PreparedStatement pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, date);
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                int studentId = rs.getInt("studentId");
-                int status = rs.getInt("status");
-                String newDate = rs.getString("date");
-                Student student = new Student(studentId, status, newDate);
-                studentLst.add(student);
-            }
-            return studentLst;
-        } catch (SQLServerException sqlse) {
-            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, sqlse);
-        } catch (SQLException ex) {
-            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
 
-    @Override
-    public void insertNewStatus(List<Student> studentLst) {
-        try ( Connection con = ds.getConnection()) {
-            String sql = "INSERT INTO Attendance (studentId, status, date, dayOfWeek) values (?,?,?,?)";
-            PreparedStatement pstmt = con.prepareStatement(sql);     
-                for (Student student : studentLst) {
-                    pstmt.setInt(1, student.getId());
-                    pstmt.setInt(2, 0);
-                    pstmt.setString(3, getCurrentDate().toString());
-                    pstmt.setString(4, getCurrentDate().getDayOfWeek().toString());
-                    pstmt.executeUpdate();
-            }
-        } catch (SQLServerException ex) {
-            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
     public List<Integer> getAllStudentsIds() {
         try ( Connection con = ds.getConnection()) {
             String sql = "SELECT id FROM Students";
@@ -321,7 +279,7 @@ public class DAOTeacher implements IDAOTeacher {
         }
         return null;
     }
-     public void insertNewStatusII(List<Integer> idList) {
+     public void insertNewStatus(List<Integer> idList) {
         try ( Connection con = ds.getConnection()) {
             String sql = "INSERT INTO Attendance (studentId, status, date, dayOfWeek) values (?,?,?,?)";
             PreparedStatement pstmt = con.prepareStatement(sql);     

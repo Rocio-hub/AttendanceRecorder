@@ -52,16 +52,6 @@ public class TeacherManager implements ITeacherManager {
      }
 
     @Override
-    public List<Student> getAllAttendancesByDate(String date) {
-        return daoTeacher.getAllAttendancesByDate(date);
-    }
-
-    @Override
-    public void insertNewStatus(List<Student> studentLst) {
-        daoTeacher.insertNewStatus(studentLst);
-    }
-
-    @Override
     public List<Integer> getAllStudentsIds() {
       return daoTeacher.getAllStudentsIds();
     }
@@ -72,7 +62,7 @@ public class TeacherManager implements ITeacherManager {
     }
 
     @Override
-    public void insertNewStatusII(List<Integer> idList) {
+    public void insertNewStatus(List<Integer> idList) {
         daoTeacher.insertNewStatusII(idList);
     }
     
