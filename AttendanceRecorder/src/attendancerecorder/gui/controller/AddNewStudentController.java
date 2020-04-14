@@ -1,9 +1,8 @@
 package attendancerecorder.gui.controller;
 
-import attendancerecorder.bll.interfaces.ITeacherManager;
-import attendancerecorder.bll.managers.TeacherManager;
+import attendancerecorder.bll.interfaces.IbllFacade;
+import attendancerecorder.bll.managers.bllFacade;
 import com.jfoenix.controls.JFXTextField;
-import com.microsoft.sqlserver.jdbc.StringUtils;
 import java.net.URL;
 import java.util.EventObject;
 import java.util.ResourceBundle;
@@ -13,7 +12,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -22,7 +20,7 @@ import javafx.stage.Stage;
  */
 public class AddNewStudentController implements Initializable {
 
-    ITeacherManager teacherMng = new TeacherManager();
+    IbllFacade teacherMng = new bllFacade();
     String firstName, lastName, email, password;
 
     @FXML

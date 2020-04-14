@@ -1,18 +1,14 @@
 package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Student;
-import attendancerecorder.bll.interfaces.IStudentManager;
-import attendancerecorder.bll.interfaces.ITeacherManager;
-import attendancerecorder.bll.managers.StudentManager;
-import attendancerecorder.bll.managers.TeacherManager;
-import com.jfoenix.controls.JFXButton;
+import attendancerecorder.bll.interfaces.IbllFacade;
+import attendancerecorder.bll.managers.bllFacade;
 import com.jfoenix.controls.JFXDatePicker;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EventObject;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -39,8 +35,8 @@ import javafx.stage.Stage;
 public class TeacherAttendanceOverviewController implements Initializable {
 
     //Instances for the business logic layer
-    IStudentManager studentMng = new StudentManager();
-    ITeacherManager teacherMng = new TeacherManager();
+    IbllFacade  studentMng = new bllFacade();
+    IbllFacade  teacherMng = new bllFacade();
 
     //Needed variables
     private ObservableList<Student> presentStudents;
