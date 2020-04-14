@@ -209,10 +209,31 @@ public class TeacherAttendanceOverviewController implements Initializable {
 
     @FXML
     private void click_fromNullToAbsent(ActionEvent event) {
-        List<Student> studentLst = teacherMng.getAllStudentsForAbsenceOverview();
+        List<Integer> allIdList = teacherMng.getAllStudentsIds();
+        List<Integer> recordedIdList = teacherMng.getAllAttendancesIdsByDate(getCurrentDate());
+        List<Integer> notRecordedList = new ArrayList();
+        boolean found = false;
+        for (Integer studentId : allIdList) {
+            for (Integer recordedId : recordedIdList) {
+                if(studentId == recordedId){
+                    found = true;
+                    break;
+                }
+                else found=false;
+            }
+            if (!found){
+                notRecordedList.add(studentId);
+            }
+        }
+        teacherMng.insertNewStatusII(notRecordedList);
+        
+        
+               
+//List<Student> studentLst = teacherMng.getAllStudentsForAbsenceOverview();
+       
 //        String today = getCurrentDate();
-        List<Student> studentByDateLst = teacherMng.getAllAttendancesByDate(getCurrentDate());
-        int num[] = new int[studentByDateLst.size()];
+  //      List<Student> studentByDateLst = teacherMng.getAllAttendancesByDate(getCurrentDate());
+        /*int num[] = new int[studentByDateLst.size()];
         int number = 0;
         for (Student student : studentByDateLst) {
             num[number] = student.getId();
@@ -226,6 +247,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
             }                    
         }
         teacherMng.insertNewStatus(studentLst);
+*/
     }
 
     public String getCurrentDate() {

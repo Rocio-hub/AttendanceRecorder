@@ -281,6 +281,64 @@ public class DAOTeacher implements IDAOTeacher {
         }
 
     }
+    public List<Integer> getAllStudentsIds() {
+        try ( Connection con = ds.getConnection()) {
+            String sql = "SELECT id FROM Students";
+            List<Integer> idList = new ArrayList();
+            int i=0;
+
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+               idList.add(id);
+            }
+
+            return idList;
+        } catch (SQLServerException sqlse) {
+            Logger.getLogger(DAOTeacher.class.getName()).log(Level.SEVERE, null, sqlse);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOTeacher.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public List<Integer> getAllAttendancesIdsByDate(String date) {
+        try ( Connection con = ds.getConnection()) {
+            List<Integer> attendanceIdList = new ArrayList();
+            String sql = "SELECT studentId FROM Attendance WHERE date = ?";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, date);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int studentId = rs.getInt("studentId");
+                attendanceIdList.add(studentId);
+            }
+            return attendanceIdList;
+        } catch (SQLServerException sqlse) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, sqlse);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+     public void insertNewStatusII(List<Integer> idList) {
+        try ( Connection con = ds.getConnection()) {
+            String sql = "INSERT INTO Attendance (studentId, status, date, dayOfWeek) values (?,?,?,?)";
+            PreparedStatement pstmt = con.prepareStatement(sql);     
+                for (Integer id : idList) {
+                    pstmt.setInt(1, id);
+                    pstmt.setInt(2, 0);
+                    pstmt.setString(3, getCurrentDate().toString());
+                    pstmt.setString(4, getCurrentDate().getDayOfWeek().toString());
+                    pstmt.executeUpdate();
+            }
+        } catch (SQLServerException ex) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
     public LocalDate getCurrentDate() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
