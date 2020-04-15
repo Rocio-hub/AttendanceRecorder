@@ -30,6 +30,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -41,7 +42,7 @@ import javafx.stage.Stage;
 public class TeacherAttendanceOverviewController implements Initializable {
 
     //Instances for the business logic layer
-   IbllFacade bllFacade = new bllFacade();
+    IbllFacade bllFacade = new bllFacade();
 
     //Needed variables
     private ObservableList<Student> presentStudents;
@@ -52,8 +53,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
 
     @FXML
     private AnchorPane pane;
-    @FXML
-    private Label className;
     @FXML
     private Label text2;
     @FXML
@@ -68,21 +67,27 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private Label lbl_teacherName;
     @FXML
     private TableColumn<Student, String> tableview_absent;
-    @FXML
-    private Label lbl_messageForAbsence;
+//    private Label lbl_messageForAbsence;
     @FXML
     private TableView<Student> tc_present;
     @FXML
     private TableView<Student> tc_absent;
     @FXML
     private Label lbl_percentageOfAbsence;
+    @FXML
+    private JFXButton btn_small;
+    @FXML
+    private JFXButton btn_smallFontSize;
+    @FXML
+    private TextArea textarea;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //labels are not visible at first and alert is set
         lbl_popup.setVisible(false);
         lbl_reasonForAbsence.setVisible(false);
-        lbl_messageForAbsence.setVisible(false);
+        textarea.setVisible(false);
+        textarea.setEditable(false);
         lbl_percentageOfAbsence.setVisible(true);
         text2.setVisible(false);
 //        absentStudentsAlert();
@@ -113,11 +118,11 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private void click_showStudentReason(ActionEvent event) {
         if (tc_absent.getSelectionModel().getSelectedItem() != null) {
             lbl_reasonForAbsence.setVisible(true);
-            lbl_messageForAbsence.setVisible(true);
-            lbl_messageForAbsence.setText(tc_absent.getSelectionModel().getSelectedItem().getMessage());
+            textarea.setVisible(true);
+            textarea.setText(tc_absent.getSelectionModel().getSelectedItem().getMessage());
         } else {
             lbl_reasonForAbsence.setVisible(false);
-            lbl_messageForAbsence.setVisible(false);
+            textarea.setVisible(false);
         }
     }
 
@@ -125,7 +130,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private void click_selectedPresentStudent(MouseEvent event) {
         tc_absent.getSelectionModel().clearSelection();
         lbl_reasonForAbsence.setVisible(false);
-        lbl_messageForAbsence.setVisible(false);
+        textarea.setVisible(false);
         text2.setVisible(true);
         getAbsenceById(tc_present.getSelectionModel().getSelectedItem().getId());
     }
@@ -134,9 +139,9 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private void click_selectedAbsentStudent(MouseEvent event) {
         tc_present.getSelectionModel().clearSelection();
         lbl_reasonForAbsence.setVisible(true);
-        lbl_messageForAbsence.setVisible(true);
+        textarea.setVisible(true);
         text2.setVisible(true);
-        lbl_messageForAbsence.setText(tc_absent.getSelectionModel().getSelectedItem().getMessage());
+        textarea.setText(tc_absent.getSelectionModel().getSelectedItem().getMessage());
         getAbsenceById(tc_absent.getSelectionModel().getSelectedItem().getId());
     }
 
@@ -216,18 +221,19 @@ public class TeacherAttendanceOverviewController implements Initializable {
         boolean found = false;
         for (Integer studentId : allIdList) {
             for (Integer recordedId : recordedIdList) {
-                if(studentId == recordedId){
+                if (studentId == recordedId) {
                     found = true;
                     break;
+                } else {
+                    found = false;
                 }
-                else found=false;
             }
-            if (!found){
+            if (!found) {
                 notRecordedList.add(studentId);
             }
         }
         bllFacade.insertNewStatus(notRecordedList);
-        
+
     }
 
     public String getCurrentDate() {

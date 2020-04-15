@@ -49,6 +49,8 @@ public class LoginStudentController implements Initializable {
     private Label lbl_wrongpassword;
     @FXML
     private GridPane gridpane;
+    @FXML
+    private Label lbl_title;
 
     /**
      * Initializes the controller class.

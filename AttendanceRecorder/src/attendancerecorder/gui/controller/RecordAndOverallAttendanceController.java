@@ -38,6 +38,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -70,7 +71,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private TableColumn<Course, String> tc_courses;
     @FXML
     private Label lbl_popup;
-    @FXML
     private Label lbl_popup1;
     @FXML
     private PieChart overAllChart;
@@ -83,13 +83,9 @@ public class RecordAndOverallAttendanceController implements Initializable {
     @FXML
     private JFXDatePicker datePicker_sort;
     @FXML
-    private Label lbl_absentMessage;
-    @FXML
     private Label lbl_presentPercentage;
     @FXML
     private Label lbl_absentPercentage;
-    @FXML
-    private Label lbl_dayOfWeek;
     @FXML
     private GridPane gridpane;
     @FXML
@@ -98,6 +94,12 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private Label lbl_smallTitle;
     @FXML
     private JFXButton btn_small;
+    @FXML
+    private TextArea textarea;
+    @FXML
+    private Label lbl1;
+    @FXML
+    private Label lbl2;
 
     /**
      * Initializes the controller class.
@@ -105,14 +107,16 @@ public class RecordAndOverallAttendanceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //labels are not visible at first and the table is filled
+        initCoursesTable();
         txt_absentMessage.visibleProperty().set(false);
         lbl_popup.setVisible(false);
-        lbl_popup1.setVisible(false);
-        //lbl_popup2.setVisible(false);
         datePicker_record.setEditable(false);
-        initCoursesTable();
         cb_absent.setDisable(true);
         cb_present.setDisable(true);
+        lbl1.setVisible(false);
+        lbl2.setVisible(false);
+        textarea.setVisible(false);
+        textarea.setEditable(false);
     }
 
     private void initCoursesTable() {
@@ -122,7 +126,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     private boolean enableConfirmation() {
-        if (datePicker_record.getValue() == null ) {
+        if (datePicker_record.getValue() == null) {
             lbl_popup.setVisible(true);
             return false;
         }
@@ -151,13 +155,19 @@ public class RecordAndOverallAttendanceController implements Initializable {
 
     @FXML
     private void click_search(ActionEvent event) {
+        lbl1.setVisible(true);
+
         String date = datePicker_sort.getValue().toString();
         Student student = bllFacade.getReasonForAbsence(idFromLogin, date);
-        lbl_absentMessage.setText(student.getMessage());
+        textarea.setText(student.getMessage());
         if (student.getStatus() == 0) {
             lbl_showStatus.setText("ABSENT");
+            lbl2.setVisible(true);
+            textarea.setVisible(true);
         } else {
             lbl_showStatus.setText("PRESENT");
+            lbl2.setVisible(false);
+            textarea.setVisible(false);
         }
     }
 
@@ -314,7 +324,9 @@ public class RecordAndOverallAttendanceController implements Initializable {
 
     public String getDayOfWeek() {
         LocalDate ld = datePicker_record.getValue();
-        if (ld == null) return "";
+        if (ld == null) {
+            return "";
+        }
         String dayOfWeek = ld.getDayOfWeek().toString();
         return dayOfWeek;
     }
@@ -329,7 +341,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private void dp_hiding(Event event) {
         cb_absent.setSelected(false);
         cb_present.setSelected(false);
-        
+
         LocalDate chosenDate = datePicker_record.getValue();
         LocalDate today = getCurrentDate();
 
@@ -343,7 +355,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
             }
         } else {
             cb_present.setDisable(true);
-           
 
             if (chosenDate.compareTo(today) > 0) {
                 if (!getDayOfWeek().equals("SATURDAY") && !getDayOfWeek().equals("SUNDAY")) {

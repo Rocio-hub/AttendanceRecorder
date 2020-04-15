@@ -26,7 +26,7 @@ public class AttendanceRecorder extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
-        stage.setTitle("Welcome Window");
+        stage.setTitle("Attendance Recorder");
         stage.show();
     }
 

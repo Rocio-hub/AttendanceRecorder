@@ -40,7 +40,7 @@
             <JFXPasswordField fx:id="txt_password" labelFloat="true" prefHeight="40.0" prefWidth="200.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
             <Label fx:id="lbl_title" text="Hello, Student!" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
 
-            <Label id="lbl_red" fx:id="lbl_wrongpassword" text="Wrong e-mail or password" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Label id="lbl_red" fx:id="lbl_wrongpassword" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <image>
                   <Image url="@../style/easv-logo.png" />

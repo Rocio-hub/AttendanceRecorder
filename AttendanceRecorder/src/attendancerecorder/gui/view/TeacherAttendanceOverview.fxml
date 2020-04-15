@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -46,8 +47,11 @@
             </TableView>
             <Label fx:id="text2" text="Total absence percentage:       %" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
             <Label fx:id="lbl_percentageOfAbsence" prefHeight="25.0" prefWidth="45.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <JFXDatePicker fx:id="datePicker" defaultColor="#c10d0e" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Label fx:id="lbl_popup" text="Please, select the date" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <JFXDatePicker fx:id="datePicker" defaultColor="#c10d0e" prefHeight="28.0" prefWidth="226.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin></JFXDatePicker>
+            <Label id="lbl_red" fx:id="lbl_popup" text="Please, select the date" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
             <TableView fx:id="tc_absent" onMouseClicked="#click_selectedAbsentStudent" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3">
                <columns>
                   <TableColumn fx:id="tableview_absent" prefWidth="75.0" text="Absent" />
@@ -59,21 +63,16 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </TableView>
-            <Label fx:id="lbl_reasonForAbsence" text="Reason For Absence:" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Label fx:id="lbl_reasonForAbsence" text="Reason For Absence:" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin></Label>
-            <Label fx:id="lbl_messageForAbsence" prefHeight="148.0" prefWidth="403.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets left="10.0" />
-               </GridPane.margin>
-            </Label>
             <Label text="CS_2019B" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets left="5.0" top="5.0" />
                </GridPane.margin>
             </Label>
-            <JFXButton fx:id="btn_small" onAction="#click_search" text="Search" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <JFXButton fx:id="btn_small" onAction="#click_search" text="Search" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <font>
                   <Font size="8.0" />
                </font>
@@ -83,8 +82,8 @@
             </JFXButton>
             <JFXButton fx:id="btn_smallFontSize" alignment="CENTER" contentDisplay="RIGHT" onAction="#click_changePassword" ripplerFill="#c91212" text="Change password" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
             <JFXButton fx:id="btn_smallFontSize" alignment="CENTER" contentDisplay="RIGHT" onAction="#click_addNewStudent" prefHeight="37.0" prefWidth="141.0" text="Add new student" GridPane.rowIndex="4" />
-            <JFXButton fx:id="btn_smallFontSize" alignment="CENTER" contentDisplay="RIGHT" onAction="#click_summarizedAttendance" prefHeight="37.0" prefWidth="155.0" text="See summarized" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <JFXButton fx:id="btn_smallFontSize" alignment="CENTER" contentDisplay="RIGHT" onAction="#click_fromNullToAbsent" text="Set null attendances" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+            <JFXButton fx:id="btn_smallFontSize" alignment="CENTER" contentDisplay="RIGHT" onAction="#click_summarizedAttendance" prefHeight="37.0" prefWidth="155.0" text="See summarized" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <JFXButton fx:id="btn_smallFontSize" alignment="CENTER" contentDisplay="RIGHT" onAction="#click_fromNullToAbsent" text="Set null attendances" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
             <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <image>
                   <Image url="@../style/easv-logo.png" />
@@ -94,6 +93,11 @@
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin></Label>
+            <TextArea fx:id="textarea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </TextArea>
          </children>
       </GridPane>
    </children>
