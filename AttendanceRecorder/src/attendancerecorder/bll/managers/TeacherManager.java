@@ -63,7 +63,7 @@ public class TeacherManager implements ITeacherManager {
 
     @Override
     public void insertNewStatus(List<Integer> idList) {
-        daoTeacher.insertNewStatusII(idList);
+        daoTeacher.insertNewStatus(idList);
     }
     
     

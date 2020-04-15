@@ -13,6 +13,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -40,17 +42,31 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
+                              <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                                 <image>
+                                    <Image url="@../style/easv-logo.png" />
+                                 </image>
+                              </ImageView>
                               <Label text="Please, select the date and your status" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                              <JFXDatePicker fx:id="datePicker_record" defaultColor="#b00202" onHiding="#dp_hiding" prefHeight="22.0" prefWidth="246.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
-                              <JFXCheckBox fx:id="cb_present" onAction="#click_present" prefHeight="18.0" prefWidth="81.0" text="Present" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                              <JFXDatePicker fx:id="datePicker_record" defaultColor="#b00202" onHiding="#dp_hiding" prefHeight="28.0" prefWidth="325.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                                 <GridPane.margin>
+                                    <Insets right="20.0" />
+                                 </GridPane.margin></JFXDatePicker>
+                              <JFXCheckBox fx:id="cb_present" checkedColor="#0c904e" onAction="#click_present" text="Present" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                  <effect>
                                     <Bloom />
                                  </effect>
+                                 <font>
+                                    <Font name="Courier Prime Regular" size="15.0" />
+                                 </font>
                               </JFXCheckBox>
-                              <JFXCheckBox fx:id="cb_absent" onAction="#click_absent" prefHeight="26.0" prefWidth="95.0" text="Absent" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                              <JFXCheckBox fx:id="cb_absent" checkedColor="#9c1010" onAction="#click_absent" text="Absent" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                  <effect>
                                     <Bloom />
                                  </effect>
+                                 <font>
+                                    <Font name="Courier Prime Regular" size="15.0" />
+                                 </font>
                               </JFXCheckBox>
                               <TableView fx:id="tv_courses" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="156.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                                  <columns>
@@ -63,14 +79,10 @@
                                  </font>
                               </JFXTextArea>
                               <JFXButton onAction="#click_confirm" onMouseClicked="#mouse_confirm" style="-fx-border-color: #000000;" text="Confirm" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-                              <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
-                                 <children>
-                                    <Label fx:id="lbl_name" alignment="TOP_CENTER" layoutX="91.0" layoutY="49.0" text="NAME OF STUDENT" />
-                                 </children>
-                              </Pane>
+                              <Pane GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
                               <Label fx:id="lbl_popup" text="Please, select the date" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                               <Label fx:id="lbl_popup1" text="Please, select the status" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-                              <Label fx:id="lbl_popup2" text="Please, select the course(s)" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                              <Label fx:id="lbl_title" alignment="TOP_CENTER" text="NAME OF STUDENT" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                            </children>
                         </GridPane>
                      </children>
@@ -98,10 +110,15 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <PieChart fx:id="overAllChart" title="Overall Absence" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="3" />
-                                    <Label fx:id="lbl_presentPercentage" prefHeight="17.0" prefWidth="64.0" text="LABEL 1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                    <PieChart fx:id="overAllChart" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="3" />
+                                    <Label fx:id="lbl_presentPercentage" text="LABEL 1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                                     <Label fx:id="lbl_absentPercentage" prefHeight="17.0" prefWidth="66.0" text="LABEL 2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                                     <JFXButton alignment="TOP_RIGHT" onAction="#click_changePassword" text="Change password" GridPane.rowIndex="6" />
+                                    <Label fx:id="lbl_smallTitle" text="Overall Attendance" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                                       <GridPane.margin>
+                                          <Insets top="20.0" />
+                                       </GridPane.margin>
+                                    </Label>
                                  </children>
                               </GridPane>
                               <GridPane>
@@ -116,14 +133,17 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <JFXDatePicker fx:id="datePicker_sort" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" />
-                                    <Label prefHeight="32.0" prefWidth="87.0" text="Sort by date" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                                    <JFXDatePicker fx:id="datePicker_sort" defaultColor="#b00202" prefWidth="260.0" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                                       <GridPane.margin>
+                                          <Insets left="20.0" />
+                                       </GridPane.margin></JFXDatePicker>
+                                    <Label fx:id="lbl_smallTitle" text="Sort by date" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                                        <padding>
                                           <Insets top="15.0" />
                                        </padding>
                                     </Label>
                                     <Label fx:id="lbl_showStatus" text="Status" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                    <JFXButton onAction="#click_search" text="Search" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                                    <JFXButton fx:id="btn_small" onAction="#click_search" text="Search" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
                                     <JFXButton buttonType="RAISED" onAction="#clickClose" ripplerFill="#fff379" text="Close" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
                                     <Label fx:id="lbl_absentMessage" text="Message" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                                     <Label fx:id="lbl_dayOfWeek" />

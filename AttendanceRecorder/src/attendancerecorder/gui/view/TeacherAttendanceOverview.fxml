@@ -25,7 +25,6 @@
             <Label fx:id="lbl_messageForAbsence" layoutX="359.0" layoutY="345.0" prefHeight="91.0" prefWidth="339.0" stylesheets="@TeacherAttendanceOverview.css" />
             <Label fx:id="text2" layoutX="333.0" layoutY="483.0" prefHeight="17.0" prefWidth="281.0" text="Total absence percentage:       %" />
             <Label fx:id="lbl_percentageOfAbsence" layoutX="526.0" layoutY="508.0" prefHeight="25.0" prefWidth="52.0" />
-            <Label fx:id="lbl_reasonForAbsence" layoutX="371.0" layoutY="314.0" stylesheets="@TeacherAttendanceOverview.css" text="Reason For Absence:" />
             <Label layoutX="327.0" layoutY="38.0" prefHeight="30.0" prefWidth="69.0" text="Hello,">
                <font>
                   <Font size="14.0" />
@@ -51,6 +50,7 @@
             <JFXButton layoutX="102.0" layoutY="75.0" onAction="#click_changePassword" text="Change password" />
             <JFXButton layoutX="606.0" layoutY="521.0" onAction="#click_addNewStudent" text="add new student..." />
             <JFXButton layoutX="552.0" layoutY="62.0" onAction="#click_fromNullToAbsent" text="el de que todos los null sean absent" />
+            <Label fx:id="lbl_reasonForAbsence" layoutX="419.0" layoutY="276.0" text="Reason For Absence:" />
          </children>
       </AnchorPane>
    </children>

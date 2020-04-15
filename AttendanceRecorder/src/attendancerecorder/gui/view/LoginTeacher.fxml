@@ -5,6 +5,8 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -29,15 +31,20 @@
             <JFXTextField fx:id="txt_email" alignment="TOP_LEFT" labelFloat="true" prefHeight="40.0" prefWidth="200.0" promptText="E-mail" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
 
             <JFXPasswordField fx:id="txt_password" alignment="TOP_LEFT" labelFloat="true" prefHeight="40.0" prefWidth="200.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-            <Label text="Hello, Teacher!" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Label fx:id="lbl_title" text="Hello, Teacher!" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
             <Label fx:id="lbl_wrongpassword" prefHeight="25.0" prefWidth="92.0" textFill="RED" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <font>
                   <Font size="9.0" />
                </font></Label>
-            <JFXButton fx:id="btn_login" onAction="#click_login" prefHeight="37.0" prefWidth="64.0" text="Log in" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+            <JFXButton fx:id="btn_login" onAction="#click_login" text="Log in" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                <padding>
                   <Insets bottom="7.0" right="7.0" />
                </padding></JFXButton>
+            <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <image>
+                  <Image url="@../style/easv-logo.png" />
+               </image>
+            </ImageView>
          </children>
       </GridPane>
    </children>
