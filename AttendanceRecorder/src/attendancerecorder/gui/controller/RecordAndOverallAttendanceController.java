@@ -11,7 +11,11 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import java.io.IOException;
+import static java.lang.Float.parseFloat;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -200,16 +204,16 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     private void initOverallChart() {
-        float presentPercentage = 100 - updateAbsencePercentage();
-        float absentPercentage = updateAbsencePercentage();
+        float presentPercentage = (float) (Math.round((100 - updateAbsencePercentage()) * 100.0) / 100.0);
+        float absentPercentage = (float) (Math.round(updateAbsencePercentage() * 100.0) / 100.0);
         ObservableList<PieChart.Data> overallChartData
                 = FXCollections.observableArrayList(
                         new PieChart.Data("Present", presentPercentage),
                         new PieChart.Data("Absent", absentPercentage));
         overAllChart.setData(overallChartData);
 
-        lbl_absentPercentage.setText(Double.toString(absentPercentage));
-        lbl_presentPercentage.setText(Double.toString(presentPercentage));
+        lbl_absentPercentage.setText(Float.toString(absentPercentage));
+        lbl_presentPercentage.setText(Float.toString(presentPercentage));
     }
 
     private float updateAbsencePercentage() {
@@ -230,8 +234,9 @@ public class RecordAndOverallAttendanceController implements Initializable {
 
         sum = counterPresent + counterAbsent;
         float absencePercentage = (counterAbsent * 100) / sum;
-        bllFacade.updateAbsencePercentageById(idFromLogin, absencePercentage);
 
+       
+        bllFacade.updateAbsencePercentageById(idFromLogin, absencePercentage);
         return absencePercentage;
     }
 

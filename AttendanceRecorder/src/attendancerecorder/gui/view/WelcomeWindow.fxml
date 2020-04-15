@@ -27,7 +27,7 @@
          <children>
             <Label fx:id="lbl_title" text="Hello!" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
             <Label fx:id="lbl_title" text="Are you a student or a teacher?" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-            <JFXButton fx:id="btn_student" buttonType="RAISED" onAction="#click_student" ripplerFill="#009fe3" text="Student" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+            <JFXButton fx:id="btn_student" onAction="#click_student" text="Student" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
             <JFXButton fx:id="btn_teacher" buttonType="RAISED" onAction="#click_teacher" ripplerFill="#009fe3" text="Teacher" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
             <JFXButton fx:id="btn_close" onAction="#click_close" text="Close" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                <padding>
