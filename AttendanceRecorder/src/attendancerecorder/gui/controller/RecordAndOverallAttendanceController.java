@@ -6,6 +6,7 @@ import attendancerecorder.bll.interfaces.IStudentManager;
 import attendancerecorder.bll.interfaces.IbllFacade;
 import attendancerecorder.bll.managers.StudentManager;
 import attendancerecorder.bll.managers.bllFacade;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
@@ -71,7 +72,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private Label lbl_popup;
     @FXML
     private Label lbl_popup1;
-    @FXML
     private Label lbl_popup2;
     @FXML
     private PieChart overAllChart;
@@ -89,12 +89,17 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private Label lbl_presentPercentage;
     @FXML
     private Label lbl_absentPercentage;
-    @FXML
     private Label lbl_name;
     @FXML
     private Label lbl_dayOfWeek;
     @FXML
     private GridPane gridpane;
+    @FXML
+    private Label lbl_title;
+    @FXML
+    private Label lbl_smallTitle;
+    @FXML
+    private JFXButton btn_small;
 
     /**
      * Initializes the controller class.

@@ -59,6 +59,11 @@
     -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
 }
 
+#btn_smallFontSize{
+        -fx-padding: 10 20 10 20;
+        -fx-font-size: 12px;
+}
+
 .button:hover{
     -fx-background-color: #FFF379;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);

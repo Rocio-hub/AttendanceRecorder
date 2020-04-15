@@ -24,6 +24,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -56,6 +57,10 @@ public class SummarizedAttendanceController implements Initializable {
     private NumberAxis numberAxis_daysAbsent;
     @FXML
     private CategoryAxis categoryAxis_weekDays;
+    @FXML
+    private JFXButton btn_small;
+    @FXML
+    private Button btn_close;
 
     /**
      * Initializes the controller class.
@@ -139,5 +144,9 @@ public class SummarizedAttendanceController implements Initializable {
 
             }
         }
+    }
+
+    @FXML
+    private void click_close(ActionEvent event) {
     }
 }

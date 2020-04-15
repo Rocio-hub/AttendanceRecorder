@@ -2,56 +2,104 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="600.0" prefWidth="900.0" stylesheets="@../style/cascadeStyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendancerecorder.gui.controller.TeacherAttendanceOverviewController">
+<AnchorPane fx:id="pane" prefHeight="700.0" prefWidth="900.0" stylesheets="@../style/cascadeStyleSheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendancerecorder.gui.controller.TeacherAttendanceOverviewController">
    <children>
-      <AnchorPane layoutX="21.0" layoutY="20.0" prefHeight="410.0" prefWidth="608.0" style="-fx-background-color: #F3F2ED;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="20.0">
+      <GridPane id="gridpane" alignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="173.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="169.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.0" minWidth="10.0" prefWidth="182.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.0" minWidth="10.0" prefWidth="170.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="166.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="148.0" minHeight="10.0" prefHeight="111.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="191.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="246.0" minHeight="10.0" prefHeight="114.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="212.0" minHeight="10.0" prefHeight="111.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="121.0" minHeight="10.0" prefHeight="114.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <JFXButton buttonType="RAISED" layoutX="776.0" layoutY="519.0" onAction="#click_close" ripplerFill="#009fe3" text="Close" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="24.0" />
-            <Label fx:id="className" layoutX="14.0" layoutY="13.0" stylesheets="@TeacherAttendanceOverview.css" text="CS_2019B" />
-            <TableView fx:id="tc_present" layoutX="22.0" layoutY="124.0" onMouseClicked="#click_selectedPresentStudent" prefHeight="396.0" prefWidth="132.0">
+            <JFXButton buttonType="RAISED" onAction="#click_close" ripplerFill="#009fe3" text="Close" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
+            <TableView fx:id="tc_present" onMouseClicked="#click_selectedPresentStudent" GridPane.rowIndex="1" GridPane.rowSpan="3">
                <columns>
                   <TableColumn fx:id="tableview_present" prefWidth="75.0" text="Present" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
             </TableView>
-            <Label fx:id="lbl_messageForAbsence" layoutX="359.0" layoutY="345.0" prefHeight="91.0" prefWidth="339.0" stylesheets="@TeacherAttendanceOverview.css" />
-            <Label fx:id="text2" layoutX="333.0" layoutY="483.0" prefHeight="17.0" prefWidth="281.0" text="Total absence percentage:       %" />
-            <Label fx:id="lbl_percentageOfAbsence" layoutX="526.0" layoutY="508.0" prefHeight="25.0" prefWidth="52.0" />
-            <Label layoutX="327.0" layoutY="38.0" prefHeight="30.0" prefWidth="69.0" text="Hello,">
+            <Label fx:id="text2" text="Total absence percentage:       %" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Label fx:id="lbl_percentageOfAbsence" prefHeight="25.0" prefWidth="45.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Label fx:id="lbl_title" prefHeight="33.0" prefWidth="93.0" text="Hello," GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lbl_teacherName" layoutX="401.0" layoutY="38.0" prefHeight="30.0" prefWidth="384.0" text=" " />
-            <JFXDatePicker fx:id="datePicker" defaultColor="#c10d0e" layoutX="558.0" layoutY="157.0" />
-            <Label fx:id="lbl_popup" layoutX="550.0" layoutY="204.0" prefHeight="17.0" prefWidth="163.0" text="Please, select the date" />
-            <TableView fx:id="tc_absent" layoutX="154.0" layoutY="124.0" onMouseClicked="#click_selectedAbsentStudent" prefHeight="396.0" prefWidth="132.0">
+            <Label id="lbl_title" fx:id="lbl_teacherName" text=" " GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Label>
+            <JFXDatePicker fx:id="datePicker" defaultColor="#c10d0e" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Label fx:id="lbl_popup" text="Please, select the date" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <TableView fx:id="tc_absent" onMouseClicked="#click_selectedAbsentStudent" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3">
                <columns>
                   <TableColumn fx:id="tableview_absent" prefWidth="75.0" text="Absent" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
             </TableView>
-            <JFXButton layoutX="734.0" layoutY="154.0" onAction="#click_search" prefHeight="35.0" prefWidth="69.0" text="Search">
+            <Label fx:id="lbl_reasonForAbsence" text="Reason For Absence:" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Label>
+            <Label fx:id="lbl_messageForAbsence" prefHeight="148.0" prefWidth="403.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="CS_2019B" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="5.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <JFXButton fx:id="btn_small" onAction="#click_search" text="Search" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <font>
                   <Font size="8.0" />
                </font>
+               <GridPane.margin>
+                  <Insets right="25.0" />
+               </GridPane.margin>
             </JFXButton>
-            <JFXButton layoutX="552.0" layoutY="107.0" onAction="#click_summarizedAttendance" text="OpenSumarizedAttandanceButton" />
-            <JFXButton layoutX="102.0" layoutY="75.0" onAction="#click_changePassword" text="Change password" />
-            <JFXButton layoutX="606.0" layoutY="521.0" onAction="#click_addNewStudent" text="add new student..." />
-            <JFXButton layoutX="552.0" layoutY="62.0" onAction="#click_fromNullToAbsent" text="el de que todos los null sean absent" />
-            <Label fx:id="lbl_reasonForAbsence" layoutX="419.0" layoutY="276.0" text="Reason For Absence:" />
+            <JFXButton fx:id="btn_smallFontSize" alignment="CENTER" contentDisplay="RIGHT" onAction="#click_changePassword" ripplerFill="#c91212" text="Change password" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
+            <JFXButton fx:id="btn_smallFontSize" alignment="CENTER" contentDisplay="RIGHT" onAction="#click_addNewStudent" prefHeight="37.0" prefWidth="141.0" text="Add new student" GridPane.rowIndex="4" />
+            <JFXButton fx:id="btn_smallFontSize" alignment="CENTER" contentDisplay="RIGHT" onAction="#click_summarizedAttendance" prefHeight="37.0" prefWidth="155.0" text="See summarized" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <JFXButton fx:id="btn_smallFontSize" alignment="CENTER" contentDisplay="RIGHT" onAction="#click_fromNullToAbsent" text="Set null attendances" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+            <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <image>
+                  <Image url="@../style/easv-logo.png" />
+               </image>
+            </ImageView>
          </children>
-      </AnchorPane>
+      </GridPane>
    </children>
 </AnchorPane>
