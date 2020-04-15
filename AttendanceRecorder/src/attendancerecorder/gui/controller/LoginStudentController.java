@@ -1,8 +1,8 @@
 package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Student;
-import attendancerecorder.bll.interfaces.IbllFacade;
-import attendancerecorder.bll.managers.bllFacade;
+import attendancerecorder.bll.interfaces.IStudentManager;
+import attendancerecorder.bll.managers.StudentManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -29,7 +29,7 @@ import javafx.stage.Stage;
 public class LoginStudentController implements Initializable {
 
     //Instance for the business logic layer
-    IbllFacade  studentMng = new bllFacade();
+    IStudentManager studentMng = new StudentManager();
 
     //Needed variables
     String studentFirstName;

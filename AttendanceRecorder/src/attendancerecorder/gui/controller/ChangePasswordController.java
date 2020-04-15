@@ -1,7 +1,9 @@
 package attendancerecorder.gui.controller;
 
-import attendancerecorder.bll.interfaces.IbllFacade;
-import attendancerecorder.bll.managers.bllFacade;
+import attendancerecorder.bll.interfaces.IStudentManager;
+import attendancerecorder.bll.interfaces.ITeacherManager;
+import attendancerecorder.bll.managers.StudentManager;
+import attendancerecorder.bll.managers.TeacherManager;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.EventObject;
@@ -20,8 +22,8 @@ import javafx.stage.Stage;
 public class ChangePasswordController implements Initializable {
 
     //Instances for the business logic layer
-    IbllFacade  studentMng = new bllFacade();
-    IbllFacade  teacherMng = new bllFacade();
+    IStudentManager studentMng = new StudentManager();
+    ITeacherManager teacherMng = new TeacherManager();
     
     //Needed variables
     int idFromLogin;

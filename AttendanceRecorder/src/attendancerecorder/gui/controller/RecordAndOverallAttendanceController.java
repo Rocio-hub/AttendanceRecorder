@@ -2,15 +2,18 @@ package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Course;
 import attendancerecorder.be.Student;
-import attendancerecorder.bll.interfaces.IbllFacade;
-import attendancerecorder.bll.managers.bllFacade;
+import attendancerecorder.bll.interfaces.IStudentManager;
+import attendancerecorder.bll.managers.StudentManager;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.EventObject;
 import java.util.List;
 import java.util.Optional;
@@ -36,6 +39,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javax.swing.text.DateFormatter;
 
 /**
  * FXML Controller class
@@ -43,7 +47,7 @@ import javafx.stage.Stage;
 public class RecordAndOverallAttendanceController implements Initializable {
 
     //Instance for the business logic layer
-    IbllFacade studentMng = new bllFacade();
+    IStudentManager studentMng = new StudentManager();
 
     //Needed variables
     private ObservableList<Course> courseLst;

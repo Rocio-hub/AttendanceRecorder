@@ -1,8 +1,9 @@
 package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Student;
-import attendancerecorder.bll.interfaces.IbllFacade;
-import attendancerecorder.bll.managers.bllFacade;
+import attendancerecorder.bll.interfaces.ITeacherManager;
+import attendancerecorder.bll.managers.TeacherManager;
+import com.jfoenix.controls.JFXButton;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -31,7 +32,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class SummarizedAttendanceController implements Initializable {
 
     //Instance for the business logic layer
-    IbllFacade teacherMng = new bllFacade();
+    ITeacherManager teacherMng = new TeacherManager();
 
     //Needed variables
     private ObservableList<Student> studentLst;
