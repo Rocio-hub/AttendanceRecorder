@@ -72,7 +72,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private Label lbl_popup;
     @FXML
     private Label lbl_popup1;
-    private Label lbl_popup2;
     @FXML
     private PieChart overAllChart;
     @FXML
@@ -89,7 +88,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private Label lbl_presentPercentage;
     @FXML
     private Label lbl_absentPercentage;
-    private Label lbl_name;
     @FXML
     private Label lbl_dayOfWeek;
     @FXML
@@ -110,7 +108,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
         txt_absentMessage.visibleProperty().set(false);
         lbl_popup.setVisible(false);
         lbl_popup1.setVisible(false);
-        lbl_popup2.setVisible(false);
+        //lbl_popup2.setVisible(false);
         datePicker_record.setEditable(false);
         initCoursesTable();
         cb_absent.setDisable(true);
@@ -171,7 +169,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     public void getStudentName(String firstName, String lastName) {
         this.studentFirstName = firstName;
         this.studentLastName = lastName;
-        lbl_name.setText(studentFirstName + " " + studentLastName);
+        lbl_title.setText("Hello, " + studentFirstName + " " + studentLastName);
     }
 
     private void addNewAttendance() {
