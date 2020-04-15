@@ -2,7 +2,9 @@ package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Teacher;
 import attendancerecorder.bll.interfaces.ITeacherManager;
+import attendancerecorder.bll.interfaces.IbllFacade;
 import attendancerecorder.bll.managers.TeacherManager;
+import attendancerecorder.bll.managers.bllFacade;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -29,7 +31,7 @@ import javafx.stage.Stage;
 public class LoginTeacherController implements Initializable {
 
     //Instance for the business logic layer
-    ITeacherManager teacherMng = new TeacherManager();
+   IbllFacade bllFacade = new bllFacade();
 
     //Needed variables
     String teacherName;
@@ -54,7 +56,7 @@ public class LoginTeacherController implements Initializable {
     }
 
     private void mouse_login(MouseEvent event) {
-        List<Teacher> teacherLst = teacherMng.getTeacherLoginData();
+        List<Teacher> teacherLst = bllFacade.getTeacherLoginData();
         for (Teacher teacher : teacherLst) {
             if (txt_email.getText().equals(teacher.getEmail()) && txt_password.getText().equals(teacher.getPassword())) {
                 Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
@@ -66,7 +68,7 @@ public class LoginTeacherController implements Initializable {
     @FXML
     private void click_login(ActionEvent event) throws IOException {
         boolean found = false;
-        List<Teacher> teacherLst = teacherMng.getTeacherLoginData();
+        List<Teacher> teacherLst = bllFacade.getTeacherLoginData();
         for (Teacher teacher : teacherLst) {
             if (txt_email.getText().equals(teacher.getEmail()) && txt_password.getText().equals(teacher.getPassword())) {
                 found = true;
