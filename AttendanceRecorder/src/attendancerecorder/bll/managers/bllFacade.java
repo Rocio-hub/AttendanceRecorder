@@ -13,6 +13,7 @@ public class bllFacade implements IbllFacade {
 
     private ITeacherManager teacherMng = new TeacherManager();
     private IStudentManager studentMng = new StudentManager();
+   
     @Override
     public List<Teacher> getAllTeachers() {
         return teacherMng.getAllTeachers();

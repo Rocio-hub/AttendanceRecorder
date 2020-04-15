@@ -58,15 +58,7 @@ public class daoFacade implements IdaoFacade{
     @Override
     public void updateStudentPasswordById(int id, String newPassword) {
        daoStudent.updateStudentPasswordById(id, newPassword);
-    }
-
-    
-    
-    
-    
-    
-    
-    
+    }    
     
     @Override
     public List<Teacher> getAllTeachers() {
