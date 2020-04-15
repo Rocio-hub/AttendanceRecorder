@@ -1,7 +1,9 @@
 package attendancerecorder.gui.controller;
 
 import attendancerecorder.bll.interfaces.ITeacherManager;
+import attendancerecorder.bll.interfaces.IbllFacade;
 import attendancerecorder.bll.managers.TeacherManager;
+import attendancerecorder.bll.managers.bllFacade;
 import com.jfoenix.controls.JFXTextField;
 import com.microsoft.sqlserver.jdbc.StringUtils;
 import java.net.URL;
@@ -22,7 +24,7 @@ import javafx.stage.Stage;
  */
 public class AddNewStudentController implements Initializable {
 
-    ITeacherManager teacherMng = new TeacherManager();
+    IbllFacade teacherMng = new bllFacade();
     String firstName, lastName, email, password;
 
     @FXML

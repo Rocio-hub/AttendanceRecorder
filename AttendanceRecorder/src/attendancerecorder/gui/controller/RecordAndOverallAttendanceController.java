@@ -3,7 +3,9 @@ package attendancerecorder.gui.controller;
 import attendancerecorder.be.Course;
 import attendancerecorder.be.Student;
 import attendancerecorder.bll.interfaces.IStudentManager;
+import attendancerecorder.bll.interfaces.IbllFacade;
 import attendancerecorder.bll.managers.StudentManager;
+import attendancerecorder.bll.managers.bllFacade;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
@@ -47,7 +49,7 @@ import javax.swing.text.DateFormatter;
 public class RecordAndOverallAttendanceController implements Initializable {
 
     //Instance for the business logic layer
-    IStudentManager studentMng = new StudentManager();
+    IbllFacade bllFacade = new bllFacade();
 
     //Needed variables
     private ObservableList<Course> courseLst;
@@ -111,7 +113,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     private void initCoursesTable() {
-        courseLst = FXCollections.observableArrayList(studentMng.getAllCourses());
+        courseLst = FXCollections.observableArrayList(bllFacade.getAllCourses());
         tc_courses.setCellValueFactory(new PropertyValueFactory<>("name"));
         tv_courses.setItems(courseLst);
     }
@@ -147,7 +149,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     @FXML
     private void click_search(ActionEvent event) {
         String date = datePicker_sort.getValue().toString();
-        Student student = studentMng.getReasonForAbsence(idFromLogin, date);
+        Student student = bllFacade.getReasonForAbsence(idFromLogin, date);
         lbl_absentMessage.setText(student.getMessage());
         if (student.getStatus() == 0) {
             lbl_showStatus.setText("ABSENT");
@@ -176,10 +178,10 @@ public class RecordAndOverallAttendanceController implements Initializable {
             message = txt_absentMessage.getText();
         }
 
-        if (studentMng.checkAlreadyExistingAttendance(idFromLogin, date)) {
+        if (bllFacade.checkAlreadyExistingAttendance(idFromLogin, date)) {
             confirmationOverwritingAttendance(date, status, message);
         } else {
-            studentMng.addNewAttendance(idFromLogin, status, date, message, getDayOfWeek());
+            bllFacade.addNewAttendance(idFromLogin, status, date, message, getDayOfWeek());
             confirmationAttendanceAlert();
         }
     }
@@ -200,7 +202,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private float updateAbsencePercentage() {
 //        List<Student> studentLst = new ArrayList();
 //        studentLst = studentMng.getAllAttendancesById(idFromLogin);
-        List<Student> studentLst = studentMng.getAllAttendancesById(idFromLogin);
+        List<Student> studentLst = bllFacade.getAllAttendancesById(idFromLogin);
         float counterPresent = 0;
         float counterAbsent = 0;
         float sum;
@@ -215,7 +217,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
 
         sum = counterPresent + counterAbsent;
         float absencePercentage = (counterAbsent * 100) / sum;
-        studentMng.updateAbsencePercentageById(idFromLogin, absencePercentage);
+        bllFacade.updateAbsencePercentageById(idFromLogin, absencePercentage);
 
         return absencePercentage;
     }
@@ -264,15 +266,15 @@ public class RecordAndOverallAttendanceController implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            if (studentMng.checkAlreadyExistingAttendance(idFromLogin, date)) {
-                studentMng.deleteAttendanceByIdANDDate(idFromLogin, date);
+            if (bllFacade.checkAlreadyExistingAttendance(idFromLogin, date)) {
+                bllFacade.deleteAttendanceByIdANDDate(idFromLogin, date);
                 if (cb_present.isSelected()) {
                     status = 1;
                 } else {
                     status = 0;
                     message = txt_absentMessage.getText();
                 }
-                studentMng.addNewAttendance(idFromLogin, status, date, message, getDayOfWeek());
+                bllFacade.addNewAttendance(idFromLogin, status, date, message, getDayOfWeek());
             } else {
                 if (cb_present.isSelected()) {
                     status = 1;
@@ -280,7 +282,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
                     status = 0;
                     message = txt_absentMessage.getText();
                 }
-                studentMng.addNewAttendance(idFromLogin, status, date, message, getDayOfWeek());
+                bllFacade.addNewAttendance(idFromLogin, status, date, message, getDayOfWeek());
             }
             confirmationAttendanceAlert();
         }

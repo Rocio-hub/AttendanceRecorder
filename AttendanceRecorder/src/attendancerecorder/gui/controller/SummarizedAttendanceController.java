@@ -2,7 +2,9 @@ package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Student;
 import attendancerecorder.bll.interfaces.ITeacherManager;
+import attendancerecorder.bll.interfaces.IbllFacade;
 import attendancerecorder.bll.managers.TeacherManager;
+import attendancerecorder.bll.managers.bllFacade;
 import com.jfoenix.controls.JFXButton;
 import java.awt.Desktop;
 import java.io.IOException;
@@ -32,7 +34,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class SummarizedAttendanceController implements Initializable {
 
     //Instance for the business logic layer
-    ITeacherManager teacherMng = new TeacherManager();
+    IbllFacade bllFacade = new bllFacade();
 
     //Needed variables
     private ObservableList<Student> studentLst;
@@ -60,7 +62,7 @@ public class SummarizedAttendanceController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        studentLst = FXCollections.observableArrayList(teacherMng.getAllStudentsForAbsenceOverview());
+        studentLst = FXCollections.observableArrayList(bllFacade.getAllStudentsForAbsenceOverview());
         tc_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         tc_percentage.setCellValueFactory(new PropertyValueFactory<>("absencePercentage"));
         tv_summarizedAttendance.setItems(studentLst);
@@ -102,7 +104,7 @@ public class SummarizedAttendanceController implements Initializable {
 
     @FXML
     private void checkAbsenceDays(ActionEvent event) {
-        List<Student> absentStudent = new ArrayList(teacherMng.getDaysOfAbsenceById(tv_summarizedAttendance.getSelectionModel().getSelectedItem().getId()));
+        List<Student> absentStudent = new ArrayList(bllFacade.getDaysOfAbsenceById(tv_summarizedAttendance.getSelectionModel().getSelectedItem().getId()));
         mondayAbsence = 0;
         tuesdayAbsence = 0;
         wednesdayAbsence = 0;

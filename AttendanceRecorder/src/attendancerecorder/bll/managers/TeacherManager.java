@@ -4,70 +4,69 @@ import attendancerecorder.be.Student;
 import attendancerecorder.be.Teacher;
 import attendancerecorder.bll.interfaces.ITeacherManager;
 import attendancerecorder.dal.dao.DAOTeacher;
+import attendancerecorder.dal.dao.daoFacade;
 import attendancerecorder.dal.interfaces.IDAOTeacher;
+import attendancerecorder.dal.interfaces.IdaoFacade;
 import java.util.List;
 
 public class TeacherManager implements ITeacherManager {
 
-    //Instance for the Data Access Object
-    IDAOTeacher daoTeacher = new DAOTeacher();
+    //Instance for the Data Access Layer Facade
+    IdaoFacade daoFacade = new daoFacade();
 
     @Override
     public List<Teacher> getAllTeachers() {
-        return daoTeacher.getAllTeachers();
+        return daoFacade.getAllTeachers();
     }
 
     @Override
     public List<Teacher> getTeacherLoginData() {
-        return daoTeacher.getTeacherLoginData();
+        return daoFacade.getTeacherLoginData();
     }
 
     @Override
     public List<Student> getStudentsOnCondition(String date, int status) {
-        return daoTeacher.getStudentsOnCondition(date, status);
+        return daoFacade.getStudentsOnCondition(date, status);
     }
 
     @Override
     public List<Student> getAllStudentsForAbsenceOverview() {
-        return daoTeacher.getAllStudentsForAbsenceOverview();
+        return daoFacade.getAllStudentsForAbsenceOverview();
     }
 
     @Override
     public float getAbsenceById(int id) {
-        return daoTeacher.getAbsenceById(id);
+        return daoFacade.getAbsenceById(id);
     }
 
     @Override
     public void updateTeacherPasswordById(int id, String newPassword) {
-        daoTeacher.updateTeacherPasswordById(id, newPassword);
+        daoFacade.updateTeacherPasswordById(id, newPassword);
     }
 
     @Override
     public void addNewStudent(String firstName, String lastName, String email, String password) {
-        daoTeacher.addNewStudent(firstName, lastName, email, password);
+        daoFacade.addNewStudent(firstName, lastName, email, password);
     }
     @Override
      public List<Student> getDaysOfAbsenceById(int id){
-         return daoTeacher.getDaysOfAbsenceById(id);
+         return daoFacade.getDaysOfAbsenceById(id);
      }
 
     @Override
     public List<Integer> getAllStudentsIds() {
-      return daoTeacher.getAllStudentsIds();
+      return daoFacade.getAllStudentsIds();
     }
 
     @Override
     public List<Integer> getAllAttendancesIdsByDate(String date) {
-        return daoTeacher.getAllAttendancesIdsByDate(date);
+        return daoFacade.getAllAttendancesIdsByDate(date);
     }
 
     @Override
     public void insertNewStatus(List<Integer> idList) {
-        daoTeacher.insertNewStatus(idList);
-    }
-    
-    
-    
-    
+        daoFacade.insertNewStatus(idList);
+
+    }  
     
 }

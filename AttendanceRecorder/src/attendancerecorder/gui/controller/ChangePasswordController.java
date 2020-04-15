@@ -2,8 +2,10 @@ package attendancerecorder.gui.controller;
 
 import attendancerecorder.bll.interfaces.IStudentManager;
 import attendancerecorder.bll.interfaces.ITeacherManager;
+import attendancerecorder.bll.interfaces.IbllFacade;
 import attendancerecorder.bll.managers.StudentManager;
 import attendancerecorder.bll.managers.TeacherManager;
+import attendancerecorder.bll.managers.bllFacade;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.EventObject;
@@ -22,8 +24,7 @@ import javafx.stage.Stage;
 public class ChangePasswordController implements Initializable {
 
     //Instances for the business logic layer
-    IStudentManager studentMng = new StudentManager();
-    ITeacherManager teacherMng = new TeacherManager();
+    IbllFacade bllFacade = new bllFacade();
     
     //Needed variables
     int idFromLogin;
@@ -57,10 +58,10 @@ public class ChangePasswordController implements Initializable {
     private void click_confirm(ActionEvent event) {
         if (isStudent) {
             if (txtfield_password != null) {
-                studentMng.updateStudentPasswordById(idFromLogin, txtfield_password.getText());
+                bllFacade.updateStudentPasswordById(idFromLogin, txtfield_password.getText());
             }
         } else {
-            teacherMng.updateTeacherPasswordById(idFromLogin, txtfield_password.getText());
+            bllFacade.updateTeacherPasswordById(idFromLogin, txtfield_password.getText());
         }
     }
 

@@ -3,8 +3,10 @@ package attendancerecorder.gui.controller;
 import attendancerecorder.be.Student;
 import attendancerecorder.bll.interfaces.IStudentManager;
 import attendancerecorder.bll.interfaces.ITeacherManager;
+import attendancerecorder.bll.interfaces.IbllFacade;
 import attendancerecorder.bll.managers.StudentManager;
 import attendancerecorder.bll.managers.TeacherManager;
+import attendancerecorder.bll.managers.bllFacade;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import java.io.IOException;
@@ -39,8 +41,7 @@ import javafx.stage.Stage;
 public class TeacherAttendanceOverviewController implements Initializable {
 
     //Instances for the business logic layer
-    IStudentManager studentMng = new StudentManager();
-    ITeacherManager teacherMng = new TeacherManager();
+   IbllFacade bllFacade = new bllFacade();
 
     //Needed variables
     private ObservableList<Student> presentStudents;
@@ -96,8 +97,8 @@ public class TeacherAttendanceOverviewController implements Initializable {
     @FXML
     private void click_search(ActionEvent event) {
         String date = datePicker.getValue().toString();
-        presentStudents = FXCollections.observableArrayList(teacherMng.getStudentsOnCondition(date, 1));
-        absentStudents = FXCollections.observableArrayList(teacherMng.getStudentsOnCondition(date, 0));
+        presentStudents = FXCollections.observableArrayList(bllFacade.getStudentsOnCondition(date, 1));
+        absentStudents = FXCollections.observableArrayList(bllFacade.getStudentsOnCondition(date, 0));
         tableview_present.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         tableview_absent.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         tc_present.setItems(presentStudents);
@@ -156,7 +157,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
         alert.showAndWait();
     }*/
     private void getAbsenceById(int id) {
-        float absenceById = teacherMng.getAbsenceById(id);
+        float absenceById = bllFacade.getAbsenceById(id);
         lbl_percentageOfAbsence.setText(String.valueOf(absenceById));
     }
 
@@ -209,8 +210,8 @@ public class TeacherAttendanceOverviewController implements Initializable {
 
     @FXML
     private void click_fromNullToAbsent(ActionEvent event) {
-        List<Integer> allIdList = teacherMng.getAllStudentsIds();
-        List<Integer> recordedIdList = teacherMng.getAllAttendancesIdsByDate(getCurrentDate());
+        List<Integer> allIdList = bllFacade.getAllStudentsIds();
+        List<Integer> recordedIdList = bllFacade.getAllAttendancesIdsByDate(getCurrentDate());
         List<Integer> notRecordedList = new ArrayList();
         boolean found = false;
         for (Integer studentId : allIdList) {
@@ -225,7 +226,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
                 notRecordedList.add(studentId);
             }
         }
-        teacherMng.insertNewStatus(notRecordedList);
+        bllFacade.insertNewStatus(notRecordedList);
         
     }
 
