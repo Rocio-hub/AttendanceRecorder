@@ -46,15 +46,6 @@
             </TableView>
             <Label fx:id="text2" text="Total absence percentage:       %" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
             <Label fx:id="lbl_percentageOfAbsence" prefHeight="25.0" prefWidth="45.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <Label fx:id="lbl_title" prefHeight="33.0" prefWidth="93.0" text="Hello," GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label id="lbl_title" fx:id="lbl_teacherName" text=" " GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets left="10.0" />
-               </GridPane.margin></Label>
             <JFXDatePicker fx:id="datePicker" defaultColor="#c10d0e" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Label fx:id="lbl_popup" text="Please, select the date" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
             <TableView fx:id="tc_absent" onMouseClicked="#click_selectedAbsentStudent" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3">
@@ -99,6 +90,10 @@
                   <Image url="@../style/easv-logo.png" />
                </image>
             </ImageView>
+            <Label id="lbl_title" fx:id="lbl_teacherName" text=" " GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Label>
          </children>
       </GridPane>
    </children>

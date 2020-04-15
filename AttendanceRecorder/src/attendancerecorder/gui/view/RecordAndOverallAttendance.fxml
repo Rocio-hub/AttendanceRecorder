@@ -73,7 +73,7 @@
                                     <TableColumn fx:id="tc_courses" prefWidth="155.0" text="Courses" />
                                  </columns>
                               </TableView>
-                              <JFXTextArea fx:id="txt_absentMessage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="172.0" prefWidth="421.0" promptText="Please, specify the reason for your absense" style="-fx-border-color: #000000; -fx-background-color: #ffffffff;" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                              <JFXTextArea fx:id="txt_absentMessage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="152.0" prefWidth="421.0" promptText="Please, specify the reason for your absense" style="-fx-border-color: #000000; -fx-background-color: #ffffffff;" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

@@ -21,6 +21,11 @@
     -fx-font-weight: bolder;
 }
 
+#lbl_red{
+    -fx-text-fill: red;
+    -fx-font-size: 14px;
+}
+
 #lbl_smallTitle{
     -fx-font-family: "Courier Prime";
     -fx-font-size: 20px;
@@ -79,8 +84,4 @@
     -fx-background-color:#C00E0E;
 }
 
-.jfxcheckbox{
-        -fx-font-family: "algerian";
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
-}
+

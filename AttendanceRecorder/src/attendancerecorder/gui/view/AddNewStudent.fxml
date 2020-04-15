@@ -95,28 +95,28 @@
                <GridPane.margin>
                   <Insets bottom="7.0" />
                </GridPane.margin></JFXButton>
-            <Label fx:id="lbl_addFirstName" text="Add a first name!" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+            <Label id="lbl_red" fx:id="lbl_addFirstName" text="Add a first name!" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
                <padding>
                   <Insets right="35.0" />
                </padding></Label>
-            <Label fx:id="lbl_addLastName" text="Add a last name!" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Label id="lbl_red" fx:id="lbl_addLastName" text="Add a last name!" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
                <padding>
                   <Insets right="35.0" />
                </padding></Label>
-            <Label fx:id="lbl_addEmail" text="Add an e-mail!" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+            <Label id="lbl_red" fx:id="lbl_addEmail" text="Add an e-mail!" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
                <padding>
                   <Insets right="35.0" />
                </padding></Label>
-            <Label fx:id="lbl_addPassword" text="Add a password!" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+            <Label id="lbl_red" fx:id="lbl_addPassword" text="Add a password!" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
