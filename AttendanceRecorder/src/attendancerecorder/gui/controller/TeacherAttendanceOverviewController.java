@@ -107,7 +107,7 @@ public class TeacherAttendanceOverviewController implements Initializable {
 
     public void getTeacherName(String name) {
         teacherName = name;
-        lbl_teacherName.setText(teacherName);
+        lbl_teacherName.setText("Hello, " + teacherName);
     }
 
     private void click_showStudentReason(ActionEvent event) {

@@ -145,7 +145,7 @@
                                     <Label fx:id="lbl_showStatus" text="Status" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                                     <JFXButton fx:id="btn_small" onAction="#click_search" text="Search" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
                                     <JFXButton buttonType="RAISED" onAction="#clickClose" ripplerFill="#fff379" text="Close" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
-                                    <Label fx:id="lbl_absentMessage" text="Message" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                    <Label fx:id="lbl_absentMessage" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                                     <Label fx:id="lbl_dayOfWeek" />
                                  </children>
                               </GridPane>
