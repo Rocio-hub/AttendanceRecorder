@@ -14,6 +14,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
@@ -28,6 +30,10 @@ public class WelcomeWindowController implements Initializable {
     private JFXButton btn_student;
     @FXML
     private JFXButton btn_teacher;
+    @FXML
+    private GridPane gridpane;
+    @FXML
+    private Label lbl_title;
 
     /**
      * Initializes the controller class.

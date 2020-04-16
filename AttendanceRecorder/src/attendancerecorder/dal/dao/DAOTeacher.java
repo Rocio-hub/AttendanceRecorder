@@ -238,7 +238,7 @@ public class DAOTeacher implements IDAOTeacher {
         return null;
     }
 
-
+    @Override
     public List<Integer> getAllStudentsIds() {
         try ( Connection con = ds.getConnection()) {
             String sql = "SELECT id FROM Students";
@@ -260,6 +260,8 @@ public class DAOTeacher implements IDAOTeacher {
         }
         return null;
     }
+    
+    @Override
     public List<Integer> getAllAttendancesIdsByDate(String date) {
         try ( Connection con = ds.getConnection()) {
             List<Integer> attendanceIdList = new ArrayList();
@@ -279,6 +281,7 @@ public class DAOTeacher implements IDAOTeacher {
         }
         return null;
     }
+    @Override
      public void insertNewStatus(List<Integer> idList) {
         try ( Connection con = ds.getConnection()) {
             String sql = "INSERT INTO Attendance (studentId, status, date, dayOfWeek) values (?,?,?,?)";
