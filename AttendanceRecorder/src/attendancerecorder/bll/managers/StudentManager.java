@@ -1,4 +1,3 @@
-
 package attendancerecorder.bll.managers;
 
 import attendancerecorder.be.Course;
@@ -13,7 +12,7 @@ import java.util.List;
 public class StudentManager implements IStudentManager {
 
     //Instance for the Data Access Layer Facade
-    IdaoFacade daoFacade = new daoFacade();
+    private IdaoFacade daoFacade = new daoFacade();
 
     @Override
     public List<Student> getAllStudents() {
@@ -47,9 +46,9 @@ public class StudentManager implements IStudentManager {
 
     @Override
     public boolean checkAlreadyExistingAttendance(int id, String date) {
-       return daoFacade.checkAlreadyExistingAttendance(id, date);
+        return daoFacade.checkAlreadyExistingAttendance(id, date);
     }
-    
+
     @Override
     public void updateAbsencePercentageById(int id, float newAbsencePercentage) {
         daoFacade.updateAbsencePercentageById(id, newAbsencePercentage);
@@ -57,7 +56,7 @@ public class StudentManager implements IStudentManager {
 
     @Override
     public void updateStudentPasswordById(int id, String newPassword) {
-       daoFacade.updateStudentPasswordById(id, newPassword);
+        daoFacade.updateStudentPasswordById(id, newPassword);
     }
 
 }

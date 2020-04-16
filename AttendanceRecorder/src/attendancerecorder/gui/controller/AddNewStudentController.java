@@ -1,11 +1,8 @@
 package attendancerecorder.gui.controller;
 
-import attendancerecorder.bll.interfaces.ITeacherManager;
 import attendancerecorder.bll.interfaces.IbllFacade;
-import attendancerecorder.bll.managers.TeacherManager;
 import attendancerecorder.bll.managers.bllFacade;
 import com.jfoenix.controls.JFXTextField;
-import com.microsoft.sqlserver.jdbc.StringUtils;
 import java.net.URL;
 import java.util.EventObject;
 import java.util.ResourceBundle;
@@ -15,7 +12,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -24,8 +20,8 @@ import javafx.stage.Stage;
  */
 public class AddNewStudentController implements Initializable {
 
-    IbllFacade teacherMng = new bllFacade();
-    String firstName, lastName, email, password;
+    private IbllFacade teacherMng = new bllFacade();
+    private String firstName, lastName, email, password;
 
     @FXML
     private JFXTextField txtfield_firstName;
@@ -53,12 +49,11 @@ public class AddNewStudentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         lbl_addFirstName.setVisible(false);
         lbl_addLastName.setVisible(false);
         lbl_addEmail.setVisible(false);
         lbl_addPassword.setVisible(false);
-
 
     }
 
@@ -88,26 +83,30 @@ public class AddNewStudentController implements Initializable {
     }
 
     private boolean enableConfirmation() {
-        if (txtfield_firstName.getText().trim().equals("")){
+        if (txtfield_firstName.getText().trim().equals("")) {
             lbl_addFirstName.setVisible(true);
             return false;
+        } else {
+            lbl_addFirstName.setVisible(false);
         }
-        else lbl_addFirstName.setVisible(false);
         if (txtfield_lastName.getText().trim().equals("")) {
             lbl_addLastName.setVisible(true);
             return false;
+        } else {
+            lbl_addLastName.setVisible(false);
         }
-        else lbl_addLastName.setVisible(false);
         if (txtfield_email.getText().trim().equals("")) {
             lbl_addEmail.setVisible(true);
             return false;
+        } else {
+            lbl_addEmail.setVisible(false);
         }
-        else lbl_addEmail.setVisible(false);
         if (txtfield_password.getText().trim().equals("")) {
             lbl_addPassword.setVisible(true);
             return false;
+        } else {
+            lbl_addPassword.setVisible(false);
         }
-        else lbl_addPassword.setVisible(false);
         return true;
     }
 

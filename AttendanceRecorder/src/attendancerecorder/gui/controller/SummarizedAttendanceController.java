@@ -38,7 +38,7 @@ import javafx.stage.Stage;
 public class SummarizedAttendanceController implements Initializable {
 
     //Instance for the business logic layer
-    IbllFacade bllFacade = new bllFacade();
+    private IbllFacade bllFacade = new bllFacade();
 
     //Needed variables
     private ObservableList<Student> studentLst;

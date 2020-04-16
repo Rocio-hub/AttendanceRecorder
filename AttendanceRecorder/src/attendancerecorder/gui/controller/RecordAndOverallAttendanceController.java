@@ -2,25 +2,16 @@ package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Course;
 import attendancerecorder.be.Student;
-import attendancerecorder.bll.interfaces.IStudentManager;
 import attendancerecorder.bll.interfaces.IbllFacade;
-import attendancerecorder.bll.managers.StudentManager;
 import attendancerecorder.bll.managers.bllFacade;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import java.io.IOException;
-import static java.lang.Float.parseFloat;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.net.URL;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.EventObject;
 import java.util.List;
 import java.util.Optional;
@@ -47,7 +38,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javax.swing.text.DateFormatter;
 
 /**
  * FXML Controller class
@@ -55,15 +45,14 @@ import javax.swing.text.DateFormatter;
 public class RecordAndOverallAttendanceController implements Initializable {
 
     //Instance for the business logic layer
-    IbllFacade bllFacade = new bllFacade();
+    private IbllFacade bllFacade = new bllFacade();
 
     //Needed variables
     private ObservableList<Course> courseLst;
-    String studentFirstName;
-    String studentLastName;
-    int idFromLogin;
-    boolean isStudent;
-    boolean isPresent = false;
+    private String studentFirstName, studentLastName;
+   private int idFromLogin;
+    private boolean isStudent;
+    private boolean isPresent = false;
 
     @FXML
     private JFXCheckBox cb_present;
@@ -104,6 +93,8 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private Label lbl1;
     @FXML
     private Label lbl2;
+    @FXML
+    private JFXButton btn_smallFontSize;
 
     /**
      * Initializes the controller class.
@@ -235,7 +226,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
         sum = counterPresent + counterAbsent;
         float absencePercentage = (counterAbsent * 100) / sum;
 
-       
         bllFacade.updateAbsencePercentageById(idFromLogin, absencePercentage);
         return absencePercentage;
     }

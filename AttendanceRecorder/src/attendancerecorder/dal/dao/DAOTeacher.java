@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 
 public class DAOTeacher implements IDAOTeacher {
 
-    private SQLServerDataSource ds;
+    private final SQLServerDataSource ds;
 
     public DAOTeacher() {
         ds = new SQLServerDataSource();

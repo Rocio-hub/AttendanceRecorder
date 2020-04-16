@@ -31,13 +31,13 @@ import javafx.stage.Stage;
 public class LoginStudentController implements Initializable {
 
     //Instance for the business logic layer
-    IbllFacade bllFacade = new bllFacade();
+    private IbllFacade bllFacade = new bllFacade();
 
     //Needed variables
-    String studentFirstName;
-    String studentLastName;
-    int idFromLogin;
-    boolean isStudent = true;
+   private String studentFirstName;
+   private String studentLastName;
+   private int idFromLogin;
+   private boolean isStudent = true;
 
     @FXML
     private JFXTextField txt_email;

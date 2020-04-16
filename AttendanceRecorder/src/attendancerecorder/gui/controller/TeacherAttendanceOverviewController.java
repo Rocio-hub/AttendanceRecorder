@@ -42,14 +42,14 @@ import javafx.stage.Stage;
 public class TeacherAttendanceOverviewController implements Initializable {
 
     //Instances for the business logic layer
-    IbllFacade bllFacade = new bllFacade();
+    private IbllFacade bllFacade = new bllFacade();
 
     //Needed variables
     private ObservableList<Student> presentStudents;
     private ObservableList<Student> absentStudents;
-    String teacherName;
-    int idFromLogin;
-    boolean isStudent;
+    private String teacherName;
+    private int idFromLogin;
+    private boolean isStudent;
 
     @FXML
     private AnchorPane pane;
