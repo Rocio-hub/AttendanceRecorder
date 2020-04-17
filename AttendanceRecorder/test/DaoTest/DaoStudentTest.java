@@ -48,8 +48,8 @@ public class DaoStudentTest {
     @Test //tests the login checking if both email and password match with the ones on database for a student
     public void testLogin() {
         facadeTest = new daoFacade();
-        String email = "s";
-        String password = "s";
+        String email = "student";
+        String password = "student";
         boolean worked = false;
 
         List<Student> studentLst = facadeTest.getAllStudents();
