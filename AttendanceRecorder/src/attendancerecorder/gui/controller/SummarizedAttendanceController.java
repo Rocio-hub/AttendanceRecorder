@@ -1,9 +1,7 @@
 package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Student;
-import attendancerecorder.bll.interfaces.ITeacherManager;
 import attendancerecorder.bll.interfaces.IbllFacade;
-import attendancerecorder.bll.managers.TeacherManager;
 import attendancerecorder.bll.managers.bllFacade;
 import com.jfoenix.controls.JFXButton;
 import java.awt.Desktop;
@@ -76,19 +74,6 @@ public class SummarizedAttendanceController implements Initializable {
         tv_summarizedAttendance.setItems(studentLst);
     }
 
-    @FXML
-    private void click_contact(ActionEvent event) throws URISyntaxException, IOException {
-        Desktop desktop;
-        String email = tv_summarizedAttendance.getSelectionModel().getSelectedItem().getEmail();
-        if (Desktop.isDesktopSupported()
-                && (desktop = Desktop.getDesktop()).isSupported(Desktop.Action.MAIL)) {
-            URI mailto = new URI("mailto:" + email + "?subject=STUDENT'S%20ATTENDANCE");
-            desktop.mail(mailto);
-        } else {
-            throw new RuntimeException("desktop doesn't support mailto");
-        }
-    }
-
     public void setChartData(int mondayAbsence, int tuesdayAbsence, int wednesdayAbsence, int thursdayAbsence, int fridayAbsence) {
         chart_weeklyAbsence.getData().clear();
         int arrayForSorting[] = {mondayAbsence, tuesdayAbsence, wednesdayAbsence, thursdayAbsence, fridayAbsence};
@@ -108,6 +93,34 @@ public class SummarizedAttendanceController implements Initializable {
         seriesAbsence.getData().add(new XYChart.Data<>("Thursday", thursdayAbsence));
         seriesAbsence.getData().add(new XYChart.Data<>("Friday", fridayAbsence));
         chart_weeklyAbsence.getData().addAll(seriesAbsence);
+    }
+
+    public void bubbleSort(int[] arr) {
+        int n = arr.length;
+        int temp = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 1; j < (n - i); j++) {
+                if (arr[j - 1] < arr[j]) {
+                    temp = arr[j - 1];
+                    arr[j - 1] = arr[j];
+                    arr[j] = temp;
+                }
+
+            }
+        }
+    }
+
+    @FXML
+    private void click_contact(ActionEvent event) throws URISyntaxException, IOException {
+        Desktop desktop;
+        String email = tv_summarizedAttendance.getSelectionModel().getSelectedItem().getEmail();
+        if (Desktop.isDesktopSupported()
+                && (desktop = Desktop.getDesktop()).isSupported(Desktop.Action.MAIL)) {
+            URI mailto = new URI("mailto:" + email + "?subject=STUDENT'S%20ATTENDANCE");
+            desktop.mail(mailto);
+        } else {
+            throw new RuntimeException("desktop doesn't support mailto");
+        }
     }
 
     @FXML
@@ -132,21 +145,6 @@ public class SummarizedAttendanceController implements Initializable {
             }
         }
         setChartData(mondayAbsence, tuesdayAbsence, wednesdayAbsence, thursdayAbsence, fridayAbsence);
-    }
-
-    public void bubbleSort(int[] arr) {
-        int n = arr.length;
-        int temp = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = 1; j < (n - i); j++) {
-                if (arr[j - 1] < arr[j]) {
-                    temp = arr[j - 1];
-                    arr[j - 1] = arr[j];
-                    arr[j] = temp;
-                }
-
-            }
-        }
     }
 
     @FXML

@@ -1,11 +1,7 @@
 package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Student;
-import attendancerecorder.bll.interfaces.IStudentManager;
-import attendancerecorder.bll.interfaces.ITeacherManager;
 import attendancerecorder.bll.interfaces.IbllFacade;
-import attendancerecorder.bll.managers.StudentManager;
-import attendancerecorder.bll.managers.TeacherManager;
 import attendancerecorder.bll.managers.bllFacade;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
@@ -14,7 +10,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EventObject;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -27,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -54,8 +50,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
     @FXML
     private AnchorPane pane;
     @FXML
-    private Label text2;
-    @FXML
     private Label lbl_popup;
     @FXML
     private JFXDatePicker datePicker;
@@ -67,7 +61,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
     private Label lbl_teacherName;
     @FXML
     private TableColumn<Student, String> tableview_absent;
-//    private Label lbl_messageForAbsence;
     @FXML
     private TableView<Student> tc_present;
     @FXML
@@ -89,8 +82,64 @@ public class TeacherAttendanceOverviewController implements Initializable {
         textarea.setVisible(false);
         textarea.setEditable(false);
         lbl_percentageOfAbsence.setVisible(true);
-        text2.setVisible(false);
-//        absentStudentsAlert();
+        absentStudentsAlert();
+    }
+
+    public String getCurrentDate() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate now = LocalDate.now();
+        return now.toString();
+    }
+
+    public void getTeacherName(String name) {
+        teacherName = name;
+        lbl_teacherName.setText("Hello, " + teacherName);
+    }
+
+    private void getAbsenceById(int id) {
+        float absenceById = bllFacade.getAbsenceById(id);
+        lbl_percentageOfAbsence.setText("Total absence percentage: " + String.valueOf(absenceById) + " %");
+    }
+
+    public void getIsStudent(boolean isStudent) {
+        this.isStudent = isStudent;
+    }
+
+    private void click_showStudentReason(ActionEvent event) {
+        if (tc_absent.getSelectionModel().getSelectedItem() != null) {
+            lbl_reasonForAbsence.setVisible(true);
+            textarea.setVisible(true);
+            textarea.setText(tc_absent.getSelectionModel().getSelectedItem().getMessage());
+        } else {
+            lbl_reasonForAbsence.setVisible(false);
+            textarea.setVisible(false);
+        }
+    }
+
+    public void getTeacherId(int id) {
+        idFromLogin = id;
+    }
+
+    private void absentStudentsAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informational dialog");
+        alert.setHeaderText("There are some students with the absent percentage above 40%");
+        List<Student> allStudents = bllFacade.getAllStudentsForAbsenceOverview();
+        List<Student> mostAbsentStudents = new ArrayList();
+        List<String> list = new ArrayList();
+        for (Student student : allStudents) {
+            if (student.getAbsencePercentage() >= 40) {
+                mostAbsentStudents.add(student);
+            }
+        }
+
+        for (Student student : mostAbsentStudents) {
+            String normal = "Student  " + student.getFirstName() + " has " + student.getAbsencePercentage() + " % of absence\n";
+            list.add(normal);
+        }
+
+        alert.setContentText(list.toString());
+        alert.showAndWait();
     }
 
     @FXML
@@ -110,28 +159,11 @@ public class TeacherAttendanceOverviewController implements Initializable {
         tc_absent.setItems(absentStudents);
     }
 
-    public void getTeacherName(String name) {
-        teacherName = name;
-        lbl_teacherName.setText("Hello, " + teacherName);
-    }
-
-    private void click_showStudentReason(ActionEvent event) {
-        if (tc_absent.getSelectionModel().getSelectedItem() != null) {
-            lbl_reasonForAbsence.setVisible(true);
-            textarea.setVisible(true);
-            textarea.setText(tc_absent.getSelectionModel().getSelectedItem().getMessage());
-        } else {
-            lbl_reasonForAbsence.setVisible(false);
-            textarea.setVisible(false);
-        }
-    }
-
     @FXML
     private void click_selectedPresentStudent(MouseEvent event) {
         tc_absent.getSelectionModel().clearSelection();
         lbl_reasonForAbsence.setVisible(false);
         textarea.setVisible(false);
-        text2.setVisible(true);
         getAbsenceById(tc_present.getSelectionModel().getSelectedItem().getId());
     }
 
@@ -140,30 +172,8 @@ public class TeacherAttendanceOverviewController implements Initializable {
         tc_present.getSelectionModel().clearSelection();
         lbl_reasonForAbsence.setVisible(true);
         textarea.setVisible(true);
-        text2.setVisible(true);
         textarea.setText(tc_absent.getSelectionModel().getSelectedItem().getMessage());
         getAbsenceById(tc_absent.getSelectionModel().getSelectedItem().getId());
-    }
-
-    /*WORKING ALERT. COMMENTED BC ANNOYING
-      private void absentStudentsAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Informational dialog");
-        alert.setHeaderText("There are some students with the absent percentage above X%");
-        List<String> list = new ArrayList();
-        for (int i = 0; i < 32; i++) {
-            if (calculateOverallAbsentAttendanceById(i) >= 40) {
-
-                String normal = "Student with id: " + i + "has " + calculateOverallAbsentAttendanceById(i) + " % of absence\n";
-                list.add(normal);
-            }
-        }
-        alert.setContentText(list.toString());
-        alert.showAndWait();
-    }*/
-    private void getAbsenceById(int id) {
-        float absenceById = bllFacade.getAbsenceById(id);
-        lbl_percentageOfAbsence.setText(String.valueOf(absenceById));
     }
 
     @FXML
@@ -176,10 +186,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Summarized Attendance");
         stage.show();
-    }
-
-    public void getTeacherId(int id) {
-        idFromLogin = id;
     }
 
     @FXML
@@ -195,10 +201,6 @@ public class TeacherAttendanceOverviewController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Change Password");
         stage.show();
-    }
-
-    public void getIsStudent(boolean isStudent) {
-        this.isStudent = isStudent;
     }
 
     @FXML
@@ -236,9 +238,4 @@ public class TeacherAttendanceOverviewController implements Initializable {
 
     }
 
-    public String getCurrentDate() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate now = LocalDate.now();
-        return now.toString();
-    }
 }

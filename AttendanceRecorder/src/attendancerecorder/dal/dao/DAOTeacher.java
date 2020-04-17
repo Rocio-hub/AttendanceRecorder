@@ -142,6 +142,8 @@ public class DAOTeacher implements IDAOTeacher {
         return null;
     }
 
+
+    @Override
     public float getAbsenceById(int id) {
         try ( Connection con = ds.getConnection()) {
             float absencePercentage = 0;
@@ -162,23 +164,7 @@ public class DAOTeacher implements IDAOTeacher {
         }
         return 0;
     }
-
-    public void updatePasswordById(int id, String newPassword) {
-        try ( Connection con = ds.getConnection()) {
-            String sql = "UPDATE Students SET password = ? WHERE id = ? ";
-            PreparedStatement pstmt = con.prepareStatement(sql);
-
-            pstmt.setString(1, newPassword);
-            pstmt.setInt(2, id);
-            pstmt.executeUpdate();
-
-        } catch (SQLServerException sqlse) {
-            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, sqlse);
-        } catch (SQLException ex) {
-            Logger.getLogger(DAOStudent.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
+    
     @Override
     public void updateTeacherPasswordById(int id, String newPassword) {
         try ( Connection con = ds.getConnection()) {

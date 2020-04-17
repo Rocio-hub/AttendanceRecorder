@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DaoTest;
 
 import attendancerecorder.be.Student;
-import attendancerecorder.be.Teacher;
 import attendancerecorder.dal.dao.daoFacade;
 import attendancerecorder.dal.interfaces.IdaoFacade;
 import java.util.List;
@@ -38,11 +33,6 @@ public class DaoStudentTest {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
     IdaoFacade facadeTest;
 
     @Test //tests the login checking if both email and password match with the ones on database for a student

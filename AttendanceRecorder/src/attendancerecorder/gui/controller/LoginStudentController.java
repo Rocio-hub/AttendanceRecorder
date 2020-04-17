@@ -1,9 +1,7 @@
 package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Student;
-import attendancerecorder.bll.interfaces.IStudentManager;
 import attendancerecorder.bll.interfaces.IbllFacade;
-import attendancerecorder.bll.managers.StudentManager;
 import attendancerecorder.bll.managers.bllFacade;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
@@ -57,7 +55,7 @@ public class LoginStudentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //TODO
+        
     }
 
     @FXML

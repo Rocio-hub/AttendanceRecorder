@@ -3,9 +3,7 @@ package attendancerecorder.bll.managers;
 import attendancerecorder.be.Course;
 import attendancerecorder.be.Student;
 import attendancerecorder.bll.interfaces.IStudentManager;
-import attendancerecorder.dal.dao.DAOStudent;
 import attendancerecorder.dal.dao.daoFacade;
-import attendancerecorder.dal.interfaces.IDAOStudent;
 import attendancerecorder.dal.interfaces.IdaoFacade;
 import java.util.List;
 

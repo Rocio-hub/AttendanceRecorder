@@ -1,9 +1,7 @@
 package attendancerecorder.gui.controller;
 
 import attendancerecorder.be.Teacher;
-import attendancerecorder.bll.interfaces.ITeacherManager;
 import attendancerecorder.bll.interfaces.IbllFacade;
-import attendancerecorder.bll.managers.TeacherManager;
 import attendancerecorder.bll.managers.bllFacade;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
@@ -52,7 +50,7 @@ public class LoginTeacherController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //TODO
+        
     }
 
     private void mouse_login(MouseEvent event) {

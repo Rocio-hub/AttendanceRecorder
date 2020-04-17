@@ -50,7 +50,7 @@ public class RecordAndOverallAttendanceController implements Initializable {
     //Needed variables
     private ObservableList<Course> courseLst;
     private String studentFirstName, studentLastName;
-   private int idFromLogin;
+    private int idFromLogin;
     private boolean isStudent;
     private boolean isPresent = false;
 
@@ -64,7 +64,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
     private TableColumn<Course, String> tc_courses;
     @FXML
     private Label lbl_popup;
-    private Label lbl_popup1;
     @FXML
     private PieChart overAllChart;
     @FXML
@@ -126,44 +125,9 @@ public class RecordAndOverallAttendanceController implements Initializable {
             return false;
         }
         if (!cb_present.isSelected() && !cb_absent.isSelected()) {
-            lbl_popup1.setVisible(true);
             return false;
         }
-        /* if (tv_courses.getSelectionModel().getSelectedItem() == null) {
-            lbl_popup2.setVisible(true);
-            return false;
-        }*/
         return true;
-    }
-
-    @FXML
-    private void click_present(ActionEvent event) {
-        cb_absent.setSelected(false);
-        isPresent = true;
-    }
-
-    @FXML
-    private void click_absent(ActionEvent event) {
-        cb_present.setSelected(false);
-        txt_absentMessage.visibleProperty().bind(cb_absent.selectedProperty());
-    }
-
-    @FXML
-    private void click_search(ActionEvent event) {
-        lbl1.setVisible(true);
-
-        String date = datePicker_sort.getValue().toString();
-        Student student = bllFacade.getReasonForAbsence(idFromLogin, date);
-        textarea.setText(student.getMessage());
-        if (student.getStatus() == 0) {
-            lbl_showStatus.setText("ABSENT");
-            lbl2.setVisible(true);
-            textarea.setVisible(true);
-        } else {
-            lbl_showStatus.setText("PRESENT");
-            lbl2.setVisible(false);
-            textarea.setVisible(false);
-        }
     }
 
     public void getEmailFromLogin(int id) {
@@ -208,8 +172,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
     }
 
     private float updateAbsencePercentage() {
-//        List<Student> studentLst = new ArrayList();
-//        studentLst = studentMng.getAllAttendancesById(idFromLogin);
         List<Student> studentLst = bllFacade.getAllAttendancesById(idFromLogin);
         float counterPresent = 0;
         float counterAbsent = 0;
@@ -230,27 +192,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
         return absencePercentage;
     }
 
-    @FXML
-    private void mouse_confirm(MouseEvent event) {
-        if (enableConfirmation()) {
-            Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
-            stage.close();
-        }
-    }
-
-    @FXML
-    private void click_confirm(ActionEvent event) throws IOException {
-        if (enableConfirmation()) {
-            addNewAttendance();
-        }
-    }
-
-    @FXML
-    private void clickClose(ActionEvent event) {
-        Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
-        stage.close();
-    }
-
     private void confirmationAttendanceAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("CONFIRMATION");
@@ -265,7 +206,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
         initOverallChart();
     }
 
-    //THERE MIGHT BE SOME CODE DOUBLED, CHECK IN THE addNewAttendance METHOD
     private void confirmationOverwritingAttendance(String date, int status, String message) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
@@ -296,23 +236,6 @@ public class RecordAndOverallAttendanceController implements Initializable {
         }
     }
 
-    @FXML
-    private void click_changePassword(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/ChangePassword.fxml"));
-        Parent root = loader.load();
-        //The following three lines are created so both idFromLogin and isStudent are accesible from ChangePasswordController
-        ChangePasswordController cpctrl = loader.getController();
-        cpctrl.getStudentId(idFromLogin);
-        cpctrl.getIsStudent(isStudent);
-
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Change Password");
-        stage.show();
-
-    }
-
     public void getIsStudent(boolean isStudent) {
         this.isStudent = isStudent;
     }
@@ -330,6 +253,74 @@ public class RecordAndOverallAttendanceController implements Initializable {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate now = LocalDate.now();
         return now;
+    }
+
+    @FXML
+    private void click_present(ActionEvent event) {
+        cb_absent.setSelected(false);
+        isPresent = true;
+    }
+
+    @FXML
+    private void click_absent(ActionEvent event) {
+        cb_present.setSelected(false);
+        txt_absentMessage.visibleProperty().bind(cb_absent.selectedProperty());
+    }
+
+    @FXML
+    private void click_search(ActionEvent event) {
+        lbl1.setVisible(true);
+
+        String date = datePicker_sort.getValue().toString();
+        Student student = bllFacade.getReasonForAbsence(idFromLogin, date);
+        textarea.setText(student.getMessage());
+        if (student.getStatus() == 0) {
+            lbl_showStatus.setText("ABSENT");
+            lbl2.setVisible(true);
+            textarea.setVisible(true);
+        } else {
+            lbl_showStatus.setText("PRESENT");
+            lbl2.setVisible(false);
+            textarea.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void mouse_confirm(MouseEvent event) {
+        if (enableConfirmation()) {
+            Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
+            stage.close();
+        }
+    }
+
+    @FXML
+    private void click_confirm(ActionEvent event) throws IOException {
+        if (enableConfirmation()) {
+            addNewAttendance();
+        }
+    }
+
+    @FXML
+    private void clickClose(ActionEvent event) {
+        Stage stage = (Stage) ((Node) ((EventObject) event).getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void click_changePassword(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendancerecorder/gui/view/ChangePassword.fxml"));
+        Parent root = loader.load();
+        //The following three lines are created so both idFromLogin and isStudent are accesible from ChangePasswordController
+        ChangePasswordController cpctrl = loader.getController();
+        cpctrl.getStudentId(idFromLogin);
+        cpctrl.getIsStudent(isStudent);
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Change Password");
+        stage.show();
+
     }
 
     @FXML

@@ -132,8 +132,6 @@ public class Student {
         this.dayOfWeek = dayOfWeek;        
     }
     
-    
-
     //ToString
     
     @Override
